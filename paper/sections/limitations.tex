@@ -1,0 +1,19 @@
+\section*{Limitations}\label{sec:limitations}
+
+\paragraph{Scope.}
+We study one student (Qwen3-4B), one teacher, one domain (SQL), and one RL algorithm. Our setting differs from \citet{zhang2026actobs} in ways that may matter. Terminal observations are longer and richer in failures, whereas in our teacher data only 2.8\% of SQL calls fail. Our negative result for observation supervision should therefore not be read as a refutation of their Terminal-Bench result.
+
+\paragraph{Seeds and variance.}
+GRPO results rest on two seeds for \armA{} and one or two for the other arms. Differences between SFT checkpoints reach about 1.5 points after RL (\S\ref{sec:rl}), more than our question-level confidence intervals capture. Effects of about one point should be treated as unresolved.
+
+\paragraph{Exploratory arms.}
+The outcome and contract arms were added after the first results were seen. Their predictions were written down before training, but they are not part of the original pre-registration.
+
+\paragraph{Fairness of the contract arm.}
+\armG{} receives the gold result shapes of the training questions, which \armA{} does not. \armGp{} controls for the format of the inserted text, not for this information. A gold-matched control, SFT on correct trajectories only, is missing. Two further caveats apply to the placebo. Because the shapes are coarse, 24\% of the placebo contracts coincide with the gold shape. Most placebo checks also report a mismatch, which may bias \armGp{} as a control for behaviour, and \armGp{} was not trained with RL.
+
+\paragraph{Mechanism.}
+The optimiser account in \S\ref{sec:share} is suggestive. Action KL to the base model is an insensitive metric, and we did not ablate the optimiser.
+
+\section*{Ethics Statement}
+This work uses public text-to-SQL benchmarks and open-weight models. The environment audit identifies a reward loophole in a public RL environment. We reported it to the maintainers together with a reproduction script\skyrlissue{}. We see no direct risks beyond those of the underlying models.

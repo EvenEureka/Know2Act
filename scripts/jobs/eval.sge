@@ -1,0 +1,30 @@
+#!/bin/bash
+#$ -q gpu
+#$ -l gpu_card=4
+#$ -pe smp 16
+#$ -j y
+#$ -o /path/to/Know2Act/logs/$JOB_NAME.$JOB_ID.log
+# pass@k evaluation (PREREG §2): n=16, T=0.6 top-p 0.95 top-k 20, same multi-turn stream as GRPO.
+# NSHARD (default 4, = granted GPUs) data-parallel vLLM processes (TP1) per dataset.
+# usage: qsub -N eval_B_s1 -v NAME=B_s1,MODEL=/path/to/model scripts/jobs/eval.sge
+set -euo pipefail
+source /path/to/Know2Act/scripts/env.sh
+export PYTHONHASHSEED=0
+cd $ROOT
+if [ ! -f "$MODEL/config.json" ]; then echo "SKIP: model missing ($MODEL); upstream run did not finish"; exit 0; fi
+trap 'rc=$?; if [ $rc -ne 0 ] && [ -n "${MAILTO:-}" ]; then tail -40 "$SGE_STDOUT_PATH" | mail -s "[AgenticRL_CV] $JOB_NAME FAILED rc=$rc" "$MAILTO"; fi' EXIT
+mkdir -p $LOCAL/omnisql && rsync -a $ROOT/data/omnisql/data/ $LOCAL/omnisql/data/
+OUTD=$ROOT/results/eval/$NAME; mkdir -p $OUTD
+for DS in ${SETS:-spider_dev bird_dev}; do
+  PIDS=()
+  for i in $(seq 0 $((${NSHARD:-4}-1))); do
+    CUDA_VISIBLE_DEVICES=$i $PY scripts/rollout.py --data data/v1/$DS.parquet --model $MODEL \
+      --out $OUTD/$DS.shard$i.jsonl --db_path $LOCAL/omnisql/data --n ${N:-16} \
+      --temperature 0.6 --top_p 0.95 --top_k ${TOPK:-20} --tp 1 --gpu_mem 0.88 --shard $i/${NSHARD:-4} \
+      --limit ${LIMIT:--1} --seed ${SEED:-0} --enable_thinking ${THINK:-false} --lenient --max_generate_length ${MAX_GEN:-1024} --max_input_length ${MAX_INPUT:-8192} > $ROOT/logs/eval_$NAME.$DS.shard$i.$JOB_ID.log 2>&1 &
+    PIDS+=($!)
+  done
+  for p in "${PIDS[@]}"; do wait $p || { echo "shard process $p failed ($DS)"; exit 1; }; done
+done
+$PY scripts/passk.py --runs "$NAME=$OUTD/*.jsonl" --out $OUTD/passk.json > /dev/null
+echo EVAL_DONE

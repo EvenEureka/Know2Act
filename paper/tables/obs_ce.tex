@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccccccccc@{}}
+\toprule
+& \multicolumn{5}{c}{Unseen (held-out) databases} & \multicolumn{5}{c}{Training databases} \\
+\cmidrule(lr){2-6}\cmidrule(lr){7-11}
+Part & base & \armA{} & \armB{} & \armD{} & tokens & base & \armA{} & \armB{} & \armD{} & tokens \\
+\midrule
+template & 4.19 & 2.79 & 0.03 & 2.78 & 8,000 & 3.88 & 2.57 & 0.02 & 2.57 & 8,194 \\
+header (first 3 tokens) & 7.89 & 5.64 & 1.02 & 5.71 & 1,101 & 7.26 & 5.31 & 0.35 & 5.38 & 1,128 \\
+header (rest of line) & 3.40 & 2.22 & 0.30 & 2.18 & 1,986 & 2.38 & 1.69 & 0.20 & 1.65 & 1,924 \\
+row values & 2.26 & 1.88 & 1.92 & 1.83 & 35,845 & 2.18 & 1.60 & 0.70 & 1.55 & 17,550 \\
+error (first 3 tokens) & 10.15 & 6.73 & 0.53 & 6.33 & 15 & 6.61 & 4.48 & 0.41 & 4.22 & 57 \\
+error message & 5.44 & 3.93 & 0.23 & 3.95 & 213 & 3.66 & 2.69 & 0.07 & 2.68 & 728 \\
+empty result (first 3 tokens) & 4.28 & 5.21 & 1.21 & 4.49 & 9 & 3.34 & 4.97 & 0.37 & 4.45 & 129 \\
+\bottomrule
+\end{tabular}}
+\caption{Observation cross-entropy (nats per token) by part on 300 held-out and 300 training trajectories. The ``rows'' parts also include invalid-action notices, which the breakdown does not separate.}
+\label{tab:obsce}
+\end{table*}

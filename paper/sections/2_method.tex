@@ -1,0 +1,35 @@
+\section{Observation Supervision, Its Alternatives, and Where Predictions Go}
+\label{sec:method}
+
+Every agent trajectory pairs what the agent did with what the environment returned. All the arms below train on the same trajectories in the same order with the same hyper-parameters. They differ only in which tokens carry loss, or in a short line inserted into the text.
+
+\paragraph{Objective.}
+Let a trajectory be $\tau=(x,a_1,o_1,\dots,a_T,o_T)$, with task prompt $x$, agent turns $a_t$, and observations $o_t$. Here each $o_t$ is an SQL result table or error message. Let $A$ and $O$ index the action and observation tokens. Following \citet{zhang2026actobs}, we minimise
+\begin{equation}
+\mathcal{L}_\lambda = -\frac{S_A + \lambda S_O}{|A|+\lambda|O|},\quad
+S_X=\sum_{i\in X}\log p_\theta(y_i\mid y_{<i}).
+\label{eq:actobs}
+\end{equation}
+$\lambda=0$ gives \armA{}, and $\lambda=1$ gives \armB{}.
+
+\paragraph{Two readings of a gain.}
+If \armB{} helps RL, there are two ways to explain it. On the world-model reading, predicting $o_t$ requires modelling what $a_t$ does, and that knowledge shapes later actions. On the dilution reading, Eq.~(\ref{eq:actobs}) shrinks the action term's share of each update to $|A|/(|A|+|O|)$, which is 0.69 in our data, and fitting actions less could by itself preserve plasticity for RL \citep{plasticity2026}. We pre-registered two controls that reproduce the dilution without any environment prediction. \armC{} is action-only SFT whose learning rate is chosen so that its held-out action KL to the base model matches \armB's; a frozen rule selected $0.85\times$. \armD{} replaces the observation term with the same number of unrelated Wikipedia tokens.
+
+\paragraph{Where the prediction goes.}
+Unmasking observations asks the model to predict them, but nothing at test time conditions on that prediction. Two exploratory arms separate learning a prediction from acting on it.
+
+Both insert an outcome line derived from the real observation, such as ``Expected result: 3 rows, 2 columns.'' or ``Expected result: error (no such column: GPA).'' \armE{} places the line after \texttt{</sql>} as an auxiliary target ($\lambda=1$), leaves the real observation unsupervised, and never generates the line at test time. \armF{} places the same line before \texttt{<sql>}, inside the action, so that the query that follows is conditioned on it. The two arms supervise identical lines with identical weights.
+
+\paragraph{What the prediction is about.}
+An outcome line predicts the environment's response to one's own query. When running the query is free, that is information the agent will receive anyway. What the executor cannot provide is a description of the \emph{correct} answer.
+
+\armG{} therefore begins each trajectory with an \emph{answer contract}: the coarse shape of the gold result (no rows, one row, or several rows, plus the number of columns), e.g.\ ``Expected answer: 1 row, 1 column.'' After each observation, the next action begins with a check, e.g.\ ``Check: got several rows, 2 columns; this does not match the expected answer.'' The check depends only on text the model can see, so it is a skill to compute rather than a label.
+
+\armGp{} is a placebo with the same format, using contracts taken from other questions.
+
+\armG{} differs from \armF{} in three ways at once: the target, the label source (gold execution vs.\ hindsight), and the explicit check. We test this bundle as a whole. It also receives information that \armA{} lacks, namely the gold result shapes of the 6,294 training questions. There is no test-time leakage, because the evaluation databases are unseen.
+
+\paragraph{After SFT.}
+All arms run the same GRPO. No prediction is rewarded, because rewarding prediction accuracy can collapse GRPO \citep{wang2026darkroom}.
+
+The outcome and contract arms were added after the first results were seen. Their predictions were written down before training (App.~\ref{app:prereg}).

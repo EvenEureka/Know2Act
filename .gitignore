@@ -1,0 +1,25 @@
+# large or machine-specific outputs (not part of the repository)
+data/*
+!data/sft/
+data/sft/*
+!data/sft/*.json
+results/eval/
+results/sft/
+results/grpo/
+results/exec_cache/
+results/pilots/
+logs/
+containers/*.sif
+skyrl-upstream/
+.skyrl_venv/
+.uv-cache/
+__pycache__/
+*.pyc
+# LaTeX build files
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/main.pdf
+paper/main_public.*

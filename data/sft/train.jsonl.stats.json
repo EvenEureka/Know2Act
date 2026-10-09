@@ -1,0 +1,13 @@
+{
+ "read": 25176,
+ "kept": 24043,
+ "drop_length": 44,
+ "drop_format": 1089,
+ "drop_too_long": 0,
+ "correct": 12171,
+ "tok_act": 7189000,
+ "tok_payload": 2451405,
+ "tok_wrapper": 774680,
+ "obs_token_share": 0.3098,
+ "sha256": "040a1f17f6b60fd464dca31ccfd5e83dfcc002b2883f891534780586b31cb8f0"
+}

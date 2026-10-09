@@ -1,0 +1,182 @@
+{
+ "sftA/spider_dev": {
+  "turns": 2.315,
+  "traj_with_error": 0.0326,
+  "solved_after_error": 0.337,
+  "error_retry_same_sql": 0.3584,
+  "empty_obs_per_traj": 0.086,
+  "empty_then_answer": 0.493,
+  "empty_retry_same_sql": 0.1217,
+  "trajectories": 16544
+ },
+ "sftA/bird_dev": {
+  "turns": 2.857,
+  "traj_with_error": 0.1652,
+  "solved_after_error": 0.3031,
+  "error_retry_same_sql": 0.2324,
+  "empty_obs_per_traj": 0.1105,
+  "empty_then_answer": 0.3827,
+  "empty_retry_same_sql": 0.0737,
+  "trajectories": 24544
+ },
+ "sftB/spider_dev": {
+  "turns": 2.304,
+  "traj_with_error": 0.0302,
+  "solved_after_error": 0.382,
+  "error_retry_same_sql": 0.3424,
+  "empty_obs_per_traj": 0.086,
+  "empty_then_answer": 0.4866,
+  "empty_retry_same_sql": 0.1512,
+  "trajectories": 16544
+ },
+ "sftB/bird_dev": {
+  "turns": 2.844,
+  "traj_with_error": 0.1571,
+  "solved_after_error": 0.3026,
+  "error_retry_same_sql": 0.2573,
+  "empty_obs_per_traj": 0.1123,
+  "empty_then_answer": 0.3798,
+  "empty_retry_same_sql": 0.1048,
+  "trajectories": 24544
+ },
+ "sftE1/spider_dev": {
+  "turns": 2.297,
+  "traj_with_error": 0.0288,
+  "solved_after_error": 0.3711,
+  "error_retry_same_sql": 0.3281,
+  "empty_obs_per_traj": 0.0789,
+  "empty_then_answer": 0.5433,
+  "empty_retry_same_sql": 0.0728,
+  "trajectories": 16544
+ },
+ "sftE1/bird_dev": {
+  "turns": 2.852,
+  "traj_with_error": 0.1624,
+  "solved_after_error": 0.2756,
+  "error_retry_same_sql": 0.2657,
+  "empty_obs_per_traj": 0.1078,
+  "empty_then_answer": 0.4048,
+  "empty_retry_same_sql": 0.0756,
+  "trajectories": 24544
+ },
+ "sftE2/spider_dev": {
+  "turns": 2.332,
+  "traj_with_error": 0.0326,
+  "solved_after_error": 0.363,
+  "error_retry_same_sql": 0.3816,
+  "empty_obs_per_traj": 0.1022,
+  "empty_then_answer": 0.3882,
+  "empty_retry_same_sql": 0.2355,
+  "trajectories": 16544
+ },
+ "sftE2/bird_dev": {
+  "turns": 2.885,
+  "traj_with_error": 0.1671,
+  "solved_after_error": 0.2938,
+  "error_retry_same_sql": 0.2778,
+  "empty_obs_per_traj": 0.1129,
+  "empty_then_answer": 0.3373,
+  "empty_retry_same_sql": 0.1071,
+  "trajectories": 24544
+ },
+ "sftE3/spider_dev": {
+  "turns": 2.307,
+  "traj_with_error": 0.0267,
+  "solved_after_error": 0.4005,
+  "error_retry_same_sql": 0.2966,
+  "empty_obs_per_traj": 0.0933,
+  "empty_then_answer": 0.4329,
+  "empty_retry_same_sql": 0.1523,
+  "trajectories": 16544
+ },
+ "sftE3/bird_dev": {
+  "turns": 2.88,
+  "traj_with_error": 0.1637,
+  "solved_after_error": 0.286,
+  "error_retry_same_sql": 0.2339,
+  "empty_obs_per_traj": 0.1151,
+  "empty_then_answer": 0.3631,
+  "empty_retry_same_sql": 0.0832,
+  "trajectories": 24544
+ },
+ "grpoA1/spider_dev": {
+  "turns": 2.092,
+  "traj_with_error": 0.0235,
+  "solved_after_error": 0.5284,
+  "error_retry_same_sql": 0.0598,
+  "empty_obs_per_traj": 0.0754,
+  "empty_then_answer": 0.5245,
+  "empty_retry_same_sql": 0.0273,
+  "trajectories": 16544
+ },
+ "grpoA1/bird_dev": {
+  "turns": 2.342,
+  "traj_with_error": 0.1354,
+  "solved_after_error": 0.3773,
+  "error_retry_same_sql": 0.0733,
+  "empty_obs_per_traj": 0.0953,
+  "empty_then_answer": 0.3751,
+  "empty_retry_same_sql": 0.0389,
+  "trajectories": 24544
+ },
+ "grpoA2/spider_dev": {
+  "turns": 2.095,
+  "traj_with_error": 0.0233,
+  "solved_after_error": 0.5622,
+  "error_retry_same_sql": 0.0427,
+  "empty_obs_per_traj": 0.0821,
+  "empty_then_answer": 0.4776,
+  "empty_retry_same_sql": 0.0522,
+  "trajectories": 16544
+ },
+ "grpoA2/bird_dev": {
+  "turns": 2.32,
+  "traj_with_error": 0.1271,
+  "solved_after_error": 0.3716,
+  "error_retry_same_sql": 0.0859,
+  "empty_obs_per_traj": 0.1017,
+  "empty_then_answer": 0.338,
+  "empty_retry_same_sql": 0.0453,
+  "trajectories": 24544
+ },
+ "grpoB1/spider_dev": {
+  "turns": 2.083,
+  "traj_with_error": 0.025,
+  "solved_after_error": 0.5521,
+  "error_retry_same_sql": 0.0467,
+  "empty_obs_per_traj": 0.0778,
+  "empty_then_answer": 0.4965,
+  "empty_retry_same_sql": 0.0303,
+  "trajectories": 16544
+ },
+ "grpoB1/bird_dev": {
+  "turns": 2.297,
+  "traj_with_error": 0.1355,
+  "solved_after_error": 0.3746,
+  "error_retry_same_sql": 0.0596,
+  "empty_obs_per_traj": 0.0998,
+  "empty_then_answer": 0.3841,
+  "empty_retry_same_sql": 0.0188,
+  "trajectories": 24544
+ },
+ "grpoC1/spider_dev": {
+  "turns": 2.101,
+  "traj_with_error": 0.0278,
+  "solved_after_error": 0.5674,
+  "error_retry_same_sql": 0.039,
+  "empty_obs_per_traj": 0.0848,
+  "empty_then_answer": 0.4298,
+  "empty_retry_same_sql": 0.0428,
+  "trajectories": 16544
+ },
+ "grpoC1/bird_dev": {
+  "turns": 2.334,
+  "traj_with_error": 0.1389,
+  "solved_after_error": 0.3878,
+  "error_retry_same_sql": 0.0813,
+  "empty_obs_per_traj": 0.1043,
+  "empty_then_answer": 0.3099,
+  "empty_retry_same_sql": 0.0477,
+  "trajectories": 24544
+ }
+}

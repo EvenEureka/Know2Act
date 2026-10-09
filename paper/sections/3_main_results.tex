@@ -1,0 +1,81 @@
+\section{Main Results}
+\label{sec:main}
+
+\subsection{Setup}
+\label{sec:setup}
+
+\paragraph{Environment.}
+We use the text-to-SQL recipe of SkyRL \citep{skyrl} at a pinned commit, without modification. Each turn the agent either issues \texttt{<sql>\ldots</sql>}, whose result table or error message is returned as the observation, or ends with \texttt{<solution>\ldots</solution>}. The reward is 1 when the solution's result set equals the gold query's. The agent has at most six turns.
+
+Qwen3's thinking mode breaks this environment. With thinking on, the teacher rarely uses the tool. With thinking off, it never writes the \texttt{<think>} tags that the format rules require. We therefore disable thinking and drop only these two rules (App.~\ref{app:audit}).
+
+\paragraph{Training.}
+Qwen3-32B \citep{yang2025qwen3} generated 4 trajectories for each of 6,294 Spider training questions \citep{yu2018spider,li2025omnisql}, and 24,043 well-formed trajectories were kept; observations make up 31\% of their supervised tokens. A further 1,149 trajectories on 12 databases that SFT never sees are used only for measurement (App.~\ref{app:data}). We fine-tune all of Qwen3-4B for one epoch (375 steps, batch 64, cosine schedule, peak learning rate $10^{-5}$), rebuilding each SFT sequence segment by segment so that it matches, token for token, the stream RL trains on. GRPO \citep{shao2024deepseekmath} then runs for 135 steps with 32 tasks $\times$ 16 rollouts, learning rate $10^{-6}$ and token-level truncated importance sampling.
+
+\paragraph{Environment audit.}
+In 290 of the 653 public RL training tasks (44.4\%), the gold query returns no rows. A constant empty query therefore earns full reward on these tasks; for 18 of them the outcome also depends on the system clock. We train RL on the 363 tasks with non-empty gold results.
+
+\paragraph{Evaluation.}
+We evaluate on Spider-dev and BIRD-dev \citep{li2023bird}, sampling 16 attempts per question at temperature 0.6. pass@$k$ uses the unbiased estimator.
+
+The \emph{primary set} excludes questions whose gold query fails or returns nothing: 983 of 1,034 on Spider and 1,532 of 1,534 on BIRD. Differences between arms are reported with paired bootstrap 95\% confidence intervals over questions.
+
+The pre-registered primary outcome is post-GRPO pass@16, pooled over both primary sets.
+
+\subsection{Observation supervision does not strengthen downstream RL}
+\label{sec:rl}
+
+\begin{table}[t]
+\centering\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& \multicolumn{2}{c}{Spider-dev} & \multicolumn{2}{c}{BIRD-dev} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Model & p@1 & p@16 & p@1 & p@16 \\
+\midrule
+Qwen3-4B (base) & 48.5 & 82.6 & 32.9 & 66.1 \\
+\multicolumn{5}{@{}l}{\emph{After SFT}} \\
+\armA{} & 71.4 & 84.1 & 49.7 & 73.2 \\
+\armB{} & 71.7 & 83.7 & 50.2 & 73.4 \\
+\armC{} & 71.3 & 84.3 & 50.3 & 73.8 \\
+\armD{} & 71.8 & 84.2 & 50.4 & 73.1 \\
+\armE{} & 71.0 & 84.2 & 49.8 & 73.6 \\
+\armF{} & 71.2 & 83.9 & 50.0 & 73.8 \\
+\armG{} & 71.8 & 84.6 & 49.5 & 74.0 \\
+\multicolumn{5}{@{}l}{\emph{After GRPO}} \\
+\armA{}, seed 1 & 80.5 & 88.8 & 58.1 & 76.6 \\
+\armA{}, seed 2 & 80.3 & 88.4 & 58.2 & 76.8 \\
+\armB{}, seed 1 & 80.4 & 88.9 & 57.2 & 76.4 \\
+\armB{}, seed 2 & \pending & \pending & \pending & \pending \\
+\armC{}, seed 1 & 80.8 & 88.4 & 58.7 & 77.4 \\
+\armF{}, seed 1 & \pending & \pending & \pending & \pending \\
+\armG{}, seed 1 & 80.8 & 88.9 & 57.5 & 76.4 \\
+\bottomrule
+\end{tabular}}
+\caption{Main results: pass@$k$ (\%) on the primary sets, with 16 attempts per question. All SFT initialisations are closely matched. After the same GRPO, observation supervision (\armB) does not improve on \armA{}.}
+\label{tab:main}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\figplaceholder{figures/fig2_rl_gain.pdf}{4.6cm}
+\caption{Gain during RL from each SFT initialisation: post-GRPO minus pre-GRPO pass@1 and pass@16 of the same initialisation, with 95\% bootstrap CIs over primary questions. Unlike on Terminal-Bench \citep{zhang2026actobs}, GRPO extracts no consistently larger gain from \armB{}. On BIRD its gain is smaller at both $k$. On Spider it lies within the range of the \armA{} seeds at pass@1 and is 0.5--0.9 points higher at pass@16, with overlapping CIs.}
+\label{fig:rlgain}
+\end{figure}
+
+Table~\ref{tab:main} summarises the results. As in \citet{zhang2026actobs}, all SFT initialisations are closely matched before RL. Unlike in their study, the same GRPO does not separate them (Figure~\ref{fig:rlgain}).
+
+\paragraph{The primary outcome.}
+On pooled pass@16, \armB{} minus \armA{} is $-0.06$ points (95\% CI $[-0.82, 0.68]$; 2,515 questions), averaged over the two \armA{} seeds. On each dataset separately, every pass@16 difference has a CI that covers zero: Spider $+0.10$ and $+0.51$, BIRD $-0.20$ and $-0.39$, against the two \armA{} seeds.
+
+This null has a limited resolution. Question-level CIs span about $\pm1.2$ points, and SFT checkpoints differ by up to 1.5 points after RL (below). An effect of the size \citet{zhang2026actobs} report for a 4B model ($+1.1$ pass@16) would therefore go undetected. Much larger effects are unlikely in this setting.
+
+\paragraph{The BIRD pass@1 gap reflects checkpoint variance.}
+At pass@1, \armB{} is 0.98 points below \armA{} on BIRD (CI $[-1.69,-0.24]$ against seed 2; $-0.94$ against seed 1). The two \armA{} seeds share an SFT checkpoint and agree within 0.23 points.
+
+\armC{} and \armB{} are action-equivalent before RL (\S\ref{sec:equiv}). Yet after GRPO \armC{} is 1.48 points above \armB{} on BIRD pass@1 (CI $[0.79, 2.17]$). Differences between SFT checkpoints therefore reach about 1.5 points after RL, more than the question-level CIs capture. We do not read \armB's gap as harm from observation supervision. The second \armB{} seed reuses its checkpoint, so it adds only RL-seed noise (\pending).
+
+RL movement and entropy do not single out \armB{} either (App.~\ref{app:rldyn}).
+
+The pre-registered replication test also required the same sign in two of three seeds. It could not be run, because seed 3 was put on hold once seed 1 showed no gain (App.~\ref{app:prereg}).

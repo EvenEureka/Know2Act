@@ -1,0 +1,28 @@
+\section{Introduction}
+\label{sec:intro}
+
+\paragraph{The proposal we test.}
+A tool-using agent's trajectory interleaves decisions with their consequences. The agent issues a query, the environment returns a result, and the agent decides what to do next. Standard supervised fine-tuning (SFT) learns from one side of this exchange. The loss covers the agent's actions, while observations stay in the context but are not prediction targets.
+
+\citet{zhang2026actobs} propose removing this mask. Their method, ActObs, also supervises the observation tokens. It reports that, although the SFT checkpoints perform alike, GRPO from ActObs reaches higher pass@$k$ on Terminal-Bench. The authors attribute this to the policy learning what its actions do to the environment. Related work adds observation losses during RL \citep{shrivastava2026echo,lu2026paw}.
+
+\paragraph{What has not been tested.}
+For a predictive objective to help, what the model learns must change the actions it takes, and this link has not been measured. Two other explanations also remain open. A pooled loss over actions and observations shrinks the share of each update that goes to actions, and less action fitting could preserve plasticity for RL on its own \citep{plasticity2026}. A pre-registered study also found that content-free auxiliary losses match real observation losses \citep{wang2026darkroom}, which suggests that some reported gains reflect regularisation rather than content. A third question is specific to tools that are cheap to call, such as an SQL engine. The agent can always run its query and see the result, so which knowledge about such an environment is still worth learning?
+
+\paragraph{Our study.}
+We test these questions in Know2Act (from \emph{knowledge to action}), a study of a multi-turn text-to-SQL agent that writes SQL, runs it, reads the table or error, and answers \citep{skyrl} (Figure~\ref{fig:overview}). We use a Qwen3-4B student, GRPO, and the Spider and BIRD development sets. The study was pre-registered before any main run. It is token-faithful, in that SFT sequences match, token for token, the stream that RL trains on. It also includes controls that reproduce the observation-supervised model's action share and action movement.
+
+\paragraph{What we find.}
+As in prior work, the SFT checkpoints are indistinguishable, but here GRPO does not separate them either. To find out why, we measure what each model learned and whether it reached the actions. Observation supervision is learned: on unseen databases the model predicts the output template and result header far better. Its action distribution, however, differs from action-only SFT by less than two action-only models trained on reshuffled data differ from each other, and its behaviour after errors and empty results is unchanged. What it learns about row values is memorised and does not transfer to unseen databases.
+
+We then change what the agent predicts and where. An outcome line such as ``Expected result: 3 rows, 2 columns'' is learned equally well as an auxiliary target and as part of the action, but only the latter moves the policy. An answer contract such as ``Expected answer: 1 row, 1 column'', followed by a check after every observation, is learned on unseen databases and works as an external selector before RL. Yet no variant changes when the agent submits or keeps querying by more than retraining on a reshuffled data order does, and neither observation supervision nor the contract improves accuracy after RL.
+
+\paragraph{Contributions.}
+Our contributions are threefold. (1)~We give a pre-registered, token-faithful test of observation supervision for a multi-turn SQL agent with matched controls, which finds no RL gain on the pre-registered outcome. Along the way, our audit of the public RL environment finds that 44\% of its training tasks reward an empty answer. (2)~We diagnose the null at the action level, calibrated against a data-order noise floor. Observation knowledge is learned, as transferable structure and memorised content, but it reaches neither the action policy nor behaviour. (3)~Across five supervision targets and two placements, every target is learned and transfers to unseen databases, including the decision-relevant shape of the correct answer placed in the action stream. Yet no variant changes submit-or-revise decisions beyond retraining noise or improves accuracy after RL. Learned knowledge helps only as an external selector, and only before RL, in line with knowing--doing gaps reported for LLMs.
+
+\begin{figure*}[t]
+\centering
+\resizebox{\textwidth}{!}{\input{figures/fig1_overview_tikz}}
+\caption{One real trajectory of our SQL agent (top) and where each SFT variant places supervision, in the style of \citet{zhang2026actobs}. $-\log p$ marks tokens that carry loss; masked tokens are context only. Boxes are inserted lines: dashed means an auxiliary target that is never generated at test time, solid means part of the action. Every variant learns its target on unseen databases. Only the in-action line moves the action policy, and no variant changes when the agent submits or keeps querying (\S\ref{sec:decisions}).}
+\label{fig:overview}
+\end{figure*}

@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering\small
+{\setlength{\tabcolsep}{3.5pt}%
+\begin{tabular}{@{}p{0.34\linewidth}p{0.62\linewidth}@{}}
+\toprule
+Quantity & Value \\
+\midrule
+gold shape of the 6,294 SFT questions & one row 2,843; several rows 3,207; no rows 243; failed 1 \\
+\armG{} lines inserted & contracts 24,039; checks: match 18,895, mismatch 13,089 \\
+\armGp{} lines inserted & contracts 24,039; checks: match 6,035, mismatch 25,949 \\
+placebo contract equals gold shape & 24.3\% of questions \\
+outcome lines (\armE{}/\armF{}) & rows 28,216; no rows 2,883; error 893; timeout 2; skipped invalid-action turns 3,752 \\
+\bottomrule
+\end{tabular}}
+\caption{Statistics of the inserted lines in the 24,043 SFT trajectories.}
+\label{tab:construction}
+\end{table}

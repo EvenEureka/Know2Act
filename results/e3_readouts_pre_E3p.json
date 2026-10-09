@@ -1,0 +1,38 @@
+{
+ "pre_E3p/spider_dev": {
+  "rollouts": 15728,
+  "has_contract": 1.0,
+  "contract_acc": 0.299,
+  "majority_acc": 0.4171,
+  "majority_shape": [
+   "one",
+   1
+  ],
+  "check_correct": 0.9999,
+  "submit_after_match": 0.8248,
+  "n_after_match": 4983,
+  "submit_after_mismatch": 0.7622,
+  "n_after_mismatch": 15014,
+  "pass@1": 71.53,
+  "rule_select": 72.51,
+  "own_contract_select": 73.22
+ },
+ "pre_E3p/bird_dev": {
+  "rollouts": 24512,
+  "has_contract": 1.0,
+  "contract_acc": 0.3486,
+  "majority_acc": 0.5992,
+  "majority_shape": [
+   "one",
+   1
+  ],
+  "check_correct": 0.9983,
+  "submit_after_match": 0.6543,
+  "n_after_match": 10248,
+  "submit_after_mismatch": 0.464,
+  "n_after_mismatch": 35695,
+  "pass@1": 49.65,
+  "rule_select": 53.47,
+  "own_contract_select": 52.7
+ }
+}

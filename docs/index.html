@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Know2Act</title>
+<meta name="description" content="A pre-registered study of a multi-turn text-to-SQL agent: observation supervision and other predictions are learned, but none of them changes when the agent submits an answer.">
+<meta property="og:title" content="Know2Act: What Knowledge Reaches a Tool-Using Agent's Actions?">
+<meta property="og:description" content="Training an agent to predict its observations teaches it their structure, but leaves its actions, its decisions and its RL gains unchanged.">
+<meta property="og:image" content="static/img/fig_overview.png">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fcfcfd;
+    --surface: #ffffff;
+    --card: #eef2f7;
+    --card-rule: #b9c6d8;
+    --rule: #e0e5ec;
+    --text: #161a1f;
+    --text-2: #4a515b;
+    --text-3: #77808b;
+    --accent: #1f3b63;
+    --accent-2: #2f5a8f;
+    --link: #23798f;
+    --obs: #6b4c9a;
+    --insight: #9a7426;
+    --code-bg: #f5f7fa;
+    --t-sql: #2f5a8f;
+    --t-obs: #5d646e;
+    --t-obs-bg: #eceff3;
+    --t-note: #6b4c9a;
+    --t-sol: #23786a;
+    --serif: "Linux Libertine O", "Linux Libertine", "Libertinus Serif", "Iowan Old Style", Palatino, Georgia, serif;
+    --sans: "Linux Biolinum O", "Libertinus Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #12151a; --surface: #1a1f27; --card: #1e2633; --card-rule: #3a4a63; --rule: #2e3540;
+      --text: #eef1f5; --text-2: #c2c9d3; --text-3: #8f99a6;
+      --accent: #a9c4ea; --accent-2: #c3d6f2; --link: #7cc3df; --obs: #b9a3e0; --insight: #e0b860;
+      --code-bg: #1b2029;
+      --t-sql: #9dbcea; --t-obs: #b3bac4; --t-obs-bg: #252b35; --t-note: #c4b0e8; --t-sol: #7fd0bf;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #12151a; --surface: #1a1f27; --card: #1e2633; --card-rule: #3a4a63; --rule: #2e3540;
+    --text: #eef1f5; --text-2: #c2c9d3; --text-3: #8f99a6;
+    --accent: #a9c4ea; --accent-2: #c3d6f2; --link: #7cc3df; --obs: #b9a3e0; --insight: #e0b860;
+    --code-bg: #1b2029;
+    --t-sql: #9dbcea; --t-obs: #b3bac4; --t-obs-bg: #252b35; --t-note: #c4b0e8; --t-sol: #7fd0bf;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--serif); font-size: 18px; line-height: 1.6; }
+  main { max-width: 900px; margin: 0 auto; padding: 0 16px 64px; }
+  a { color: var(--link); }
+  header.hero { text-align: center; padding: 56px 0 26px; }
+  h1 { font-weight: 700; font-size: clamp(26px, 4.2vw, 38px); line-height: 1.22; margin: 0 auto 16px; max-width: 820px; color: var(--accent); text-wrap: balance; }
+  h1 .sc { font-variant: small-caps; letter-spacing: .02em; }
+  .authors { margin: 0 0 2px; }
+  .affil { color: var(--text-3); font-style: italic; font-size: 16px; margin: 0 0 6px; }
+  .status { color: var(--text-3); font-style: italic; font-size: 15px; margin: 0 0 20px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; font-family: var(--sans); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 999px; background: var(--accent); color: var(--bg); text-decoration: none; font-size: 15px; font-weight: 600; border: 1px solid var(--accent); }
+  .btn.ghost { background: transparent; color: var(--accent); border-color: var(--card-rule); }
+  .btn:hover { opacity: .9; }
+  .btn svg { width: 16px; height: 16px; }
+  .abstract { background: var(--card); padding: 18px 22px; margin: 6px 0 34px; }
+  .abstract h2 { margin: 0 0 8px; border: 0; padding: 0; font-size: 21px; }
+  .abstract p { margin: 0; font-size: 16.5px; }
+  h2 { font-variant: small-caps; letter-spacing: .02em; font-weight: 700; font-size: 26px; color: var(--accent); margin: 48px 0 10px; }
+  h3 { font-style: italic; font-weight: 700; font-size: 19px; color: var(--accent); margin: 26px 0 6px; }
+  p { margin: 0 0 14px; }
+  .muted { color: var(--text-2); }
+  .rq { display: inline-block; font-family: var(--sans); font-weight: 700; font-size: 13px; color: var(--accent); background: var(--card); border: 1px solid var(--card-rule); border-radius: 3px; padding: 1px 6px; margin-right: 8px; vertical-align: 2px; }
+  .callout { border-left: 3px solid var(--obs); padding: 4px 0 4px 16px; margin: 14px 0 20px; }
+  .callout b { color: var(--obs); font-family: var(--sans); }
+  .callout.insight { border-left-color: var(--insight); }
+  .callout.insight b { color: var(--insight); }
+  figure { margin: 22px 0 24px; }
+  .plate { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 12px; }
+  .plate.narrow { max-width: 620px; margin: 0 auto; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { font-size: 15.5px; color: var(--text-2); margin-top: 8px; line-height: 1.5; }
+  figcaption b { color: var(--text); }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0 8px; font-family: var(--sans); }
+  .stat { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent-2); border-radius: 4px; padding: 12px 12px 10px; }
+  .stat .v { font-family: var(--serif); font-size: 28px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; color: var(--accent); white-space: nowrap; }
+  .stat .l { font-size: 13.5px; color: var(--text-2); margin-top: 6px; line-height: 1.35; }
+  .stat .ci { font-size: 12.5px; color: var(--text-3); font-variant-numeric: tabular-nums; margin-top: 4px; }
+  .tablewrap { overflow-x: auto; margin: 14px 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead tr { background: var(--card); }
+  th { color: var(--accent); font-weight: 700; }
+  tbody tr:nth-child(odd) { background: color-mix(in srgb, var(--card) 45%, transparent); }
+  th.grp { text-align: center; border-bottom: 1px solid var(--card-rule); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.sep td { border-top: 2px solid var(--card-rule); }
+  .chip { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 7px; vertical-align: 0; }
+  .armname { font-family: var(--sans); font-weight: 700; font-size: 15px; white-space: nowrap; }
+  .tag { font-family: var(--sans); font-size: 13px; color: var(--text-3); }
+  code { font-family: var(--mono); font-size: .86em; }
+  pre code { display: block; clear: both; }
+  pre { background: var(--code-bg); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; overflow-x: auto; font-family: var(--mono); font-size: 13.5px; line-height: 1.55; margin: 12px 0 18px; }
+  pre.traj { white-space: pre-wrap; word-break: break-word; font-size: 13.5px; line-height: 1.6; }
+  .traj .sql { color: var(--t-sql); }
+  .traj .obs { color: var(--t-obs); background: var(--t-obs-bg); border-radius: 3px; padding: 0 4px; }
+  .traj .note { color: var(--t-note); font-weight: 700; }
+  .traj .sol { color: var(--t-sol); font-weight: 700; }
+  .traj .cut { color: var(--text-3); font-style: italic; }
+  .q { font-style: italic; }
+  .copy { float: right; margin: -4px -6px 6px 8px; font: 600 12px var(--sans); background: transparent; color: var(--text-2); border: 1px solid var(--rule); border-radius: 6px; padding: 3px 9px; cursor: pointer; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; font-family: var(--sans); }
+  .tabs button { font: 600 14px var(--sans); color: var(--text-2); background: var(--surface); border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .tabs button .when { font-weight: 400; opacity: .8; }
+  .js .case[hidden] { display: none; }
+  .case h3 { margin-top: 14px; }
+  footer { text-align: center; color: var(--text-3); font-size: 15px; margin-top: 52px; padding-top: 16px; border-top: 1px solid var(--rule); }
+  .theme-toggle { position: fixed; top: 12px; right: 12px; background: var(--surface); color: var(--text-2); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; font: 600 13px var(--sans); cursor: pointer; }
+  @media (max-width: 720px) {
+    body { font-size: 17px; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .plate { padding: 6px; }
+    .stat .v { font-size: 24px; }
+    /* the variants table becomes one stacked block per variant */
+    table.variants thead { display: none; }
+    table.variants tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+    table.variants td { display: block; border: 0; padding: 2px 10px; }
+    table.variants td:nth-child(3) { color: var(--text-3); font-style: italic; font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle color theme">Theme</button>
+<main>
+  <header class="hero">
+    <h1><span class="sc">Know2Act</span>: What Knowledge Reaches<br>a Tool-Using Agent&rsquo;s Actions?</h1>
+    <p class="authors">Yiwen Lu</p>
+    <p class="affil">University of Notre Dame &middot; <a href="mailto:ylu37@nd.edu">ylu37@nd.edu</a></p>
+    <p class="status">Manuscript &middot; October 2026</p>
+    <div class="links">
+      <a class="btn" href="static/paper.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Paper
+      </a>
+      <a class="btn" href="https://github.com/EvenEureka/Know2Act">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+        Code
+      </a>
+      <a class="btn ghost" href="#bibtex">BibTeX</a>
+    </div>
+  </header>
+
+  <section class="abstract">
+    <h2>Abstract</h2>
+    <p>Recent work trains language agents to predict not only their own actions but also the observations that the
+      environment returns, and reports that this makes later reinforcement learning (RL) more effective because the agent
+      learns the consequences of its actions. We ask whether knowledge learned in this way reaches the agent&rsquo;s
+      decisions. In Know2Act, a pre-registered study of a multi-turn text-to-SQL agent trained with supervised fine-tuning
+      and then GRPO, we measure what each model learns and how it acts. Observation supervision is learned: on unseen databases the
+      agent predicts the format and headers of result tables far better. Yet it changes the agent&rsquo;s actions less than
+      reshuffling the training data does, and it brings no gain after RL. We then vary what the agent predicts and where,
+      up to a contract that states the shape of the correct answer and is checked against every query result. Every
+      prediction is learned, but none changes when the agent submits an answer or keeps querying. The knowledge is usable
+      from outside: selecting among sampled answers with the agent&rsquo;s own contract improves accuracy. RL, which rewards
+      only the final answer, removes even this gain and makes the agent more willing to submit after its own check has
+      failed. Learning to predict the environment is therefore not the same as acting on the prediction. We also find that
+      44% of the training tasks in a public SQL RL environment reward an empty answer.</p>
+  </section>
+
+  <figure>
+    <div class="plate"><a href="static/img/fig_overview.png"><img src="static/img/fig_overview.png" alt="One real trajectory for the question 'How many people live in Gelderland district?': a query returning 4 rows, a corrected SUM query returning 1 row, and the solution. Below it, five training variants and which segments carry loss: ActionSFT trains on actions only; ActObs also on observations; Outcome-Aux adds an 'Expected result' line as an auxiliary target; Outcome-in-Action puts that line inside the action; Contract starts with the expected answer shape and checks each result against it. A brace marks that the four non-baseline variants all leave decisions unchanged."></a></div>
+    <figcaption><b>One real trajectory, five ways to train on it.</b> Each row is a training variant: <code>&minus;log p</code>
+      marks tokens that carry loss and masked tokens are context only. Boxes are inserted lines; a dashed box is an
+      auxiliary target that is never generated at test time, a solid one is part of the action. Every variant learns its
+      target, but none changes when the agent submits an answer or keeps querying.</figcaption>
+  </figure>
+
+  <h2>Key numbers</h2>
+  <p class="muted">Qwen3-4B student, Qwen3-32B teacher, SkyRL text-to-SQL environment; evaluation on Spider-dev and
+    BIRD-dev with 16 samples per question; 95% intervals from a bootstrap over questions.</p>
+  <div class="stats">
+    <div class="stat"><div class="v">&minus;0.06</div><div class="l">ActObs minus ActionSFT, pooled pass@16 after GRPO (pre-registered outcome)</div><div class="ci">[&minus;0.82, +0.68] points</div></div>
+    <div class="stat"><div class="v">0.0049</div><div class="l">Action KL from ActObs to ActionSFT on unseen databases</div><div class="ci">data-order noise: 0.0070</div></div>
+    <div class="stat"><div class="v">89&thinsp;/&thinsp;82%</div><div class="l">Contract states the correct answer shape (Spider&thinsp;/&thinsp;BIRD)</div><div class="ci">from the question alone: 71&thinsp;/&thinsp;49%</div></div>
+    <div class="stat"><div class="v">&le;&thinsp;0.016</div><div class="l">Largest change in submit-or-continue sensitivity from any SFT variant (Spider)</div><div class="ci">data-order noise: 0.033</div></div>
+  </div>
+
+  <h2>The question</h2>
+  <p>A tool-using agent&rsquo;s trajectory interleaves decisions with their consequences: it issues a query, the
+    environment returns a result, and the agent decides what to do next. Standard supervised fine-tuning puts the loss on
+    the agent&rsquo;s actions only. ActObs (Zhang et al., 2026) removes this mask and also trains the agent to predict
+    the observations. It reports that GRPO then reaches higher pass@k on Terminal-Bench, and attributes the gain to the agent learning what
+    its actions do.</p>
+  <p>That explanation has a testable step in the middle. For a predictive objective to help, what the model learns must
+    change what it does, and that link has not been measured. We measure it at three levels: whether the knowledge is
+    learned, whether it moves the action distribution, and whether it changes the one decision a SQL agent makes after
+    every result, namely to submit an answer or to keep querying.</p>
+
+  <h2>Training variants</h2>
+  <p class="muted">All variants train on the same 24,043 teacher trajectories, in the same order and with the same
+    hyper-parameters, and then go through the same GRPO. They differ only in which tokens carry loss or in a short line
+    inserted into the text. The main study was pre-registered, and the predictions for the later variants were
+    written down before they were trained.</p>
+  <div class="tablewrap">
+  <table class="variants">
+    <thead><tr><th>Variant</th><th>What changes</th><th>What it tests</th></tr></thead>
+    <tbody>
+      <tr><td><span class="armname"><span class="chip" style="background:#5F86C2"></span>ActionSFT</span></td><td>Loss on actions only; observations are context.</td><td>Baseline</td></tr>
+      <tr><td><span class="armname"><span class="chip" style="background:#D9735A"></span>ActObs</span></td><td>Loss on actions and observations, pooled as in ActObs.</td><td>Does predicting observations help RL?</td></tr>
+      <tr><td><span class="armname"><span class="chip" style="background:#9AA3AE"></span>ActionSFT-LR</span></td><td>Action-only, learning rate lowered until it moves as far from the base model as ActObs.</td><td>Is the effect just a smaller step?</td></tr>
+      <tr><td><span class="armname"><span class="chip" style="background:#9AA3AE"></span>ActionSFT+Wiki</span></td><td>The observation loss replaced by the same number of Wikipedia tokens.</td><td>Is it dilution of the action loss?</td></tr>
+      <tr><td><span class="armname"><span class="chip" style="background:#B07A8F"></span>Outcome-Aux</span></td><td><code>Expected result: 3 rows, 2 columns.</code> after each query, as an auxiliary target.</td><td>Predicting the outcome, outside the action</td></tr>
+      <tr><td><span class="armname"><span class="chip" style="background:#4FA58C"></span>Outcome-in-Action</span></td><td>The same line before each query, inside the action.</td><td>Predicting the outcome, inside the action</td></tr>
+      <tr><td><span class="armname"><span class="chip" style="background:#6B4C9A"></span>Contract</span></td><td><code>Expected answer: 1 row, 1 column.</code> at the start, and a check against it after every result.</td><td>Knowing what a correct answer looks like</td></tr>
+      <tr><td><span class="armname"><span class="chip" style="background:#9AA3AE"></span>Contract-Placebo</span></td><td>The same lines, with contracts taken from other questions.</td><td>Format versus content</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Findings</h2>
+  <p><span class="rq">RQ1</span><b>Does observation supervision make RL stronger?</b> No. Before RL all variants are
+    within about one point of each other. After the same GRPO, ActObs and ActionSFT reach the same pooled pass@16
+    (&minus;0.06 points, 95% CI [&minus;0.82, +0.68]), and GRPO extracts no consistently larger gain from ActObs than from the action-only models.</p>
+  <figure>
+    <div class="plate narrow"><a href="static/img/fig_rl_gain.png"><img src="static/img/fig_rl_gain.png" alt="Gain during GRPO for each SFT initialisation at pass@1 and pass@16 on Spider and BIRD, with 95% intervals; ActObs does not gain more than ActionSFT."></a></div>
+    <figcaption><b>RQ1.</b> Gain during RL from each initialisation: pass@k after GRPO minus pass@k before it, with 95%
+      bootstrap intervals over questions.</figcaption>
+  </figure>
+  <div class="callout"><b>Observation.</b> Two checkpoints that act the same before RL (ActionSFT-LR and ActObs) end
+    1.48 points apart on BIRD pass@1 after GRPO. Differences between SFT checkpoints thus reach about 1.5 points after RL,
+    so an effect as small as the one ActObs reports for a 4B model (+1.1 pass@16) would go undetected here.</div>
+
+  <p><span class="rq">RQ2</span><b>What does the model learn, and does it reach the actions?</b> It learns the
+    observations&rsquo; structure but not their content. On databases it never saw, ActObs predicts the output template
+    almost perfectly and the result header far better than ActionSFT, yet predicts row values no better (1.92 vs. 1.88
+    nats). Its action distribution differs from ActionSFT&rsquo;s by less than two action-only models trained on
+    reshuffled data differ from each other, and its behaviour after errors and empty results is unchanged.</p>
+  <figure>
+    <div class="plate narrow"><a href="static/img/fig_mechanism.png"><img src="static/img/fig_mechanism.png" alt="(a) Action KL of each SFT variant to ActionSFT against a grey data-order noise band; ActObs lies inside the band. (b) Observation cross-entropy by part on unseen and training databases: ActObs learns template and header everywhere but row values only on training databases."></a></div>
+    <figcaption><b>RQ2.</b> (a) Action KL of each SFT variant to ActionSFT; the grey band is the data-order noise floor.
+      (b) Observation cross-entropy by part on unseen and on training databases.</figcaption>
+  </figure>
+
+  <p><span class="rq">RQ3</span><b>Does it matter what the agent predicts and where?</b> For the action tokens, yes.
+    The same outcome line moves the action distribution only when it is written inside the action (2.3 times the noise
+    floor); as an auxiliary target it does not. The contract is learned on unseen databases and states the correct
+    answer shape in 89% (Spider) and 82% (BIRD) of rollouts, against 71% and 49% for a classifier that reads only the
+    question.</p>
+  <div class="callout"><b>Observation.</b> The in-action predictions are blind to failure. Outcome-in-Action writes
+    &ldquo;error&rdquo; before only 9 of the 8,311 calls that do fail. Its labels come from teacher trajectories in which
+    only 2.8% of calls fail.</div>
+
+  <p><span class="rq">RQ4</span><b>Does any of it change the agent&rsquo;s decisions?</b> No. After every result the
+    agent either submits or keeps querying. We measure how much more often it submits when the result has the right shape
+    than when it does not. ActionSFT already shows this asymmetry, inherited from the teacher, and no variant changes it
+    by more than retraining ActionSFT on a reshuffled data order does. This holds even for Contract, whose own check
+    reports every mismatch in words.</p>
+  <figure>
+    <div class="plate narrow"><a href="static/img/fig_decisions.png"><img src="static/img/fig_decisions.png" alt="Forest plot of the change in decision sensitivity relative to ActionSFT for every variant after SFT and after GRPO, with 95% intervals; all lie within the grey noise references."></a></div>
+    <figcaption><b>RQ4.</b> Change in decision sensitivity, P(submit | right shape) minus P(submit | wrong shape),
+      relative to ActionSFT, with 95% intervals. Grey rows are noise references: another data order after SFT, another
+      RL seed after GRPO.</figcaption>
+  </figure>
+  <div class="callout"><b>Observation.</b> What RL does change is shared by every variant: it makes the agent submit
+    more readily after a mismatching result. Measured with Contract&rsquo;s own checks on BIRD, submitting after a
+    reported mismatch rises from 31% to 46%.</div>
+
+  <p><span class="rq">RQ5</span><b>Can the knowledge be used from outside?</b> Before RL, yes. Picking among 16 sampled
+    answers by the contract beats a filter that drops errors and empty results, and adds to execution majority voting.
+    After GRPO, it adds nothing: RL has already removed most of the shape errors a contract would catch.</p>
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr><th rowspan="2">Choosing one of 16 ActionSFT samples</th><th class="grp" colspan="2">Before RL</th><th class="grp" colspan="2">After GRPO</th></tr>
+      <tr><th class="num">Spider</th><th class="num">BIRD</th><th class="num">Spider</th><th class="num">BIRD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Random sample (= pass@1)</td><td class="num">71.4</td><td class="num">49.7</td><td class="num">80.5</td><td class="num">58.1</td></tr>
+      <tr><td>No error, non-empty result</td><td class="num">72.5</td><td class="num">53.5</td><td class="num">81.1</td><td class="num">60.5</td></tr>
+      <tr><td>Execution majority vote</td><td class="num">75.8</td><td class="num">58.3</td><td class="num">82.6</td><td class="num">63.9</td></tr>
+      <tr><td>Matches the contract</td><td class="num">76.9</td><td class="num">56.5</td><td class="num">81.3</td><td class="num">60.6</td></tr>
+      <tr><td>Matches the contract, then vote</td><td class="num">78.4</td><td class="num">59.7</td><td class="num">82.5</td><td class="num">63.3</td></tr>
+      <tr class="sep"><td><i>Oracle: gold result shape</i></td><td class="num">78.2</td><td class="num">59.5</td><td class="num">82.6</td><td class="num">63.4</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="font-size:15.5px">Accuracy (%) on the primary questions. The contracts come from the Contract
+    model and are applied to ActionSFT&rsquo;s samples, so the selector uses knowledge that ActionSFT itself never had.</p>
+  <div class="callout insight"><b>Takeaway.</b> Learning about the environment, or even about the answer, is not enough
+    for an agent to act on it. Decisions follow imitation and the outcome reward; making knowledge reach them probably
+    requires rewarding its use, or training on the agent&rsquo;s own, failure-rich interaction.</div>
+
+  <h2>What the agent writes</h2>
+  <p class="muted">Three real rollouts on Spider-dev. Inserted lines are in purple, queries in blue and observations
+    on grey; <span class="traj"><span class="cut">[&hellip;]</span></span> and <code>...</code> mark text we shortened.</p>
+  <div class="tabs" role="tablist" aria-label="Transcripts">
+    <button type="button" role="tab" id="tab-728" aria-controls="case-728" aria-selected="true">Revises after a mismatch <span class="when">(Contract, before RL)</span></button>
+    <button type="button" role="tab" id="tab-361" aria-controls="case-361" aria-selected="false">Submits despite a mismatch <span class="when">(Contract, after GRPO)</span></button>
+    <button type="button" role="tab" id="tab-660" aria-controls="case-660" aria-selected="false">Predicts rows, gets an error <span class="when">(Outcome-in-Action)</span></button>
+  </div>
+  <section class="case" id="case-728" role="tabpanel" aria-labelledby="tab-728">
+    <h3>Question 728 &middot; <span class="q">&ldquo;How many people live in Gelderland district?&rdquo;</span></h3>
+<pre class="traj"><span class="note">Expected answer: 1 row, 1 column.</span>
+<span class="sql">&lt;sql&gt;SELECT Population FROM city WHERE District = 'Gelderland';&lt;/sql&gt;</span>
+<span class="obs">152463 / 101574 / 138020 / 153491</span>
+<span class="note">Check: got several rows, 1 column; this does not match the expected answer.</span> <span class="cut">[&hellip;]</span> Since the question asks for the total number of people living in the district, we need to sum these values.
+<span class="sql">&lt;sql&gt;SELECT SUM(Population) FROM city WHERE District = 'Gelderland';&lt;/sql&gt;</span>
+<span class="obs">545548</span>
+<span class="note">Check: got 1 row, 1 column; this matches the expected answer.</span>
+<span class="sol">&lt;solution&gt;SELECT SUM(Population) FROM city WHERE District = 'Gelderland';&lt;/solution&gt;</span></pre>
+    <p>The contract is correct, the check catches the four-row result, and the agent revises to a sum. This is the
+      behaviour the contract was meant to produce; the overview figure uses the same question.</p>
+  </section>
+  <section class="case" id="case-361" role="tabpanel" aria-labelledby="tab-361">
+    <h3>Question 361 &middot; <span class="q">&ldquo;Show paragraph details for paragraph with text &lsquo;Korea&rsquo;.&rdquo;</span></h3>
+<pre class="traj"><span class="note">Expected answer: 1 row, 1 column.</span>
+<span class="sql">&lt;sql&gt;SELECT * FROM Paragraphs WHERE Paragraph_Text = 'Korea';&lt;/sql&gt;</span>
+<span class="obs">510442723 2394 Korea None / 7 2394 Korea None</span>
+<span class="note">Check: got several rows, 4 columns; this does not match the expected answer.</span>
+<span class="sol">&lt;solution&gt;SELECT * FROM Paragraphs WHERE Paragraph_Text = 'Korea';&lt;/solution&gt;</span></pre>
+    <p>After GRPO the contract is still correct and the check still reports the mismatch, yet the agent submits the
+      query it has just rejected, and the answer is wrong.</p>
+  </section>
+  <section class="case" id="case-660" role="tabpanel" aria-labelledby="tab-660">
+    <h3>Question 660 &middot; <span class="q">&ldquo;Return the names of all the poker players.&rdquo;</span></h3>
+<pre class="traj"><span class="note">Expected result: 10 rows, 1 column.</span>
+<span class="sql">&lt;sql&gt;SELECT p.Name FROM poker_player p JOIN people p2 ON ...;&lt;/sql&gt;</span>
+<span class="obs">Error executing SQL: no such column: p.Name</span>
+<span class="note">Expected result: 10 rows, 1 column.</span>
+<span class="sql">&lt;sql&gt;SELECT p2.Name FROM poker_player p JOIN people p2 ON ...;&lt;/sql&gt;</span>
+<span class="obs">Aleksey Ostapenko / Yevgeni Sivozhelez / ... (5 rows)</span>
+<span class="sol">&lt;solution&gt;SELECT p2.Name FROM poker_player p JOIN people p2 ON ...;&lt;/solution&gt;</span></pre>
+    <p>The prediction written before each call ignores what the call will do: the first call fails and the second returns
+      5 rows, yet both predictions say 10 rows.</p>
+  </section>
+
+  <h2>Environment audit</h2>
+  <p>The public SkyRL text-to-SQL environment rewards a solution when its result set equals the gold query&rsquo;s.
+    Running the unmodified environment with the constant answer <code>SELECT 1 WHERE 0;</code> earns full reward on
+    290 of its 653 training tasks (44%): 283 of the 540 SynSQL tasks and 7 of the 113 Spider tasks. Their gold queries
+    return no rows, and for 18 of them the result depends on the system clock through filters such as
+    <code>year &gt; strftime('%Y','now') - 5</code>. We train RL only on the 363 tasks with non-empty gold results, and
+    reported the problem to the maintainers with a reproduction script
+    (<a href="https://github.com/NovaSky-AI/SkyRL/issues/2451">SkyRL issue #2451</a>).</p>
+
+  <h2 id="bibtex">BibTeX</h2>
+  <pre><button class="copy" type="button">Copy</button><code>@misc{lu2026know2act,
+  title  = {Know2Act: What Knowledge Reaches a Tool-Using Agent's Actions?},
+  author = {Lu, Yiwen},
+  year   = {2026},
+  note   = {Manuscript}
+}</code></pre>
+
+  <footer>Spider and BIRD are distributed under CC BY-SA 4.0; Qwen3 models and SkyRL under Apache 2.0.</footer>
+</main>
+<script>
+  (function () {
+    var root = document.documentElement, key = 'know2act-theme';
+    try { var saved = localStorage.getItem(key); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+    document.getElementById('themeToggle').addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark' ||
+        (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(key, next); } catch (e) {}
+    });
+  })();
+  (function () {
+    document.documentElement.classList.add('js');
+    var tabs = document.querySelectorAll('.tabs [role="tab"]');
+    function show(t) {
+      tabs.forEach(function (b) {
+        var on = b === t;
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        document.getElementById(b.getAttribute('aria-controls')).hidden = !on;
+      });
+    }
+    tabs.forEach(function (b) { b.addEventListener('click', function () { show(b); }); });
+    if (tabs.length) show(tabs[0]);
+  })();
+  document.querySelectorAll('button.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.parentElement.querySelector('code').textContent;
+      (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () {
+        b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1200);
+      }).catch(function () {});
+    });
+  });
+</script>
+</body>
+</html>

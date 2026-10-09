@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite the manuscript."
+title: "Know2Act: What Knowledge Reaches a Tool-Using Agent's Actions?"
+authors:
+  - family-names: Lu
+    given-names: Yiwen
+    affiliation: University of Notre Dame
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/EvenEureka/Know2Act"
+url: "https://eveneureka.github.io/Know2Act/"
+date-released: 2026-10-09
+preferred-citation:
+  type: unpublished
+  title: "Know2Act: What Knowledge Reaches a Tool-Using Agent's Actions?"
+  authors:
+    - family-names: Lu
+      given-names: Yiwen
+  year: 2026
+  notes: Manuscript

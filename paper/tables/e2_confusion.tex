@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& \multicolumn{4}{c}{actual outcome} \\
+\cmidrule(lr){2-5}
+& rows & no rows & error & timeout \\
+\midrule
+predicts rows & 54,497 & 4,051 & 8,026 & 425 \\
+predicts empty & 689 & 408 & 276 & 36 \\
+predicts error & 20 & 3 & 9 & 2 \\
+predicts timeout & 0 & 0 & 0 & 0 \\
+\bottomrule
+\end{tabular}}
+\caption{\armF{}'s predicted vs.\ actual outcome of each SQL call in its own pre-RL rollouts (Spider-dev and BIRD-dev).}
+\label{tab:e2conf}
+\end{table}

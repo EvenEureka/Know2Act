@@ -1,0 +1,34 @@
+#!/bin/bash
+#$ -q gpu
+#$ -l gpu_card=4
+#$ -pe smp 32
+#$ -j y
+#$ -o /path/to/Know2Act/logs/$JOB_NAME.$JOB_ID.log
+# GRPO from an SFT checkpoint with SkyRL's text2sql recipe mode (identical settings in every arm).
+# usage: qsub -N grpo_A_s1 -v ARM=A,SEED=1,INIT=/path/to/sft/model,STEPS=135 scripts/jobs/grpo.sge
+# smoke: qsub -N grpo_smoke -v ARM=base,SEED=0,INIT=<Qwen3-4B snapshot>,STEPS=3,BATCH=8,NSAMP=4 scripts/jobs/grpo.sge
+set -euo pipefail
+source /path/to/Know2Act/scripts/env.sh
+cd $ROOT
+RUN=grpo_${ARM}_s${SEED}_${JOB_ID}; OUT=$LOCAL/runs/$RUN; FIN=$ROOT/results/grpo/$RUN
+# on any exit: keep infra logs, delete the node-local run dir (SkyRL exports every epoch end), mail on failure
+trap 'rc=$?; cp -r $OUT/infra $FIN/ 2>/dev/null; rm -rf $OUT; if [ $rc -ne 0 ] && [ -n "${MAILTO:-}" ]; then tail -40 "$SGE_STDOUT_PATH" | mail -s "[AgenticRL_CV] $JOB_NAME FAILED rc=$rc" "$MAILTO"; fi' EXIT
+FREE_GB=$(df -BG --output=avail /tmp | tail -1 | tr -dc 0-9)
+echo "free /tmp: ${FREE_GB} GB"; [ "$FREE_GB" -ge 300 ] || { echo "ABORT: less than 300 GB free on /tmp"; exit 2; }
+STEPS=${STEPS:-135}; BATCH=${BATCH:-32}; NSAMP=${NSAMP:-16}
+mkdir -p $OUT $FIN $LOCAL/omnisql
+hostname; nvidia-smi --query-gpu=index,name,memory.used --format=csv,noheader
+rsync -a $ROOT/data/omnisql/data/ $LOCAL/omnisql/data/
+export SKYRL_GPU=1
+DBP=$LOCAL/omnisql/data
+source $ROOT/scripts/grpo_args.sh; grpo_args
+printf "%s\n" "${GRPO_ARGS[@]}" > $FIN/overrides.txt
+bash $ROOT/scripts/skyrl_container.sh python -m agenticrl.main_grpo \
+  "${GRPO_ARGS[@]}" ${EXTRA:-} 2>&1 | grep --line-buffered -vE "it/s\]|s/it\]"
+echo "GRPO_RC=${PIPESTATUS[0]}"
+cp -r $OUT/exports/global_step_$STEPS/policy $FIN/model
+cp -r $OUT/infra $FIN/ 2>/dev/null || true
+echo GRPO_DONE
+if [ -n "${MAILTO:-}" ]; then
+  $PY $ROOT/scripts/grpo_mail_summary.py "$SGE_STDOUT_PATH" | mail -s "[AgenticRL_CV] $RUN finished" "$MAILTO" || true
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+#$ -q long
+#$ -pe smp 8
+#$ -j y
+#$ -o /path/to/Know2Act/logs/$JOB_NAME.$JOB_ID.log
+# CPU-only: answer-shape kill test (scripts/shape_killtest.py) on existing eval rollouts.
+set -euo pipefail
+source /path/to/Know2Act/scripts/env.sh
+cd $ROOT
+$PY scripts/shape_killtest.py --procs 8 --out results/killtest_shape_v3.json \
+  --runs sftA=results/eval/pre_A grpoA1=results/eval/grpo_A_s1_1508971 grpoB1=results/eval/grpo_B_s1_1510918 sftE2=results/eval/pre_E2
+echo KILLTEST_DONE

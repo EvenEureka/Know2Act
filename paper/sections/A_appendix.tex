@@ -1,0 +1,310 @@
+\section{Evaluation Protocol and Statistics}
+\label{app:eval}
+
+\paragraph{Sampling.}
+Every model is evaluated with 16 attempts per question at temperature 0.6, top-$p$ 0.95 and top-$k$ 20, with thinking disabled. Evaluation uses the multi-turn stream that RL trains on: at most six turns, at most 1,024 generated tokens per turn, and at most 8,192 input tokens. Our evaluator re-implements SkyRL's generation loop with vLLM. On a shared checkpoint it gives Spider-dev pass@1 0.540, against 0.551 from SkyRL's built-in evaluator with one sample (App.~\ref{app:prereg}).
+
+\paragraph{Metrics.}
+Consider a question with $n=16$ attempts, $c$ of which are correct. Its pass@$k$ is the unbiased estimator $1-\binom{n-c}{k}/\binom{n}{k}$, and we average this over questions. An attempt is correct when the result set of its final \texttt{<solution>} query equals that of the gold query, compared as sets of rows, exactly as in the training reward. An attempt without a well-formed solution scores zero.
+
+\paragraph{Primary sets.}
+Any query that returns nothing matches a gold query that returns nothing, so questions with empty gold results reward empty answers (\S\ref{sec:setup}). The primary sets therefore exclude questions whose gold query fails or returns no rows. That leaves 983 of 1,034 Spider-dev questions and 1,532 of 1,534 BIRD-dev questions, 2,515 when pooled. Every analysis uses these sets. Gold queries are executed once, with a 30\,s limit, and their results are cached, so that analyses run at different times cannot drop questions whose gold query happens to time out.
+
+\paragraph{Confidence intervals.}
+Paired differences between models use a bootstrap over questions that scores the same resampled questions for both models. We use 10,000 resamples for pre-registered contrasts and 2,000 otherwise. Behavioural rates use a question-cluster bootstrap, which keeps all observations of a resampled question together. These intervals capture question sampling, not training variance. We estimate training variance separately from three sources: a second RL seed, a second SFT data order, and two SFT checkpoints that are action-equivalent before RL (\S\ref{sec:rl}).
+
+\paragraph{Selection rules.}
+The selection analyses pick one of the 16 samples for each question. From weakest to strongest, the \emph{random} rule takes a uniformly random sample, which equals pass@1 in expectation. The \emph{validity} rule takes a random sample among those whose final result is neither an error nor empty. \emph{Majority vote} takes the largest cluster of identical final results, averaging over ties. The \emph{contract} rule takes a random valid sample whose result matches \armG's most frequent contract for that question, and \emph{contract+vote} applies majority vote within those samples. The oracle instead picks a random sample matching the gold coarse shape. When no sample qualifies, a rule falls back to the next weaker one.
+
+\section{Data, Prompt and Token Stream}
+\label{app:data}
+
+\paragraph{Teacher trajectories.}
+The teacher, Qwen3-32B, sampled 4 trajectories for each of 6,294 Spider training questions with temperature 0.6, top-$p$ 0.95, top-$k$ 20 and thinking disabled. This gave 25,176 trajectories. We dropped 44 that reached the length limit and 1,089 with a malformed final turn, keeping 24,043, of which 12,171 are correct. The kept trajectories contain 7.19M action tokens, 2.45M observation-payload tokens and 0.77M observation-template tokens, so observations make up 31.0\% of supervised tokens. We removed from the SFT pool the 114 questions that also appear in the RL task set.
+
+\paragraph{Measurement and RL sets.}
+The 1,149 measurement trajectories are teacher rollouts on 592 questions from 12 Spider databases that the SFT data never uses. We sampled 2 per question (1,184 trajectories) and kept 1,149; observations make up 35.5\% of their supervised tokens. RL uses the 363 of the 653 public SkyRL-SQL training tasks whose gold query returns at least one row (App.~\ref{app:audit}).
+
+\paragraph{Token classes and stream.}
+Each SFT sequence is one assistant turn into which the tool observations are inserted verbatim, which is SkyRL's recipe mode for this environment. Every token belongs to one of four classes: the prompt, which is never supervised; actions; the observation payload; and the observation template, which consists of the \texttt{<observation>} tags and the turn reminder. We rebuild each trajectory segment by segment from the token ids that generation and the environment produced, so the SFT stream matches the RL stream token for token. Unit tests check this. They also check the loss masks, the pass@$k$ estimator, and that the chunked LM head gives the same loss and gradients as an unchunked one.
+
+\paragraph{Prompt.}
+All stages use SkyRL's system prompt with one added format line, which asks the agent to execute and check a candidate query before answering (Figure~\ref{fig:prompt}.
+
+\begin{figure*}[t]
+\begin{Verbatim}[frame=single,fontsize=\small,framesep=2mm,rulecolor=\color{black!35}]
+Task Overview: You are a data science expert. Below, you are
+provided with a database schema and a natural language question.
+Your task is to understand the schema and generate a valid SQL
+query to answer the question within limited turns. [...]
+Format:
+- Before giving the final solution, you MUST execute at least one
+  SQL query with the SQL tool (for example, your candidate query)
+  and check its result in the observation.
+- You can use SQL tool written within a single <sql>your sql</sql>
+  block to explore or verify. SQL tool output will be shown as
+  dataframe inside <observation>...</observation>. [...]
+- If you find no further exploration is needed or reaches max
+  turns, you MUST directly provide the final SQL query solution
+  inside <solution>...</solution>.
+\end{Verbatim}
+\caption{Excerpt of the system prompt; the first \emph{Format} line is the one we added (``verify'' instruction).}
+\label{fig:prompt}
+\end{figure*}
+
+\section{Full Results}
+\label{app:full}
+
+Table~\ref{tab:fullpassk} lists pass@$k$ for every model at $k\in\{1,2,4,8,16\}$, and Table~\ref{tab:pairs} lists every paired contrast. Three patterns hold across the table. All SFT variants lie within about one point of each other at every $k$, and this includes \armA{} trained on a different data order. GRPO adds 8--9 points at pass@1 and 3--5 points at pass@16 for every initialisation. No SFT objective changes how much GRPO adds by more than the spread between initialisations.
+
+\input{tables/full_passk}
+\input{tables/pairs}
+
+\section{SFT-Stage Measurements}
+\label{app:sft}
+
+Table~\ref{tab:sftmeas} reports the action KL to the base model, the cross-entropy of each token class and gradient statistics, measured on 300 held-out trajectories from 12 unseen databases. The learning-rate candidates for \armC{} were fixed in advance at $\{0.85, 0.70, 0.55, 0.40\}\times$. The frozen rule picks the candidate whose action KL to the base model is closest to \armB's, and it picked $0.85\times$ (0.358 against 0.363).
+
+The \armD$_{\text{obs}}$ row dilutes the action loss with observation text taken from other trajectories. This text stays harder to predict than in-context observations: training CE goes from 3.20 to 1.09, against 3.57 to 0.25 for \armB{}. Its KL is nevertheless indistinguishable from \armC's.
+
+\begin{table}[t]
+\centering\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Arm & KL & CE$_{\text{act}}$ & CE$_{\text{pay}}$ & CE$_{\text{tmpl}}$ & cos & ratio \\
+\midrule
+\armA{} & .364 & .302 & 2.02 & 2.78 & $-$.010 & 6.15 \\
+\armA{}, data order 2 & .361 & .302 & 2.02 & 2.80 & & \\
+\armB{} & .363 & .303 & 1.80 & 0.03 & .007 & 5.49 \\
+\armC{} ($0.85\times$) & .358 & .301 & 2.01 & 2.74 & & \\
+lr $0.70\times$ & .351 & .302 & 2.02 & 2.76 & & \\
+lr $0.55\times$ & .344 & .303 & 2.02 & 2.79 & & \\
+lr $0.40\times$ & .334 & .305 & 2.02 & 2.83 & & \\
+\armD{} & .352 & .301 & 1.97 & 2.77 & $-$.005 & 5.99 \\
+\armD{}$_{\text{obs}}$ & .358 & .303 & 1.76 & 0.91 & & \\
+\armE{} & .362 & .302 & 2.07 & 3.61 & & \\
+\bottomrule
+\end{tabular}}
+\caption{SFT-stage measurements on held-out trajectories. Columns: action KL to Qwen3-4B; CE on actions, observation payload and observation template; cosine and norm ratio of the observation and action gradients, summed over tokens. On training trajectories the ratio is 1.09 for \armB{} and 5.87 for \armA{}.}
+\label{tab:sftmeas}
+\end{table}
+
+\subsection{Why pooled dilution vanishes}
+\label{sec:share}\label{app:share}
+The dilution reading predicts that \armB{} moves the action policy as if its learning rate were scaled by 0.69. It does not: \armB's action KL to the base model (0.363) equals \armA's (0.364). Lowering the learning rate to $0.4\times$ gives 0.334, and Wikipedia dilution at the same token share gives 0.352, which is close to a $0.7\times$ learning rate.
+
+One account consistent with the training logs is that Adam normalises each coordinate's update by a running estimate of its gradient magnitude. Down-weighting the action loss uniformly therefore changes little unless the extra tokens keep producing large gradients in the same coordinates \citep{elich2023mtl}. \armB's observations are fitted early and their gradients shrink, whereas Wikipedia stays hard to predict (training CE from 3.18 to 2.44) and keeps diluting.
+
+This account is only suggestive. KL to the base model changes little across learning rates and differs by 0.003 between two data orders, and we did not run an optimiser ablation.
+
+\section{Observation Cross-Entropy by Part}
+\label{app:obsce}
+
+Table~\ref{tab:obsce} gives the full breakdown behind Figure~\ref{fig:mechanism}b. On unseen databases, \armB's advantage over \armA{} lies entirely in the template and the result header; on row values it is no better than \armA{} or \armD{}. On row values, \armB's CE is 0.70 on training databases and 1.92 on unseen ones, the signature of memorised content.
+
+\input{tables/obs_ce}
+
+\section{RL Training Dynamics}
+\label{app:rldyn}
+
+Training reward rises the same way from every initialisation (Table~\ref{tab:rldyn}), reaching 0.69--0.70 over the last 20 steps.
+
+\citet{zhang2026actobs} report that \armB{} retains more entropy with less policy movement. Here \armB{} (KL 0.107) and the action-only \armC{} (0.118) both move \emph{more} than either \armA{} seed (0.067 and 0.082). Both also keep more entropy: 0.47 and 0.49, against 0.43 and 0.45. Because an action-only arm reproduces \armB's pattern, these quantities do not identify observation supervision in our setting. Note that \armA{} seed~1 is the only run on 4 GPUs.
+
+\input{tables/rl_dynamics}
+
+\section{Behaviour After Observations}
+\label{app:behaviour}
+
+Table~\ref{tab:behaviour} compares how the agents react to SQL errors and empty results. Before RL the SFT variants are indistinguishable. GRPO then changes every one of them the same way: they take fewer turns and re-issue far fewer failed queries (23--28\% of failures on BIRD before RL, 6--9\% after).
+
+\input{tables/behaviour}
+
+\section{Decision Sensitivity}
+\label{app:decisions}
+
+Table~\ref{tab:decisions} gives the numbers behind Figure~\ref{fig:decisions}. Two further checks support the conclusion.
+
+\paragraph{Position in the trajectory.}
+The result does not depend on where in the trajectory the observation falls. We recomputed the measure for \armB{}, \armC{}, \armF{} and \armG{}, separately for the first observation of each rollout and for later ones. Each stays within 0.02 of \armA{} on both datasets.
+
+\paragraph{\armG's own checks.}
+These lead to the same conclusion as the gold-shape labels. After a mismatch that it reports itself, \armG{} submits 55\% (Spider) and 31\% (BIRD) of the time before RL, and 79\% and 46\% after GRPO. After RL it is therefore more likely to submit an answer it has just labelled as wrong.
+
+\input{tables/decisions}
+
+\section{Selection and Headroom}
+\label{app:headroom}
+
+Table~\ref{tab:selectall} extends Table~\ref{tab:select} to every model. Before RL, majority voting is the strongest rule that uses no knowledge. For every SFT model, \armG's contract adds 0.9--2.6 points on top of it. After GRPO it no longer helps: contract plus vote is between 1.1 and 0.0 points below voting alone.
+
+Table~\ref{tab:wrong} breaks the wrong answers down by how their result differs from the gold result. A shape check can catch only wrong answers whose result has a different shape from the gold result. Before RL these are about 63--65\% of wrong answers. After GRPO they are 44\% on Spider and 52\% on BIRD, mostly because GRPO already fixes the column count.
+
+\input{tables/selection_all}
+\input{tables/wrong_answers}
+
+\section{Construction of the Inserted Lines}
+\label{app:construction}
+
+\paragraph{Outcome lines.}
+Each outcome line is derived from the observation that follows the call. A result table gives ``Expected result: $N$ rows, $M$ columns'', or ``more than 50 rows'' when SkyRL truncates the table. Other observations give ``no rows'', ``error (\emph{message})'' with the database path removed from the message, or ``timeout''. Turns whose action is not a valid SQL call get no line.
+
+\paragraph{Contracts and checks.}
+A contract states the coarse shape of the gold result: one row or several rows together with the number of columns, or no rows. A check compares the coarse shape of the observed result with the contract; errors and timeouts never match. The placebo assigns each question the contract of another question through a seeded derangement, which preserves the distribution of contracts.
+
+\paragraph{Re-tokenisation.}
+We re-tokenise only the edited action segments. We then verify that removing the inserted lines restores the original text exactly, and no trajectory failed this check.
+
+\paragraph{Statistics.}
+Of the 6,294 SFT questions, 2,843 have a one-row gold result, 3,207 have several rows, 243 have no rows, and one gold query fails. The 24,043 SFT trajectories receive 24,039 contracts. Under \armG{}, 18,895 of the inserted checks report a match and 13,089 a mismatch. Under \armGp{} the derangement turns most checks into mismatches (6,035 matches and 25,949 mismatches), and 24.3\% of the placebo contracts still coincide with the gold shape. The outcome lines shared by \armE{} and \armF{} describe 28,216 results with rows, 2,883 empty results, 893 errors and 2 timeouts; 3,752 turns with an invalid action get no line. Table~\ref{tab:e2conf} compares \armF's predicted outcome with the actual one in its own rollouts.
+
+\input{tables/e2_confusion}
+
+\section{Representative Transcripts}
+\label{app:transcript}
+
+The three rollouts below come from Spider-dev; observation tags are abbreviated.
+
+\paragraph{\armG{} before RL revises after a mismatch.}
+Question 728 (\texttt{world\_1}) asks ``How many people live in Gelderland district?''. The contract expects one row and the first result has four, so the agent switches to a sum and answers correctly. See Figure~\ref{fig:tr728}.
+
+\begin{figure*}[t]
+\begin{Verbatim}[frame=single,fontsize=\small,framesep=2mm,rulecolor=\color{black!35}]
+Expected answer: 1 row, 1 column.
+<sql>SELECT Population FROM city WHERE District = 'Gelderland';</sql>
+[obs] 152463 / 101574 / 138020 / 153491
+Check: got several rows, 1 column; this does not match the expected
+answer. [...] Since the question asks for the total number of people
+living in the district, we need to sum these values.
+<sql>SELECT SUM(Population) FROM city WHERE District = 'Gelderland';</sql>
+[obs] 545548
+Check: got 1 row, 1 column; this matches the expected answer.
+<solution>SELECT SUM(Population) FROM city WHERE District = 'Gelderland';
+</solution>
+\end{Verbatim}
+\caption{\armG{} before RL (question 728): the check reports a mismatch and the agent revises.}
+\label{fig:tr728}
+\end{figure*}
+
+\paragraph{\armG{} after GRPO submits despite a mismatch.}
+Question 361 (\texttt{cre\_Doc\_Template\_Mgt}) asks to ``show paragraph details for paragraph with text `Korea'\,''. The contract is correct: one row, one column. The agent nevertheless submits a query whose result it has just checked as not matching, and the answer is wrong. See Figure~\ref{fig:tr361}.
+
+\begin{figure*}[t]
+\begin{Verbatim}[frame=single,fontsize=\small,framesep=2mm,rulecolor=\color{black!35}]
+Expected answer: 1 row, 1 column.
+<sql>SELECT * FROM Paragraphs WHERE Paragraph_Text = 'Korea';</sql>
+[obs] 510442723 2394 Korea None / 7 2394 Korea None
+Check: got several rows, 4 columns; this does not match the expected
+answer.
+<solution>SELECT * FROM Paragraphs WHERE Paragraph_Text = 'Korea';
+</solution>
+\end{Verbatim}
+\caption{\armG{} after GRPO (question 361): the contract is correct and the check reports a mismatch, yet the agent submits the wrong query.}
+\label{fig:tr361}
+\end{figure*}
+
+\paragraph{\armF{} predicts rows and gets an error.}
+Question 660 (\texttt{poker\_player}) asks to ``return the names of all the poker players''. The prediction written before each call ignores what the call will do: the first call fails and the second returns 5 rows, yet both predictions say 10 rows. See Figure~\ref{fig:tr660}.
+
+\begin{figure*}[t]
+\begin{Verbatim}[frame=single,fontsize=\small,framesep=2mm,rulecolor=\color{black!35}]
+Expected result: 10 rows, 1 column.
+<sql>SELECT p.Name FROM poker_player p JOIN people p2 ON ...;</sql>
+[obs] Error executing SQL: no such column: p.Name
+Expected result: 10 rows, 1 column.
+<sql>SELECT p2.Name FROM poker_player p JOIN people p2 ON ...;</sql>
+[obs] Aleksey Ostapenko / Yevgeni Sivozhelez / ... (5 rows)
+<solution>SELECT p2.Name FROM poker_player p JOIN people p2 ON ...;
+</solution>
+\end{Verbatim}
+\caption{\armF{} before RL (question 660): the in-action prediction ignores what the call will do.}
+\label{fig:tr660}
+\end{figure*}
+
+\section{Environment Audit}
+\label{app:audit}
+
+\paragraph{Empty-answer reward.}
+We ran the unmodified environment, data and databases with the constant answer \texttt{<solution>SELECT 1 WHERE 0;</solution>}. It earns reward 1.0 on 290 of the 653 training tasks: 283 of the 540 SynSQL tasks and 7 of the 113 Spider tasks. The reward compares frozensets of rows, so an empty prediction matches any empty gold result. The empty gold results arise in several ways. Some queries filter on a combination that does not exist in the data, such as \texttt{entry\_level = 'H' AND time = '2023-2024'} together with a \texttt{HAVING} clause. Others are five-way joins whose filter matches no row of the synthetic database. Others again filter on \texttt{year > strftime('\%Y','now') - 5}, which returns nothing at the time of writing; their result depends on the date on which the environment runs. Of the 22 SynSQL tasks that use dates relative to \texttt{'now'}, 18 currently return no rows. The Spider-dev split shipped with the same release has 49 empty golds among its 1,034 questions. We reported it to the maintainers with a reproduction script and the list of affected tasks\skyrlissue{}.
+
+\paragraph{Thinking mode.}
+Table~\ref{tab:pilot} compares teacher pilots of 100 trajectories each, scored without the \texttt{<think>} rules. Under the shipped rules both thinking-off rows score zero, and the thinking-on row keeps only single-turn answers. With thinking on, the teacher mostly answers in one turn. When it does call the tool, it continues after the observation with a stray \texttt{</think>} or no tool tag, which the format check rejects.
+
+\begin{table}[t]
+\centering\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Teacher pilot & Acc. & Multi-turn & Obs.\ share \\
+\midrule
+Thinking on & 0.52 & 19/100 & 1.4\% \\
+Thinking off & 0.52 & 81/94 & 21.6\% \\
+Thinking off + verify prompt & 0.49 & 96/97 & 26.9\% \\
+\bottomrule
+\end{tabular}}
+\caption{Teacher pilots (Qwen3-32B). Accuracy is scored without the \texttt{<think>} rules; multi-turn counts are among well-formed trajectories.}
+\label{tab:pilot}
+\end{table}
+
+\section{Pre-registration, Predictions and Deviations}
+\label{app:prereg}
+
+The plan was frozen before any main SFT or GRPO run. It fixed the arms \armA{}--\armD{}, the selection rule for \armC{}, the primary outcome, the hypotheses and the evaluation protocol. Every later change was recorded as a dated addendum, together with what had been seen at the time.
+
+Three deviations concern implementation only. We changed the SFT implementation so that it fits in memory (a chunked LM head and ZeRO-1) without changing the objective, accumulated gradients on the CPU in the measurement code, and reran jobs with checkpointing disabled after the node's local disk filled. Jobs were also limited to 2 GPUs, after \armA{} seed~1 had already run on 4. Two deviations change the design. After seed~1 we put \armD{} and the third seeds on hold and added the outcome arms, the contract arms and a data-order seed for \armA{}. Following a literature review, we queued the \armF{} GRPO run after \armG's. The replication hypothesis required the same sign in two of three seeds, and it could not be tested once seed~3 was put on hold. Table~\ref{tab:predictions} lists every written prediction and its outcome.
+
+\begin{table*}[t]
+\centering\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}p{0.47\textwidth}p{0.12\textwidth}p{0.37\textwidth}@{}}
+\toprule
+Prediction (written before the result) & Outcome & Evidence \\
+\midrule
+\armB{} improves post-GRPO pooled pass@16 over \armA{} & not found & $-0.06$ $[-0.82, 0.68]$ \\
+KL(\armB$\|$\armA) $\le$ KL(\armC$\|$\armA) & refuted & 0.0049 vs.\ 0.0010; both below data-order noise 0.0070 \\
+\armB{} learns observation structure but not values on unseen DBs & supported & Table~\ref{tab:obsce} \\
+\armB's observation gradient is smaller on training than on held-out data & supported & ratio 1.09 vs.\ 5.49 \\
+\armD$_{\text{obs}}$ dilutes like \armD{} & not supported & KL 0.358, the same as \armC{} \\
+\armE{} leaves actions unchanged; \armF{} moves them & supported & KL to \armA{} 0.0043 vs.\ 0.0162 (noise 0.0070) \\
+\armG's contract beats the majority shape and \armGp{} on unseen DBs & supported & 89/82\% vs.\ 42/60\% and 30/35\% \\
+\armG{} submits less after a reported mismatch & supported, not attributable & \armA{} shows the same gold-shape asymmetry (Table~\ref{tab:decisions}) \\
+\armG's pre-RL pass@1 equals \armA's & supported & 71.8/49.5 vs.\ 71.4/49.7 \\
+\armG's own-contract selection beats the validity rule on BIRD & supported & 57.4 vs.\ 53.9 \\
+\armG{} gains at least 1 point of BIRD pass@1 over \armA{} after GRPO & refuted & $-0.60$ $[-1.17, -0.03]$ \\
+GRPO lowers \armG's submission after a mismatch & refuted & rises from 31\% to 46\% (BIRD) \\
+\bottomrule
+\end{tabular}}
+\caption{Predictions written before each result, and their outcomes.}
+\label{tab:predictions}
+\end{table*}
+
+\section{Systems Notes and Compute}
+\label{app:systems}
+
+Three engineering problems could have distorted the measurements. We describe each and how we fixed it.
+
+\paragraph{Padding.} With flash attention disabled, GRPO padded every batch to 20,350 tokens and took 53 minutes per step. Enabling flash attention, removing micro-batch padding and capping turns at 1,024 tokens brought this down to about 5--7 minutes on 2 GPUs. Evaluation scores did not change (Spider pass@1 0.551 vs.\ 0.550).
+
+\paragraph{Memory.} SFT ran out of memory on long trajectories. fp32 parameters, gradients and AdamW state took about 64\,GB per GPU, and full-vocabulary logits took another 10\,GB. ZeRO-1 and a chunked, recomputed LM head brought the worst-case peak down to 62--65\,GB. A unit test checks that the chunked head gives the same loss and gradients as an unchunked one (App.~\ref{app:data}).
+
+\paragraph{Disk and evaluator.} SkyRL saves a full checkpoint at every epoch end whenever a checkpoint interval is set. Together with per-job environments, this filled a 1.8\,TB local disk, and we reran the affected jobs with checkpointing disabled. Our evaluator agrees with SkyRL's built-in one on a shared checkpoint.
+
+\paragraph{Compute.} All runs used NVIDIA RTX PRO 6000 Blackwell GPUs (96\,GB). Excluding failed attempts, the study used about 280 GPU-hours. Most of it went to the 7 GRPO runs (about 185) and the 13 SFT runs (about 47). Evaluation took about 35 GPU-hours over roughly 25 evaluations, teacher generation and pilots about 8, and the measurements a few more.
+
+\section{Hyper-parameters}
+\label{app:hparams}
+
+\paragraph{SFT.}
+We use AdamW with $\beta=(0.9,0.95)$, $\epsilon=10^{-8}$ and no weight decay. The learning rate is $10^{-5}$ with cosine decay and 3\% warm-up. Each step uses a global batch of 64 trajectories (micro-batch 1 with gradient accumulation), and training runs for one epoch (375 steps) with gradient clipping at 1.0. The maximum length is 12,288 tokens. Weights are kept in fp32 with bf16 autocast, and seed 0 fixes the example order for every arm.
+
+\paragraph{GRPO.}
+We use SkyRL's GRPO for 135 steps with 32 tasks and 16 samples per step, learning rate $10^{-6}$ and no KL penalty. Importance sampling is truncated at the token level with a cap of 2.0. Rollouts are limited to 6 turns, 1,024 tokens per turn and 8,192 input tokens, and are sampled at temperature 0.6 and top-$p$ 0.95. Training runs FSDP on 2 GPUs with 2 vLLM engines.
+
+\paragraph{Evaluation.}
+See App.~\ref{app:eval}.
+
+\section{Artifacts and Licenses}
+\label{app:licenses}
+
+Spider and BIRD are distributed under CC BY-SA 4.0. We obtained them, along with the SynSQL tasks in SkyRL's training set, through the OmniSQL release. Qwen3-4B and Qwen3-32B are released under Apache 2.0, as is SkyRL. Our use is consistent with these licenses and with the research purpose of the datasets. We will release our code, analysis scripts, pre-registration and the list of affected environment tasks under Apache 2.0.

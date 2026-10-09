@@ -1,0 +1,80 @@
+% Fig. 1 (TikZ): one real trajectory (Spider-dev q728) and where each arm places supervision,
+% in the spirit of ActObs's Figure 1; palette from the MemoHarness / SkillRC figures.
+\begin{tikzpicture}[
+  x=1cm, y=1cm, font=\sffamily\scriptsize,
+  seg/.style={draw=#1, fill=white, rounded corners=2pt, line width=0.5pt, align=center,
+              inner sep=1.5pt, font=\ttfamily\tiny, minimum height=0.78cm},
+  kind/.style={font=\sffamily\tiny, text=black!50},
+  lane/.style={font=\sffamily\scriptsize\bfseries, anchor=east, text=black!80},
+  on/.style={draw=#1!75, fill=#1!30, rounded corners=1.5pt, line width=0.45pt},
+  off/.style={draw=black!25, fill=black!3, dashed, rounded corners=1.5pt, line width=0.45pt},
+  ins/.style={draw=#1!85, fill=white, rounded corners=1.5pt, line width=0.7pt, font=\sffamily\tiny,
+              inner sep=1.2pt, align=center},
+  tag/.style={fill=#1!14, draw=#1!60, rounded corners=5pt, font=\sffamily\tiny, inner sep=2pt,
+              minimum width=1.75cm, align=center, text=black!80},
+]
+% cells whose loss label is hidden because an inserted line sits on them (row, cell)
+\expandafter\def\csname skip@2B\endcsname{}\expandafter\def\csname skip@3A\endcsname{}
+\expandafter\def\csname skip@4A\endcsname{}\expandafter\def\csname skip@4C\endcsname{}
+\expandafter\def\csname skip@4E\endcsname{}
+% segment geometry
+\def\Lx{2.15}
+\def\sA{\Lx}            \def\wA{2.9}
+\pgfmathsetmacro{\sB}{\sA+\wA+0.2}  \def\wB{2.0}
+\pgfmathsetmacro{\sC}{\sB+\wB+0.2}  \def\wC{3.15}
+\pgfmathsetmacro{\sD}{\sC+\wC+0.2}  \def\wD{1.4}
+\pgfmathsetmacro{\sE}{\sD+\wD+0.2}  \def\wE{2.15}
+\pgfmathsetmacro{\Rx}{\sE+\wE+0.3}
+\def\H{0.42}
+
+% task and trajectory
+\node[anchor=west, font=\sffamily\scriptsize, text=black!80] at (0.05,0.55)
+  {\textbf{Task:} ``How many people live in Gelderland district?'' \quad {\color{black!50}(Spider-dev, real rollout)}};
+\node[seg=gptblue, minimum width=\wA cm, anchor=north west] at (\sA,0) {<sql>SELECT Population\\FROM city WHERE ...</sql>};
+\node[seg=black!30, fill=black!4, minimum width=\wB cm, anchor=north west] at (\sB,0) {4 rows\\(152463, ...)};
+\node[seg=gptblue, minimum width=\wC cm, anchor=north west] at (\sC,0) {<sql>SELECT SUM(Population)\\FROM city WHERE ...</sql>};
+\node[seg=black!30, fill=black!4, minimum width=\wD cm, anchor=north west] at (\sD,0) {1 row\\(545548)};
+\node[seg=gptblue, minimum width=\wE cm, anchor=north west] at (\sE,0) {<solution>SELECT\\SUM(Population)...};
+\foreach \x/\w/\k in {\sA/\wA/action, \sB/\wB/observation, \sC/\wC/action, \sD/\wD/observation, \sE/\wE/action}
+  { \node[kind] at (\x+\w/2,-0.92) {\k}; }
+\node[font=\sffamily\tiny\bfseries, text=black!60, anchor=south] at (\Rx+0.88,-0.95) {what it does};
+
+% lanes: name / colour / observations trained? / row / verdict
+\foreach \name/\c/\obs/\row/\verdict in {
+    ActionSFT/gptblue/0/0/{baseline},
+    ActObs/salmon/1/1/{learns obs.},
+    Outcome-Aux/phaseB/0/2/{learns outcome},
+    Outcome-in-Action/qwenmint/0/3/{shifts actions},
+    Contract/contractv/0/4/{learns answer}} {
+  \pgfmathsetmacro{\y}{-1.25-\row*0.62}
+  \node[lane] at (\Lx-0.12,\y-\H/2) {\name};
+  \foreach \x/\w/\isobs/\cell in {\sA/\wA/0/A, \sB/\wB/1/B, \sC/\wC/0/C, \sD/\wD/1/D, \sE/\wE/0/E} {
+    \pgfmathtruncatemacro{\trained}{(\isobs==0) || (\obs==1)}
+    \edef\key{skip@\row\cell}
+    \ifnum\trained=1
+      \draw[on=\c] (\x,\y) rectangle ++(\w,-\H);
+      \ifcsname\key\endcsname\else
+        \node[font=\sffamily\tiny, text=\c!80!black, anchor=east] at (\x+\w-0.05,\y-\H/2) {$-\log p$};\fi
+    \else
+      \draw[off] (\x,\y) rectangle ++(\w,-\H);
+      \ifcsname\key\endcsname\else
+        \node[font=\sffamily\tiny, text=black!40] at (\x+\w/2,\y-\H/2) {masked};\fi
+    \fi
+  }
+  \node[tag=\c, anchor=west] at (\Rx,\y-\H/2) {\verdict};
+}
+% the shared result of the four variants
+\draw[decorate, decoration={brace, amplitude=3pt}, line width=0.6pt, black!55]
+  (\Rx+1.86,-1.25-0.62+0.02) -- (\Rx+1.86,-1.25-4*0.62-\H-0.02);
+\node[anchor=west, font=\sffamily\tiny\bfseries, text=black!75, align=left]
+  at (\Rx+2.0,-1.25-2.5*0.62-\H/2) {decisions\\unchanged};
+% inserted lines (dashed border: never generated at test time)
+\pgfmathsetmacro{\yAux}{-1.25-2*0.62-\H/2}
+\pgfmathsetmacro{\yAct}{-1.25-3*0.62-\H/2}
+\pgfmathsetmacro{\yCon}{-1.25-4*0.62-\H/2}
+\node[ins=phaseB, dashed] at (\sB-0.1,\yAux) {Expected result: 4 rows};
+\node[ins=qwenmint, anchor=west] at (\sA+0.06,\yAct) {Expected result: 4 rows};
+\node[ins=contractv, anchor=west] at (\sA+0.06,\yCon) {Expected answer: 1 row, 1 col};
+\node[ins=contractv, anchor=west] at (\sC+0.06,\yCon) {Check: several rows; no match};
+\node[ins=contractv, anchor=west] at (\sE+0.06,\yCon) {Check: 1 row; match};
+\end{tikzpicture}

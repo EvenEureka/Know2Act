@@ -1,0 +1,60 @@
+% ARR / EMNLP long-paper submission (review mode, anonymous).
+% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage{placeins}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing}
+% MemoHarness / SkillRC figure palette
+\definecolor{phaseA}{HTML}{6F9AD3}
+\definecolor{phaseB}{HTML}{B07A8F}
+\definecolor{gptblue}{HTML}{5F86C2}
+\definecolor{qwenmint}{HTML}{4FA58C}
+\definecolor{salmon}{HTML}{D9735A}
+\definecolor{sand}{HTML}{B8923A}
+\definecolor{contractv}{HTML}{6B4C9A}
+
+\input{math_commands}
+
+\title{Know2Act: What Knowledge Reaches\\a Tool-Using Agent's Actions?}
+
+\author{Anonymous ARR Submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/0_abstract}
+\end{abstract}
+
+\input{sections/1_introduction}
+\input{sections/2_method}
+\input{sections/3_main_results}
+\input{sections/4_not_used}
+\input{sections/5_what_reaches}
+\input{sections/6_related_work}
+\input{sections/7_conclusion}
+
+\input{sections/limitations}
+
+\bibliography{references}
+
+\appendix
+\input{sections/A_appendix}
+
+\end{document}

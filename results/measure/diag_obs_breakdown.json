@@ -1,0 +1,466 @@
+{
+ "base": {
+  "heldout": {
+   "act": {
+    "ce": 0.6553510165091423,
+    "n_tokens": 78236
+   },
+   "rows/wrapper": {
+    "ce": 4.194296019315719,
+    "n_tokens": 8000
+   },
+   "rows/first3": {
+    "ce": 7.890758051528703,
+    "n_tokens": 1101
+   },
+   "rows/line1": {
+    "ce": 3.397117387796134,
+    "n_tokens": 1986
+   },
+   "rows/rest": {
+    "ce": 2.2603424065092117,
+    "n_tokens": 35845
+   },
+   "empty/wrapper": {
+    "ce": 5.020888858371311,
+    "n_tokens": 63
+   },
+   "empty/first3": {
+    "ce": 4.279858271280925,
+    "n_tokens": 9
+   },
+   "empty/line1": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/rest": {
+    "ce": 1.8200138145022922,
+    "n_tokens": 18
+   },
+   "error/wrapper": {
+    "ce": 2.8135218665713357,
+    "n_tokens": 105
+   },
+   "error/first3": {
+    "ce": 10.146189117431641,
+    "n_tokens": 15
+   },
+   "error/line1": {
+    "ce": 5.4408048531259166,
+    "n_tokens": 213
+   },
+   "error/rest": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "seg/rows": 367,
+   "seg/empty": 3,
+   "seg/error": 5
+  },
+  "train": {
+   "act": {
+    "ce": 0.6766268919702088,
+    "n_tokens": 87368
+   },
+   "rows/wrapper": {
+    "ce": 3.876028904485388,
+    "n_tokens": 8194
+   },
+   "rows/first3": {
+    "ce": 7.257808374943425,
+    "n_tokens": 1128
+   },
+   "rows/line1": {
+    "ce": 2.3791547091891467,
+    "n_tokens": 1924
+   },
+   "rows/rest": {
+    "ce": 2.1780948209424005,
+    "n_tokens": 17550
+   },
+   "error/wrapper": {
+    "ce": 2.5396937774237536,
+    "n_tokens": 399
+   },
+   "error/first3": {
+    "ce": 6.61153945263083,
+    "n_tokens": 57
+   },
+   "error/line1": {
+    "ce": 3.6648073817596813,
+    "n_tokens": 728
+   },
+   "error/rest": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/wrapper": {
+    "ce": 3.462382190911345,
+    "n_tokens": 903
+   },
+   "empty/first3": {
+    "ce": 3.343421139731075,
+    "n_tokens": 129
+   },
+   "empty/line1": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/rest": {
+    "ce": 2.244992037613715,
+    "n_tokens": 258
+   },
+   "seg/rows": 376,
+   "seg/error": 19,
+   "seg/empty": 43
+  }
+ },
+ "A": {
+  "heldout": {
+   "act": {
+    "ce": 0.30153883594488756,
+    "n_tokens": 78236
+   },
+   "rows/wrapper": {
+    "ce": 2.787849729567766,
+    "n_tokens": 8000
+   },
+   "rows/first3": {
+    "ce": 5.644989228539243,
+    "n_tokens": 1101
+   },
+   "rows/line1": {
+    "ce": 2.221846531931466,
+    "n_tokens": 1986
+   },
+   "rows/rest": {
+    "ce": 1.8820250642001224,
+    "n_tokens": 35845
+   },
+   "empty/wrapper": {
+    "ce": 2.826517619783916,
+    "n_tokens": 63
+   },
+   "empty/first3": {
+    "ce": 5.212423642476399,
+    "n_tokens": 9
+   },
+   "empty/line1": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/rest": {
+    "ce": 3.8364712397257485,
+    "n_tokens": 18
+   },
+   "error/wrapper": {
+    "ce": 1.765060824439639,
+    "n_tokens": 105
+   },
+   "error/first3": {
+    "ce": 6.729869842529297,
+    "n_tokens": 15
+   },
+   "error/line1": {
+    "ce": 3.92936806835479,
+    "n_tokens": 213
+   },
+   "error/rest": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "seg/rows": 367,
+   "seg/empty": 3,
+   "seg/error": 5
+  },
+  "train": {
+   "act": {
+    "ce": 0.33074365417611934,
+    "n_tokens": 87368
+   },
+   "rows/wrapper": {
+    "ce": 2.5736129037164788,
+    "n_tokens": 8194
+   },
+   "rows/first3": {
+    "ce": 5.30622610925814,
+    "n_tokens": 1128
+   },
+   "rows/line1": {
+    "ce": 1.6925636990686495,
+    "n_tokens": 1924
+   },
+   "rows/rest": {
+    "ce": 1.6019892788239014,
+    "n_tokens": 17550
+   },
+   "error/wrapper": {
+    "ce": 1.701036516586342,
+    "n_tokens": 399
+   },
+   "error/first3": {
+    "ce": 4.475310071878004,
+    "n_tokens": 57
+   },
+   "error/line1": {
+    "ce": 2.6884305816585745,
+    "n_tokens": 728
+   },
+   "error/rest": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/wrapper": {
+    "ce": 2.0750772860623146,
+    "n_tokens": 903
+   },
+   "empty/first3": {
+    "ce": 4.969828724269141,
+    "n_tokens": 129
+   },
+   "empty/line1": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/rest": {
+    "ce": 3.0109739962129587,
+    "n_tokens": 258
+   },
+   "seg/rows": 376,
+   "seg/error": 19,
+   "seg/empty": 43
+  }
+ },
+ "B": {
+  "heldout": {
+   "act": {
+    "ce": 0.3028986010944449,
+    "n_tokens": 78236
+   },
+   "rows/wrapper": {
+    "ce": 0.03393845914899703,
+    "n_tokens": 8000
+   },
+   "rows/first3": {
+    "ce": 1.0189046300988704,
+    "n_tokens": 1101
+   },
+   "rows/line1": {
+    "ce": 0.2978632236923795,
+    "n_tokens": 1986
+   },
+   "rows/rest": {
+    "ce": 1.9150666736282649,
+    "n_tokens": 35845
+   },
+   "empty/wrapper": {
+    "ce": 0.0027977440779703476,
+    "n_tokens": 63
+   },
+   "empty/first3": {
+    "ce": 1.213637716240353,
+    "n_tokens": 9
+   },
+   "empty/line1": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/rest": {
+    "ce": 1.778801985589477e-05,
+    "n_tokens": 18
+   },
+   "error/wrapper": {
+    "ce": 0.0001975647570188379,
+    "n_tokens": 105
+   },
+   "error/first3": {
+    "ce": 0.5269126335779826,
+    "n_tokens": 15
+   },
+   "error/line1": {
+    "ce": 0.22799105039784606,
+    "n_tokens": 213
+   },
+   "error/rest": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "seg/rows": 367,
+   "seg/empty": 3,
+   "seg/error": 5
+  },
+  "train": {
+   "act": {
+    "ce": 0.33609425088837735,
+    "n_tokens": 87368
+   },
+   "rows/wrapper": {
+    "ce": 0.019559161844145925,
+    "n_tokens": 8194
+   },
+   "rows/first3": {
+    "ce": 0.3516604233283841,
+    "n_tokens": 1128
+   },
+   "rows/line1": {
+    "ce": 0.19771057819422622,
+    "n_tokens": 1924
+   },
+   "rows/rest": {
+    "ce": 0.699269320842719,
+    "n_tokens": 17550
+   },
+   "error/wrapper": {
+    "ce": 0.0009150750193841765,
+    "n_tokens": 399
+   },
+   "error/first3": {
+    "ce": 0.41361971232190464,
+    "n_tokens": 57
+   },
+   "error/line1": {
+    "ce": 0.06864560028914858,
+    "n_tokens": 728
+   },
+   "error/rest": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/wrapper": {
+    "ce": 0.001973609467295379,
+    "n_tokens": 903
+   },
+   "empty/first3": {
+    "ce": 0.37444397726713485,
+    "n_tokens": 129
+   },
+   "empty/line1": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/rest": {
+    "ce": 2.0292950762797222e-05,
+    "n_tokens": 258
+   },
+   "seg/rows": 376,
+   "seg/error": 19,
+   "seg/empty": 43
+  }
+ },
+ "D": {
+  "heldout": {
+   "act": {
+    "ce": 0.3010780437451344,
+    "n_tokens": 78236
+   },
+   "rows/wrapper": {
+    "ce": 2.7827725371420384,
+    "n_tokens": 8000
+   },
+   "rows/first3": {
+    "ce": 5.708668649750258,
+    "n_tokens": 1101
+   },
+   "rows/line1": {
+    "ce": 2.179651817447948,
+    "n_tokens": 1986
+   },
+   "rows/rest": {
+    "ce": 1.8288434654784094,
+    "n_tokens": 35845
+   },
+   "empty/wrapper": {
+    "ce": 2.9167578560965404,
+    "n_tokens": 63
+   },
+   "empty/first3": {
+    "ce": 4.489812639024523,
+    "n_tokens": 9
+   },
+   "empty/line1": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/rest": {
+    "ce": 2.9312165048387318,
+    "n_tokens": 18
+   },
+   "error/wrapper": {
+    "ce": 1.8110483214968727,
+    "n_tokens": 105
+   },
+   "error/first3": {
+    "ce": 6.327278963724772,
+    "n_tokens": 15
+   },
+   "error/line1": {
+    "ce": 3.9538005416941755,
+    "n_tokens": 213
+   },
+   "error/rest": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "seg/rows": 367,
+   "seg/empty": 3,
+   "seg/error": 5
+  },
+  "train": {
+   "act": {
+    "ce": 0.3319052696861132,
+    "n_tokens": 87368
+   },
+   "rows/wrapper": {
+    "ce": 2.5667778703390693,
+    "n_tokens": 8194
+   },
+   "rows/first3": {
+    "ce": 5.380134208493202,
+    "n_tokens": 1128
+   },
+   "rows/line1": {
+    "ce": 1.6537211517203414,
+    "n_tokens": 1924
+   },
+   "rows/rest": {
+    "ce": 1.548069912864272,
+    "n_tokens": 17550
+   },
+   "error/wrapper": {
+    "ce": 1.7386247890634943,
+    "n_tokens": 399
+   },
+   "error/first3": {
+    "ce": 4.217447807816298,
+    "n_tokens": 57
+   },
+   "error/line1": {
+    "ce": 2.684668683642675,
+    "n_tokens": 728
+   },
+   "error/rest": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/wrapper": {
+    "ce": 2.1303232991418173,
+    "n_tokens": 903
+   },
+   "empty/first3": {
+    "ce": 4.4462127050948,
+    "n_tokens": 129
+   },
+   "empty/line1": {
+    "ce": null,
+    "n_tokens": 0
+   },
+   "empty/rest": {
+    "ce": 2.504329188346011,
+    "n_tokens": 258
+   },
+   "seg/rows": 376,
+   "seg/error": 19,
+   "seg/empty": 43
+  }
+ }
+}

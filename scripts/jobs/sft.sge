@@ -1,0 +1,28 @@
+#!/bin/bash
+#$ -q gpu
+#$ -l gpu_card=4
+#$ -pe smp 32
+#$ -j y
+#$ -o /path/to/Know2Act/logs/$JOB_NAME.$JOB_ID.log
+# SFT arm on 4 GPUs (DDP). Arms (PREREG §3):
+#   A : LAM=0                     B : LAM=1
+#   C : LAM=0 LR=<matched>        D : LAM=1 DILUTE=1        Bsep : LAM=1 NORM=separate
+# usage: qsub -N sft_B -v ARM=B,LAM=1 scripts/jobs/sft.sge
+set -euo pipefail
+source /path/to/Know2Act/scripts/env.sh
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+cd $ROOT
+# failure mail: script errors (e.g. OOM) are not SGE "aborts", so -m a alone misses them
+trap 'rc=$?; if [ $rc -ne 0 ] && [ -n "${MAILTO:-}" ]; then tail -40 "$SGE_STDOUT_PATH" | mail -s "[AgenticRL_CV] $JOB_NAME FAILED rc=$rc" "$MAILTO"; fi' EXIT
+RUN=sft_${ARM}_${JOB_ID}; OUT=$LOCAL/sft/$RUN; FIN=$ROOT/results/sft/$RUN
+mkdir -p $OUT $FIN
+hostname; nvidia-smi --query-gpu=index,name,memory.used --format=csv,noheader
+EXTRA_ARGS=()
+[[ ${DILUTE:-0} == 1 ]] && EXTRA_ARGS+=(--dilute ${DILUTE_FILE:-$ROOT/data/sft/dilution.jsonl})
+$PY -m torch.distributed.run --nproc_per_node ${NPROC:-4} scripts/sft_train.py \
+  --data ${DATA:-$ROOT/data/sft/train.jsonl} --model ${MODEL:-$(snap Qwen/Qwen3-4B)} --out $OUT \
+  --lam ${LAM:-0} --norm ${NORM:-pooled} --lr ${LR:-1e-5} --epochs ${EPOCHS:-1} \
+  --global_batch ${GBATCH:-64} --max_len ${MAXLEN:-12288} --seed ${SEED:-0} --max_steps ${MAX_STEPS:--1} \
+  "${EXTRA_ARGS[@]}"
+cp -r $OUT/model $OUT/run_args.json $OUT/completed.json $OUT/train_log.rank0.jsonl $FIN/
+echo SFT_DONE
