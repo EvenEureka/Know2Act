@@ -1,7 +1,7 @@
-\section{Knowledge Is Learned but Not Used for Decisions}
+\section{Where Learned Knowledge Reaches: Actions, Selection, Decisions}
 \label{sec:what}
 
-\S\ref{sec:mechanism} showed that observation knowledge is learned but leaves the policy unchanged. Two explanations were open: the knowledge may be the wrong kind, or it may sit in the wrong place. The exploratory arms of \S\ref{sec:method} vary both. Each arm can fail at three points: the knowledge may not be learned, it may not move the action policy, or it may not change the agent's decisions. We test each in turn.
+The exploratory arms of \S\ref{sec:method} change what the agent predicts and where. For each we again take the steps in turn: whether the knowledge is acquired (\S\ref{sec:learned-all}) and enters the actions (\S\ref{sec:placement}), and whether it is used, by a selector outside the agent (\S\ref{sec:select}), by the agent's own submit-or-continue decision (\S\ref{sec:decisions}), and by the outcome reward (\S\ref{sec:e3rl}).
 
 \subsection{Every variant learns its target on unseen databases}
 \label{sec:learned-all}
@@ -9,29 +9,11 @@ All the knowledge we supervise is acquired, and it transfers to the 12 databases
 \armB{} learns the observations' structure (\S\ref{sec:learned}). The outcome arms learn their line with CE 0.20 (\armE{}) and 0.26 (\armF{}), against 3.8--4.3 for models not trained on it. \armG{} states the correct coarse shape of the answer in 89\% (Spider) and 82\% (BIRD) of its rollouts. For comparison, always writing the most frequent shape is right 42\% and 60\% of the time, a naive-Bayes classifier on the question words 71\% and 49\%, and the placebo arm 30\% and 35\%. The checks that \armG{} writes after each observation are computed correctly 99.7--99.97\% of the time.
 The models therefore know the outcome of their queries and what a correct answer should look like.
 
-
-
 \subsection{Placement decides whether actions move}
 \label{sec:placement}
 \armE{} and \armF{} supervise the same line with the same weight. Only \armF{}, where the line precedes the query, changes the actions. In the shared context that contains the line, $\KL(\cdot\|\armA)$ is 0.0162 for \armF{}, about 2.3 times the data-order noise floor in that context (0.0070). For \armE{} it is 0.0043, and for \armB{} 0.0058.
 
 The predictions inside \armF's actions are, however, blind to failure. In its own rollouts, \armF{} writes ``error'' before 9 of the 8,311 calls that do fail (0.1\%), and ``no rows'' before 9\% of the calls that return nothing. Two explanations fit, and our design cannot separate them. One is the labels: they come from teacher trajectories in which only 2.8\% of calls fail, whereas successful predict-then-act methods use failure-rich, on-policy labels \citep{chen2025spa,zhang2025earlyexperience}. The other is the target: predicting one's own query's result adds little when executing it is free \citep{copet2025cwm,fu2024preact}.
-
-\subsection{No variant changes the agent's decisions}
-\label{sec:decisions}
-The decision a SQL agent faces after every observation is whether to submit or keep querying. An agent that used answer knowledge would submit when the result has the right shape and keep querying when it does not. We therefore label every observation in the evaluation rollouts by whether its coarse shape matches the gold result. We define the \emph{decision sensitivity} $S$ as P(submit next | match) minus P(submit next | mismatch). We compare each arm with \armA{} using a bootstrap over questions. As noise references we use \armA{} trained on a different data order (before RL) and a second RL seed (after RL).
-
-The result is uniform (Figure~\ref{fig:decisions}).
-The asymmetry predates the contract. \armA{} already submits far more often after a matching result than after a mismatching one ($S=0.43$ on Spider and $0.46$ on BIRD), a tendency inherited from the teacher. No SFT variant moves $S$ by more than the data-order reference does: $|\Delta S|\le0.016$ against 0.033 on Spider, and $\le0.010$ against 0.020 on BIRD. This holds even for \armG{}, whose own checks report each mismatch explicitly. It submits after 55\% and 31\% of the mismatches it reports, the same as \armA{} after mismatches judged against gold shapes (48\% and 29\%).
-
-After GRPO the arms remain inseparable. Two RL seeds of the same checkpoint already differ in $S$ by 0.052 and 0.019 (\armA{}) and by 0.022 and 0.029 (\armB{}) on Spider and BIRD. Differences between arms are of this size and have no consistent sign: the largest come from an action-only control (\armC{}: $+0.071$ and $+0.032$) and from \armB's second seed ($-0.025$ and $-0.031$). What RL does change is shared by every arm: it raises the rate of submitting after a mismatch, on BIRD from 0.29 to 0.41 for \armA{} and from 0.28 to 0.41 for \armG{}. Measured with \armG's own checks, the rate rises from 31\% to 46\%. Per-arm numbers, including first and later observations, are in App.~\ref{app:decisions}.
-
-\begin{figure}[t]
-\centering
-\figplaceholder{figures/fig4_decisions.pdf}{5cm}
-\caption{Decision sensitivity, P(submit next $\mid$ result has the gold shape) minus P(submit next $\mid$ it does not), for each arm relative to \armA{}, with 95\% question-bootstrap CIs. Grey rows are noise references: \armA{} trained on another data order (after SFT), and a second RL seed (after GRPO). After SFT no variant moves beyond the data-order reference; after GRPO the differences are of the size of RL-seed variation and have no consistent sign.}
-\label{fig:decisions}
-\end{figure}
 
 \subsection{The knowledge is usable from outside, until RL}
 \label{sec:select}
@@ -62,6 +44,22 @@ Execution majority vote & 75.8 & 58.3 & 82.6 & 63.9 & 75.9 & 58.0 & 83.1 & 63.4 
 \label{tab:select}
 \end{table*}
 
-\subsection{No gain in accuracy}
+\subsection{The agent's own decision does not change}
+\label{sec:decisions}
+A selector can use the knowledge; the agent itself does not. The decision a SQL agent faces after every observation is whether to submit or keep querying. An agent that used answer knowledge would submit when the result has the right shape and keep querying when it does not. We therefore label every observation in the evaluation rollouts by whether its coarse shape matches the gold result. We define the \emph{decision sensitivity} $S$ as P(submit next | match) minus P(submit next | mismatch). We compare each arm with \armA{} using a bootstrap over questions. As noise references we use \armA{} trained on a different data order (before RL) and a second RL seed (after RL).
+
+The result is uniform (Figure~\ref{fig:decisions}).
+The asymmetry predates the contract. \armA{} already submits far more often after a matching result than after a mismatching one ($S=0.43$ on Spider and $0.46$ on BIRD), a tendency inherited from the teacher. No SFT variant moves $S$ by more than the data-order reference does: $|\Delta S|\le0.016$ against 0.033 on Spider, and $\le0.010$ against 0.020 on BIRD. This holds even for \armG{}, whose own checks report each mismatch explicitly. It submits after 55\% and 31\% of the mismatches it reports, the same as \armA{} after mismatches judged against gold shapes (48\% and 29\%).
+
+After GRPO the arms remain inseparable. Two RL seeds of the same checkpoint already differ in $S$ by 0.052 and 0.019 (\armA{}) and by 0.022 and 0.029 (\armB{}) on Spider and BIRD. Differences between arms are of this size and have no consistent sign: the largest come from an action-only control (\armC{}: $+0.071$ and $+0.032$) and from \armB's second seed ($-0.025$ and $-0.031$). What RL does change is shared by every arm: it raises the rate of submitting after a mismatch, on BIRD from 0.29 to 0.41 for \armA{} and from 0.28 to 0.41 for \armG{}. Measured with \armG's own checks, the rate rises from 31\% to 46\%. Per-arm numbers, including first and later observations, are in App.~\ref{app:decisions}. This is the open step: the contract that improves selection from outside is in the agent's context and is followed by a check that names the mismatch, yet the decision that follows is the one an action-only model makes.
+
+\begin{figure}[t]
+\centering
+\figplaceholder{figures/fig4_decisions.pdf}{5cm}
+\caption{Decision sensitivity, P(submit next $\mid$ result has the gold shape) minus P(submit next $\mid$ it does not), for each arm relative to \armA{}, with 95\% question-bootstrap CIs. Grey rows are noise references: \armA{} trained on another data order (after SFT), and a second RL seed (after GRPO). After SFT no variant moves beyond the data-order reference; after GRPO the differences are of the size of RL-seed variation and have no consistent sign.}
+\label{fig:decisions}
+\end{figure}
+
+\subsection{The outcome reward does not pick up the contract}
 \label{sec:e3rl}
-Our pre-registered prediction for \armG{} was a BIRD pass@1 gain of at least one point after GRPO. It is refuted. \armG{} reaches 57.5, against 58.1 and 58.2 for the two \armA{} seeds (differences $-0.60$ $[-1.17,-0.03]$ and $-0.65$ $[-1.22,-0.07]$). On Spider it reaches 80.8, which is $+0.3$ and $+0.5$ points above the two seeds. On the pooled primary outcome, pass@16, \armG{} minus \armA{} is $-0.06$ $[-0.78, 0.66]$. Whether GRPO changes this for \armF{} is \pending.
+Our pre-registered prediction for \armG{} was a BIRD pass@1 gain of at least one point after GRPO. It is refuted. \armG{} reaches 57.5, against 58.1 and 58.2 for the two \armA{} seeds (differences $-0.60$ $[-1.17,-0.03]$ and $-0.65$ $[-1.22,-0.07]$). On Spider it reaches 80.8, which is $+0.3$ and $+0.5$ points above the two seeds. On the pooled primary outcome, pass@16, \armG{} minus \armA{} is $-0.06$ $[-0.78, 0.66]$. Whether GRPO changes this for \armF{} is \pending. A reward on the final answer alone thus neither rewards the check nor preserves the selector's gain.

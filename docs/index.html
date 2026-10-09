@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Know2Act</title>
-<meta name="description" content="A pre-registered study of a multi-turn text-to-SQL agent: observation supervision and other predictions are learned, but none of them changes when the agent submits an answer.">
+<meta name="description" content="A pre-registered study of a multi-turn text-to-SQL agent that separates three steps between a learned prediction and an action: whether the knowledge is acquired, whether it enters the action context, and whether the agent's decisions use it.">
 <meta property="og:title" content="Know2Act: What Knowledge Reaches a Tool-Using Agent's Actions?">
-<meta property="og:description" content="Training an agent to predict its observations teaches it their structure, but leaves its actions, its decisions and its RL gains unchanged.">
+<meta property="og:description" content="Every prediction the agent is trained on is learned and usable for selecting answers; placement decides whether it moves the actions; the agent's own submit-or-continue decision does not use it.">
 <meta property="og:image" content="static/img/fig_overview.png">
 <style>
   :root {
@@ -80,6 +80,11 @@
   .callout b { color: var(--obs); font-family: var(--sans); }
   .callout.insight { border-left-color: var(--insight); }
   .callout.insight b { color: var(--insight); }
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 14px 0 18px; }
+  .step { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--accent-2); border-radius: 4px; padding: 12px 14px 10px; font-size: 16px; line-height: 1.5; }
+  .step .n { font-family: var(--sans); font-weight: 700; font-size: 13px; color: var(--accent); margin-bottom: 4px; }
+  .step b { color: var(--accent); }
+  .step .m { display: block; margin-top: 8px; font-family: var(--sans); font-size: 13.5px; color: var(--text-3); }
   figure { margin: 22px 0 24px; }
   .plate { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 12px; }
   .plate.narrow { max-width: 620px; margin: 0 auto; }
@@ -125,6 +130,7 @@
   @media (max-width: 720px) {
     body { font-size: 17px; }
     .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .steps { grid-template-columns: minmax(0, 1fr); }
     .plate { padding: 6px; }
     .stat .v { font-size: 24px; }
     /* the variants table becomes one stacked block per variant */
@@ -158,51 +164,161 @@
 
   <section class="abstract">
     <h2>Abstract</h2>
-    <p>Recent work trains language agents to predict not only their own actions but also the observations that the
-      environment returns, and reports that this makes later reinforcement learning (RL) more effective because the agent
-      learns the consequences of its actions. We ask whether knowledge learned in this way reaches the agent&rsquo;s
-      decisions. In Know2Act, a pre-registered study of a multi-turn text-to-SQL agent trained with supervised fine-tuning
-      and then GRPO, we measure what each model learns and how it acts. Observation supervision is learned: on unseen databases the
-      agent predicts the format and headers of result tables far better. Yet it changes the agent&rsquo;s actions less than
-      reshuffling the training data does, and it brings no gain after RL. We then vary what the agent predicts and where,
-      up to a contract that states the shape of the correct answer and is checked against every query result. Every
-      prediction is learned, but none changes when the agent submits an answer or keeps querying. The knowledge is usable
-      from outside: selecting among sampled answers with the agent&rsquo;s own contract improves accuracy. RL, which rewards
-      only the final answer, removes even this gain and makes the agent more willing to submit after its own check has
-      failed. Learning to predict the environment is therefore not the same as acting on the prediction. We also find that
-      44% of the training tasks in a public SQL RL environment reward an empty answer.</p>
+    <p>Tool-using agents are increasingly trained to predict more than their next action: the observations the
+      environment will return, the outcome of a call, or the answer they are looking for, and such predictions are
+      credited with making later reinforcement learning (RL) more effective. Between learning a prediction and acting
+      on it, however, lie three separate steps. The knowledge must be acquired, it must enter the context in which
+      actions are chosen, and the decision rule must use it. Know2Act (from <i>knowledge to action</i>) is a
+      pre-registered study of a multi-turn text-to-SQL agent, trained with supervised fine-tuning and then GRPO, that
+      measures each step on its own. Every prediction we supervise is learned and transfers to unseen databases, from
+      the structure of result tables to an answer contract that states the shape of the correct answer. Whether a
+      prediction reaches the action policy depends on where it is placed: the same outcome line moves the policy only
+      when it is written into the action. The learned contract is usable at once from outside the agent, as a selector
+      among sampled answers that adds to execution-based voting. Yet the agent&rsquo;s own decision to submit or keep
+      querying is unchanged by every variant, and RL, which rewards only the final answer, gives observation supervision
+      and the contract no advantage and removes even the selector&rsquo;s gain. Learned knowledge thus reaches selection
+      before it reaches decisions, and each step needs its own test. We also find that 44% of the training tasks in a
+      public SQL RL environment reward an empty answer.</p>
   </section>
+
+  <h2>The question</h2>
+  <p>A tool-using agent issues a query, the environment returns a result, and the agent decides what to do next.
+    Standard supervised fine-tuning puts the loss on the agent&rsquo;s actions only. ActObs (Zhang et al., 2026) also
+    trains the agent to predict the observations, reports that GRPO then reaches higher pass@k on Terminal-Bench, and
+    attributes the gain to the agent learning what its actions do. For that explanation, or any predictive objective,
+    to hold, three separate things must be true, and a gain measured at the end of training does not say which of them is:</p>
+  <div class="steps">
+    <div class="step"><div class="n">STEP 1</div><b>The knowledge is acquired.</b> The model predicts its target better
+      than before, on databases it has never seen.<span class="m">Measured by held-out prediction quality.</span></div>
+    <div class="step"><div class="n">STEP 2</div><b>It enters the action context.</b> A prediction the model can make but
+      never conditions on cannot change what it writes next.<span class="m">Measured by action KL, against a data-order noise floor.</span></div>
+    <div class="step"><div class="n">STEP 3</div><b>The decision uses it.</b> An agent that knows what a correct answer
+      looks like should submit when its result has that shape and keep querying when it does not.<span class="m">Measured by submit-or-continue sensitivity, against retraining noise.</span></div>
+  </div>
+  <p>Know2Act measures each step on its own, for observation supervision and for four further predictions placed at
+    different points of the trajectory, up to an <i>answer contract</i> that states the shape of the correct answer and is
+    checked against every result. The agent is a Qwen3-4B student trained on Qwen3-32B trajectories in the SkyRL
+    text-to-SQL environment, fine-tuned and then trained with GRPO, and evaluated on Spider-dev and BIRD-dev with 16
+    samples per question. The study was pre-registered before any main run.</p>
 
   <figure>
     <div class="plate"><a href="static/img/fig_overview.png"><img src="static/img/fig_overview.png" alt="One real trajectory for the question 'How many people live in Gelderland district?': a query returning 4 rows, a corrected SUM query returning 1 row, and the solution. Below it, five training variants and which segments carry loss: ActionSFT trains on actions only; ActObs also on observations; Outcome-Aux adds an 'Expected result' line as an auxiliary target; Outcome-in-Action puts that line inside the action; Contract starts with the expected answer shape and checks each result against it. A brace marks that the four non-baseline variants all leave decisions unchanged."></a></div>
     <figcaption><b>One real trajectory, five ways to train on it.</b> Each row is a training variant: <code>&minus;log p</code>
       marks tokens that carry loss and masked tokens are context only. Boxes are inserted lines; a dashed box is an
       auxiliary target that is never generated at test time, a solid one is part of the action. Every variant learns its
-      target, but none changes when the agent submits an answer or keeps querying.</figcaption>
+      target; only the in-action lines move the action policy; and none changes when the agent submits or keeps querying.</figcaption>
   </figure>
 
-  <h2>Key numbers</h2>
+  <h2>Three findings</h2>
+
+  <h3>1. The knowledge is learned, and it transfers to unseen databases</h3>
+  <p>Every target we supervise is acquired. On the 12 databases that fine-tuning never saw, the observation-supervised
+    model predicts the output template almost perfectly and the result header far better than the action-only model
+    (cross-entropy on the first header tokens 1.02 vs. 5.64 nats); what it learns about row values is memorised from
+    the training databases and does not transfer (1.92 vs. 1.88 nats). The outcome line is learned equally well in both
+    placements. The Contract model states the correct coarse shape of the answer in <b>89% (Spider) and 82% (BIRD)</b> of
+    its rollouts, against 42% and 60% for always writing the most frequent shape, 71% and 49% for a classifier that
+    reads only the question, and 30% and 35% for a placebo trained on contracts from other questions. Its checks against
+    each result are computed correctly more than 99.7% of the time.</p>
+  <figure>
+    <div class="plate narrow"><a href="static/img/fig_mechanism.png"><img src="static/img/fig_mechanism.png" alt="(a) Observation cross-entropy by part on unseen and training databases: ActObs learns template and header everywhere but row values only on training databases. (b) Action KL of each SFT variant to ActionSFT against a grey data-order noise band; ActObs lies inside the band."></a></div>
+    <figcaption><b>Learned, but not in the actions.</b> (a) Observation cross-entropy by part on unseen and on training
+      databases. (b) Action KL of each variant to ActionSFT; the grey band is the data-order noise floor, the distance
+      between two action-only models trained on the same data in a different order.</figcaption>
+  </figure>
+
+  <h3>2. Where a prediction is placed decides whether it reaches the actions</h3>
+  <p>Outcome-Aux and Outcome-in-Action supervise the same line, <code>Expected result: 3 rows, 2 columns.</code>, with
+    the same weight; one places it after the query as an auxiliary target, the other before the query as part of the
+    action. Only the in-action line changes the actions: its KL to ActionSFT is <b>2.3 times the data-order noise
+    floor</b>, while the auxiliary line stays inside the noise. Observation supervision, whose targets are never generated
+    at test time, also stays inside the noise (0.0049 against a floor of 0.0070), and its behaviour after errors and
+    empty results is the same as the action-only model&rsquo;s. Whether knowledge enters the actions is therefore a
+    question of placement, not of how well it is learned.</p>
+  <div class="callout"><b>Observation.</b> The in-action predictions are blind to failure. Outcome-in-Action writes
+    &ldquo;error&rdquo; before only 9 of the 8,311 calls that do fail. Its labels come from teacher trajectories in which
+    only 2.8% of calls fail, and predicting one&rsquo;s own query&rsquo;s result adds little when running it is free.</div>
+
+  <h3>3. The learned contract is usable now, as a selector among sampled answers</h3>
+  <p>Knowledge the agent holds can be used before anything else changes. For each question we take the contract the
+    Contract model writes most often across its 16 samples and pick a sample whose final result has that shape. Before
+    RL this beats a filter that only drops errors and empty results by <b>4.3 (Spider) and 3.4 (BIRD) points</b>, and
+    the placebo&rsquo;s contracts add only about one point. The contract also transfers to another model&rsquo;s
+    samples: applied to ActionSFT, which never saw a contract, and combined with majority voting over execution results,
+    it adds <b>2.6 and 1.4 points</b> to voting alone and comes within half a point of an oracle that knows the gold
+    result&rsquo;s shape.</p>
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr><th rowspan="2">Choosing one of 16 ActionSFT samples</th><th class="grp" colspan="2">Before RL</th><th class="grp" colspan="2">After GRPO</th></tr>
+      <tr><th class="num">Spider</th><th class="num">BIRD</th><th class="num">Spider</th><th class="num">BIRD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Random sample (= pass@1)</td><td class="num">71.4</td><td class="num">49.7</td><td class="num">80.5</td><td class="num">58.1</td></tr>
+      <tr><td>No error, non-empty result</td><td class="num">72.5</td><td class="num">53.5</td><td class="num">81.1</td><td class="num">60.5</td></tr>
+      <tr><td>Execution majority vote</td><td class="num">75.8</td><td class="num">58.3</td><td class="num">82.6</td><td class="num">63.9</td></tr>
+      <tr><td>Matches the contract</td><td class="num">76.9</td><td class="num">56.5</td><td class="num">81.3</td><td class="num">60.6</td></tr>
+      <tr><td>Matches the contract, then vote</td><td class="num">78.4</td><td class="num">59.7</td><td class="num">82.5</td><td class="num">63.3</td></tr>
+      <tr class="sep"><td><i>Oracle: gold result shape</i></td><td class="num">78.2</td><td class="num">59.5</td><td class="num">82.6</td><td class="num">63.4</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="font-size:15.5px">Accuracy (%) on the primary questions. The contracts come from the Contract
+    model and are applied to ActionSFT&rsquo;s samples, so the selector uses knowledge that ActionSFT itself never had.
+    After GRPO the contract adds nothing: RL has already removed most of the shape errors a contract would catch (among
+    wrong Spider answers, the share with the wrong number of columns falls from 36% to 12%).</p>
+
+  <h2>The open step: the agent&rsquo;s own decision</h2>
+  <p>A selector can use the contract; the agent itself does not. After every result the agent either submits or keeps
+    querying, and an agent that used answer knowledge would submit when the result has the right shape and keep querying
+    when it does not. We measure the <i>decision sensitivity</i>, how much more often the agent submits after a result
+    with the gold shape than after one without. ActionSFT already shows a large asymmetry (0.43 on Spider, 0.46 on
+    BIRD), inherited from the teacher, and <b>no variant changes it by more than retraining ActionSFT on a reshuffled data
+    order does</b> (at most 0.016 against a noise reference of 0.033 on Spider; 0.010 against 0.020 on BIRD). This holds
+    for the Contract model, whose own check names every mismatch in words: it submits after 55% and 31% of the mismatches
+    it reports, the same rates as ActionSFT after mismatches judged against the gold shape.</p>
+  <figure>
+    <div class="plate narrow"><a href="static/img/fig_decisions.png"><img src="static/img/fig_decisions.png" alt="Forest plot of the change in decision sensitivity relative to ActionSFT for every variant after SFT and after GRPO, with 95% intervals; all lie within the grey noise references."></a></div>
+    <figcaption><b>Decisions unchanged.</b> Change in decision sensitivity, P(submit | right shape) minus P(submit | wrong
+      shape), relative to ActionSFT, with 95% question-bootstrap intervals. Grey rows are noise references: another data
+      order after SFT, another RL seed after GRPO.</figcaption>
+  </figure>
+  <p>The outcome reward does not close the gap. After the same GRPO from every initialisation, observation supervision
+    and the contract reach the same pooled pass@16 as the action-only model (ActObs minus ActionSFT +0.26 points,
+    95% CI [&minus;0.38, +0.91], averaged over two RL seeds each; Contract minus ActionSFT &minus;0.06 [&minus;0.78, +0.66]),
+    the contract no longer helps a selector, and what RL does change is shared by every variant: it makes the agent more
+    willing to submit after a mismatching result. Measured with Contract&rsquo;s own checks on BIRD, submitting after a
+    reported mismatch rises from 31% to 46%.</p>
+  <figure>
+    <div class="plate narrow"><a href="static/img/fig_rl_gain.png"><img src="static/img/fig_rl_gain.png" alt="Gain during GRPO for each SFT initialisation at pass@1 and pass@16 on Spider and BIRD, with 95% intervals; ActObs does not gain more than ActionSFT."></a></div>
+    <figcaption><b>The same RL gain from every initialisation.</b> pass@k after GRPO minus pass@k before it, with 95%
+      bootstrap intervals over questions.</figcaption>
+  </figure>
+  <div class="callout"><b>Observation.</b> Training itself is noisy. Two RL seeds of the same ActObs checkpoint end
+    0.97 points apart on Spider pass@1, and two checkpoints that act the same before RL (ActionSFT-LR and ActObs) end
+    1.48 points apart on BIRD pass@1. With variance of this size, an effect as small as the one ActObs reports for a 4B
+    model (+1.1 pass@16) would go undetected here.</div>
+  <div class="callout insight"><b>What this means, and the next test.</b> Learning, entering and using are separate claims,
+    and a gain at the end of training does not say which of them holds. Here the knowledge reaches selection before it
+    reaches decisions: the contract is correct, sits in the agent&rsquo;s context, and is followed by a check that names
+    the mismatch, yet the decision that follows is the one an action-only model makes. The direct test of this last step
+    holds the model and the decision context fixed and replaces or removes the contract at the point where the agent
+    submits or retries; if the decision does not move, the contract is not consulted. Making knowledge reach decisions
+    then probably requires rewarding its use, or training on the agent&rsquo;s own failure-rich interaction, rather than
+    adding another prediction target.</div>
+
+  <h2>Full results</h2>
+  <h3>Key numbers</h3>
   <p class="muted">Qwen3-4B student, Qwen3-32B teacher, SkyRL text-to-SQL environment; evaluation on Spider-dev and
     BIRD-dev with 16 samples per question; 95% intervals from a bootstrap over questions.</p>
   <div class="stats">
-    <div class="stat"><div class="v">+0.26</div><div class="l">ActObs minus ActionSFT, pooled pass@16 after GRPO, two seeds each (pre-registered outcome)</div><div class="ci">[&minus;0.38, +0.91] points</div></div>
-    <div class="stat"><div class="v">0.0049</div><div class="l">Action KL from ActObs to ActionSFT on unseen databases</div><div class="ci">data-order noise: 0.0070</div></div>
-    <div class="stat"><div class="v">89&thinsp;/&thinsp;82%</div><div class="l">Contract states the correct answer shape (Spider&thinsp;/&thinsp;BIRD)</div><div class="ci">from the question alone: 71&thinsp;/&thinsp;49%</div></div>
+    <div class="stat"><div class="v">89&thinsp;/&thinsp;82%</div><div class="l">Contract states the correct answer shape on unseen databases (Spider&thinsp;/&thinsp;BIRD)</div><div class="ci">from the question alone: 71&thinsp;/&thinsp;49%</div></div>
+    <div class="stat"><div class="v">2.3&times;</div><div class="l">The outcome line moves the action policy only inside the action, relative to the data-order noise floor</div><div class="ci">as an auxiliary target, and ActObs: within the noise</div></div>
+    <div class="stat"><div class="v">+2.6&thinsp;/&thinsp;+1.4</div><div class="l">Contract plus execution vote over vote alone, before RL (Spider&thinsp;/&thinsp;BIRD points)</div><div class="ci">after GRPO: no gain</div></div>
     <div class="stat"><div class="v">&le;&thinsp;0.016</div><div class="l">Largest change in submit-or-continue sensitivity from any SFT variant (Spider)</div><div class="ci">data-order noise: 0.033</div></div>
   </div>
 
-  <h2>The question</h2>
-  <p>A tool-using agent&rsquo;s trajectory interleaves decisions with their consequences: it issues a query, the
-    environment returns a result, and the agent decides what to do next. Standard supervised fine-tuning puts the loss on
-    the agent&rsquo;s actions only. ActObs (Zhang et al., 2026) removes this mask and also trains the agent to predict
-    the observations. It reports that GRPO then reaches higher pass@k on Terminal-Bench, and attributes the gain to the agent learning what
-    its actions do.</p>
-  <p>That explanation has a testable step in the middle. For a predictive objective to help, what the model learns must
-    change what it does, and that link has not been measured. We measure it at three levels: whether the knowledge is
-    learned, whether it moves the action distribution, and whether it changes the one decision a SQL agent makes after
-    every result, namely to submit an answer or to keep querying.</p>
-
-  <h2>Training variants</h2>
+  <h3>Training variants</h3>
   <p class="muted">All variants train on the same 24,043 teacher trajectories, in the same order and with the same
     hyper-parameters, and then go through the same GRPO. They differ only in which tokens carry loss or in a short line
     inserted into the text. The main study was pre-registered, and the predictions for the later variants were
@@ -222,80 +338,6 @@
     </tbody>
   </table>
   </div>
-
-  <h2>Findings</h2>
-  <p><span class="rq">RQ1</span><b>Does observation supervision make RL stronger?</b> No. Before RL all variants are
-    within about one point of each other. After the same GRPO, ActObs and ActionSFT reach the same pooled pass@16
-    (+0.26 points, 95% CI [&minus;0.38, +0.91], averaged over two RL seeds of each), and GRPO extracts no consistently larger gain from ActObs than from the action-only models.</p>
-  <figure>
-    <div class="plate narrow"><a href="static/img/fig_rl_gain.png"><img src="static/img/fig_rl_gain.png" alt="Gain during GRPO for each SFT initialisation at pass@1 and pass@16 on Spider and BIRD, with 95% intervals; ActObs does not gain more than ActionSFT."></a></div>
-    <figcaption><b>RQ1.</b> Gain during RL from each initialisation: pass@k after GRPO minus pass@k before it, with 95%
-      bootstrap intervals over questions.</figcaption>
-  </figure>
-  <div class="callout"><b>Observation.</b> Training itself is noisy. Two RL seeds of the same ActObs checkpoint end
-    0.97 points apart on Spider pass@1, and two checkpoints that act the same before RL (ActionSFT-LR and ActObs) end
-    1.48 points apart on BIRD pass@1. With variance of this size, an effect as small as the one ActObs reports for a 4B
-    model (+1.1 pass@16) would go undetected here.</div>
-
-  <p><span class="rq">RQ2</span><b>What does the model learn, and does it reach the actions?</b> It learns the
-    observations&rsquo; structure but not their content. On databases it never saw, ActObs predicts the output template
-    almost perfectly and the result header far better than ActionSFT, yet predicts row values no better (1.92 vs. 1.88
-    nats). Its action distribution differs from ActionSFT&rsquo;s by less than two action-only models trained on
-    reshuffled data differ from each other, and its behaviour after errors and empty results is unchanged.</p>
-  <figure>
-    <div class="plate narrow"><a href="static/img/fig_mechanism.png"><img src="static/img/fig_mechanism.png" alt="(a) Action KL of each SFT variant to ActionSFT against a grey data-order noise band; ActObs lies inside the band. (b) Observation cross-entropy by part on unseen and training databases: ActObs learns template and header everywhere but row values only on training databases."></a></div>
-    <figcaption><b>RQ2.</b> (a) Action KL of each SFT variant to ActionSFT; the grey band is the data-order noise floor.
-      (b) Observation cross-entropy by part on unseen and on training databases.</figcaption>
-  </figure>
-
-  <p><span class="rq">RQ3</span><b>Does it matter what the agent predicts and where?</b> For the action tokens, yes.
-    The same outcome line moves the action distribution only when it is written inside the action (2.3 times the noise
-    floor); as an auxiliary target it does not. The contract is learned on unseen databases and states the correct
-    answer shape in 89% (Spider) and 82% (BIRD) of rollouts, against 71% and 49% for a classifier that reads only the
-    question.</p>
-  <div class="callout"><b>Observation.</b> The in-action predictions are blind to failure. Outcome-in-Action writes
-    &ldquo;error&rdquo; before only 9 of the 8,311 calls that do fail. Its labels come from teacher trajectories in which
-    only 2.8% of calls fail.</div>
-
-  <p><span class="rq">RQ4</span><b>Does any of it change the agent&rsquo;s decisions?</b> No. After every result the
-    agent either submits or keeps querying. We measure how much more often it submits when the result has the right shape
-    than when it does not. ActionSFT already shows this asymmetry, inherited from the teacher, and no variant changes it
-    by more than retraining ActionSFT on a reshuffled data order does. This holds even for Contract, whose own check
-    reports every mismatch in words.</p>
-  <figure>
-    <div class="plate narrow"><a href="static/img/fig_decisions.png"><img src="static/img/fig_decisions.png" alt="Forest plot of the change in decision sensitivity relative to ActionSFT for every variant after SFT and after GRPO, with 95% intervals; all lie within the grey noise references."></a></div>
-    <figcaption><b>RQ4.</b> Change in decision sensitivity, P(submit | right shape) minus P(submit | wrong shape),
-      relative to ActionSFT, with 95% intervals. Grey rows are noise references: another data order after SFT, another
-      RL seed after GRPO.</figcaption>
-  </figure>
-  <div class="callout"><b>Observation.</b> What RL does change is shared by every variant: it makes the agent submit
-    more readily after a mismatching result. Measured with Contract&rsquo;s own checks on BIRD, submitting after a
-    reported mismatch rises from 31% to 46%.</div>
-
-  <p><span class="rq">RQ5</span><b>Can the knowledge be used from outside?</b> Before RL, yes. Picking among 16 sampled
-    answers by the contract beats a filter that drops errors and empty results, and adds to execution majority voting.
-    After GRPO, it adds nothing: RL has already removed most of the shape errors a contract would catch.</p>
-  <div class="tablewrap">
-  <table>
-    <thead>
-      <tr><th rowspan="2">Choosing one of 16 ActionSFT samples</th><th class="grp" colspan="2">Before RL</th><th class="grp" colspan="2">After GRPO</th></tr>
-      <tr><th class="num">Spider</th><th class="num">BIRD</th><th class="num">Spider</th><th class="num">BIRD</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Random sample (= pass@1)</td><td class="num">71.4</td><td class="num">49.7</td><td class="num">80.5</td><td class="num">58.1</td></tr>
-      <tr><td>No error, non-empty result</td><td class="num">72.5</td><td class="num">53.5</td><td class="num">81.1</td><td class="num">60.5</td></tr>
-      <tr><td>Execution majority vote</td><td class="num">75.8</td><td class="num">58.3</td><td class="num">82.6</td><td class="num">63.9</td></tr>
-      <tr><td>Matches the contract</td><td class="num">76.9</td><td class="num">56.5</td><td class="num">81.3</td><td class="num">60.6</td></tr>
-      <tr><td>Matches the contract, then vote</td><td class="num">78.4</td><td class="num">59.7</td><td class="num">82.5</td><td class="num">63.3</td></tr>
-      <tr class="sep"><td><i>Oracle: gold result shape</i></td><td class="num">78.2</td><td class="num">59.5</td><td class="num">82.6</td><td class="num">63.4</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="muted" style="font-size:15.5px">Accuracy (%) on the primary questions. The contracts come from the Contract
-    model and are applied to ActionSFT&rsquo;s samples, so the selector uses knowledge that ActionSFT itself never had.</p>
-  <div class="callout insight"><b>Takeaway.</b> Learning about the environment, or even about the answer, is not enough
-    for an agent to act on it. Decisions follow imitation and the outcome reward; making knowledge reach them probably
-    requires rewarding its use, or training on the agent&rsquo;s own, failure-rich interaction.</div>
 
   <h2>What the agent writes</h2>
   <p class="muted">Three real rollouts on Spider-dev. Inserted lines are in purple, queries in blue and observations

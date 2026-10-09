@@ -6,25 +6,28 @@
 
 ![One real trajectory and five ways to train on it](docs/static/img/fig_overview.png)
 
-Recent work trains language agents to predict not only their own actions but also the observations that the
-environment returns, and reports that this makes later reinforcement learning more effective. Know2Act asks
-whether knowledge learned in this way reaches the agent's decisions. In a pre-registered study of a multi-turn
-text-to-SQL agent (Qwen3-4B, supervised fine-tuning followed by GRPO in SkyRL), we measure separately what each
-model learns and how it acts. Every prediction we supervise is learned, from the observations themselves to a
-contract that states the shape of the correct answer, but none of them changes when the agent submits an answer
-or keeps querying, and RL removes even the gain the contract gives as an external selector.
+Tool-using agents are increasingly trained to predict more than their next action: the observations the
+environment will return, the outcome of a call, or the answer they are looking for. Between learning such a
+prediction and acting on it lie three separate steps: the knowledge must be acquired, it must enter the context in
+which actions are chosen, and the decision rule must use it. Know2Act measures each step on its own, in a
+pre-registered study of a multi-turn text-to-SQL agent (Qwen3-4B, supervised fine-tuning followed by GRPO in
+SkyRL). Every prediction we supervise is learned and transfers to unseen databases, up to a contract that states
+the shape of the correct answer; whether it reaches the action policy depends on where it is placed; the learned
+contract is usable at once as a selector among sampled answers; but the agent's own decision to submit or keep
+querying is unchanged by every variant, and RL, which rewards only the final answer, removes even the selector's gain.
 
 ## Findings
 
-| Question | Answer | Key evidence |
+| Step | Finding | Key evidence |
 |---|---|---|
-| Does observation supervision make RL stronger? | No | ActObs − ActionSFT, pooled pass@16 after GRPO (two seeds each): +0.26 points [−0.38, +0.91] |
-| Is the observation knowledge learned? | Structure yes, content no | On unseen databases, cross-entropy on the first result-header tokens falls from 5.64 to 1.02 nats; on row values it is 1.92 vs. 1.88 |
-| Does it move the action policy? | No | Action KL to ActionSFT 0.0049, below the data-order noise floor of 0.0070 |
-| Does placement matter? | For action tokens | The same outcome line moves the policy only inside the action (2.3× the noise floor) |
-| Is the answer contract learned? | Yes | Correct answer shape in 89% / 82% of rollouts (Spider / BIRD), vs. 71% / 49% from the question alone |
-| Does any variant change decisions? | No | Change in submit-or-continue sensitivity ≤ 0.016 on Spider, vs. 0.033 from reshuffling the training data |
-| Can the knowledge be used from outside? | Before RL only | Contract-based selection +4.3 / +3.4 points over a validity filter; nothing after GRPO |
+| 1. Is the knowledge acquired? | Yes, and it transfers to unseen databases | Contract states the correct answer shape in 89% / 82% of rollouts (Spider / BIRD), vs. 71% / 49% from the question alone; observation supervision learns the result template and header (header-start cross-entropy 5.64 → 1.02 nats) but memorises row values (1.92 vs. 1.88 on unseen databases) |
+| 2. Does it enter the actions? | Only when placed in the action | The same outcome line moves the policy only inside the action (2.3× the data-order noise floor); as an auxiliary target, and for observation supervision (KL 0.0049 vs. a floor of 0.0070), it stays within the noise |
+| 3a. Is it used by a selector outside the agent? | Yes, before RL | Contract-based selection +4.3 / +3.4 points over a validity filter, and +2.6 / +1.4 over execution majority voting when combined with it; nothing after GRPO |
+| 3b. Is it used by the agent's own decision? | No | Change in submit-or-continue sensitivity ≤ 0.016 on Spider, vs. 0.033 from reshuffling the training data; holds for Contract, whose own check names every mismatch |
+| Does the outcome reward pick it up? | No | ActObs − ActionSFT, pooled pass@16 after GRPO (two seeds each): +0.26 points [−0.38, +0.91]; Contract − ActionSFT: −0.06 [−0.78, +0.66]; RL raises submitting after a reported mismatch from 31% to 46% |
+
+The open step is the last one. Its direct test holds the model and the decision context fixed and replaces or
+removes the contract at the point where the agent submits or retries.
 
 We also find that 290 of the 653 training tasks (44%) in SkyRL's public text-to-SQL environment give full reward
 to an empty answer, because their gold queries return no rows. We reported this upstream as
