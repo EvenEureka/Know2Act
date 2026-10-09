@@ -55,7 +55,7 @@ Format:
 \section{Full Results}
 \label{app:full}
 
-Table~\ref{tab:fullpassk} lists pass@$k$ for every model at $k\in\{1,2,4,8,16\}$, and Table~\ref{tab:pairs} lists every paired contrast. Three patterns hold across the table. All SFT variants lie within about one point of each other at every $k$, and this includes \armA{} trained on a different data order. GRPO adds 8--9 points at pass@1 and 3--5 points at pass@16 for every initialisation. No SFT objective changes how much GRPO adds by more than the spread between initialisations.
+Table~\ref{tab:fullpassk} lists pass@$k$ for every model at $k\in\{1,2,4,8,16\}$, and Table~\ref{tab:pairs} lists every paired contrast. Three patterns hold across the table. All SFT variants lie within about one point of each other at every $k$, and this includes \armA{} trained on a different data order. GRPO adds 7--10 points at pass@1 and 3--5 points at pass@16 for every initialisation. No SFT objective changes how much GRPO adds by more than the spread between initialisations.
 
 \input{tables/full_passk}
 \input{tables/pairs}
@@ -110,7 +110,7 @@ Table~\ref{tab:obsce} gives the full breakdown behind Figure~\ref{fig:mechanism}
 
 Training reward rises the same way from every initialisation (Table~\ref{tab:rldyn}), reaching 0.69--0.70 over the last 20 steps.
 
-\citet{zhang2026actobs} report that \armB{} retains more entropy with less policy movement. Here \armB{} (KL 0.107) and the action-only \armC{} (0.118) both move \emph{more} than either \armA{} seed (0.067 and 0.082). Both also keep more entropy: 0.47 and 0.49, against 0.43 and 0.45. Because an action-only arm reproduces \armB's pattern, these quantities do not identify observation supervision in our setting. Note that \armA{} seed~1 is the only run on 4 GPUs.
+\citet{zhang2026actobs} report that \armB{} retains more entropy with less policy movement. Here both \armB{} seeds (KL 0.107 and 0.100) and the action-only \armC{} (0.118) move \emph{more} than either \armA{} seed (0.067 and 0.082). They also keep more entropy: 0.47, 0.47 and 0.49, against 0.43 and 0.45. Because an action-only arm reproduces \armB's pattern, these quantities do not identify observation supervision in our setting. Note that \armA{} seed~1 is the only run on 4 GPUs.
 
 \input{tables/rl_dynamics}
 
@@ -252,7 +252,7 @@ Thinking off + verify prompt & 0.49 & 96/97 & 26.9\% \\
 
 The plan was frozen before any main SFT or GRPO run. It fixed the arms \armA{}--\armD{}, the selection rule for \armC{}, the primary outcome, the hypotheses and the evaluation protocol. Every later change was recorded as a dated addendum, together with what had been seen at the time.
 
-Three deviations concern implementation only. We changed the SFT implementation so that it fits in memory (a chunked LM head and ZeRO-1) without changing the objective, accumulated gradients on the CPU in the measurement code, and reran jobs with checkpointing disabled after the node's local disk filled. Jobs were also limited to 2 GPUs, after \armA{} seed~1 had already run on 4. Two deviations change the design. After seed~1 we put \armD{} and the third seeds on hold and added the outcome arms, the contract arms and a data-order seed for \armA{}. Following a literature review, we queued the \armF{} GRPO run after \armG's. The replication hypothesis required the same sign in two of three seeds, and it could not be tested once seed~3 was put on hold. Table~\ref{tab:predictions} lists every written prediction and its outcome.
+Three deviations concern implementation only. We changed the SFT implementation so that it fits in memory (a chunked LM head and ZeRO-1) without changing the objective, accumulated gradients on the CPU in the measurement code, and reran jobs with checkpointing disabled after the node's local disk filled. Jobs were also limited to 2 GPUs, after \armA{} seed~1 had already run on 4. Two deviations change the design. After seed~1 we put \armD{} and the third seeds on hold and added the outcome arms, the contract arms and a data-order seed for \armA{}. Following a literature review, we queued the \armF{} GRPO run after \armG's. The replication hypothesis required the same sign in two of three seeds. The two seeds that were run have opposite signs, and seed~3 was put on hold. Table~\ref{tab:predictions} lists every written prediction and its outcome.
 
 \begin{table*}[t]
 \centering\small
@@ -261,7 +261,7 @@ Three deviations concern implementation only. We changed the SFT implementation 
 \toprule
 Prediction (written before the result) & Outcome & Evidence \\
 \midrule
-\armB{} improves post-GRPO pooled pass@16 over \armA{} & not found & $-0.06$ $[-0.82, 0.68]$ \\
+\armB{} improves post-GRPO pooled pass@16 over \armA{} & not found & $+0.26$ $[-0.38, 0.91]$, mean of two seeds \\
 KL(\armB$\|$\armA) $\le$ KL(\armC$\|$\armA) & refuted & 0.0049 vs.\ 0.0010; both below data-order noise 0.0070 \\
 \armB{} learns observation structure but not values on unseen DBs & supported & Table~\ref{tab:obsce} \\
 \armB's observation gradient is smaller on training than on held-out data & supported & ratio 1.09 vs.\ 5.49 \\

@@ -4,7 +4,7 @@
 We study one student (Qwen3-4B), one teacher, one domain (SQL), and one RL algorithm. Our setting differs from \citet{zhang2026actobs} in ways that may matter. Terminal observations are longer and richer in failures, whereas in our teacher data only 2.8\% of SQL calls fail. Our negative result for observation supervision should therefore not be read as a refutation of their Terminal-Bench result.
 
 \paragraph{Seeds and variance.}
-GRPO results rest on two seeds for \armA{} and one or two for the other arms. Differences between SFT checkpoints reach about 1.5 points after RL (\S\ref{sec:rl}), more than our question-level confidence intervals capture. Effects of about one point should be treated as unresolved.
+GRPO results rest on two seeds for \armA{} and \armB{} and on one seed for the other arms. After RL, two seeds of the same checkpoint differ by up to about one point and SFT checkpoints by about 1.5 points (\S\ref{sec:rl}), more than our question-level confidence intervals capture. Effects of about one point should be treated as unresolved.
 
 \paragraph{Exploratory arms.}
 The outcome and contract arms were added after the first results were seen. Their predictions were written down before training, but they are not part of the original pre-registration.

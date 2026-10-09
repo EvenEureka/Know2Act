@@ -18,7 +18,7 @@ or keeps querying, and RL removes even the gain the contract gives as an externa
 
 | Question | Answer | Key evidence |
 |---|---|---|
-| Does observation supervision make RL stronger? | No | ActObs − ActionSFT, pooled pass@16 after GRPO: −0.06 points [−0.82, +0.68] |
+| Does observation supervision make RL stronger? | No | ActObs − ActionSFT, pooled pass@16 after GRPO (two seeds each): +0.26 points [−0.38, +0.91] |
 | Is the observation knowledge learned? | Structure yes, content no | On unseen databases, cross-entropy on the first result-header tokens falls from 5.64 to 1.02 nats; on row values it is 1.92 vs. 1.88 |
 | Does it move the action policy? | No | Action KL to ActionSFT 0.0049, below the data-order noise floor of 0.0070 |
 | Does placement matter? | For action tokens | The same outcome line moves the policy only inside the action (2.3× the noise floor) |
@@ -80,8 +80,7 @@ Each job template starts with a `usage:` line. The unit tests need no GPU:
 python -m unittest discover -s tests
 ```
 
-Two runs are still training (ActObs seed 2 and Outcome-in-Action after GRPO); their rows in Table 1 will be added
-when they finish.
+One run is still training (Outcome-in-Action after GRPO); its row in Table 1 will be added when it finishes.
 
 ## Pre-registration
 

@@ -185,7 +185,7 @@
   <p class="muted">Qwen3-4B student, Qwen3-32B teacher, SkyRL text-to-SQL environment; evaluation on Spider-dev and
     BIRD-dev with 16 samples per question; 95% intervals from a bootstrap over questions.</p>
   <div class="stats">
-    <div class="stat"><div class="v">&minus;0.06</div><div class="l">ActObs minus ActionSFT, pooled pass@16 after GRPO (pre-registered outcome)</div><div class="ci">[&minus;0.82, +0.68] points</div></div>
+    <div class="stat"><div class="v">+0.26</div><div class="l">ActObs minus ActionSFT, pooled pass@16 after GRPO, two seeds each (pre-registered outcome)</div><div class="ci">[&minus;0.38, +0.91] points</div></div>
     <div class="stat"><div class="v">0.0049</div><div class="l">Action KL from ActObs to ActionSFT on unseen databases</div><div class="ci">data-order noise: 0.0070</div></div>
     <div class="stat"><div class="v">89&thinsp;/&thinsp;82%</div><div class="l">Contract states the correct answer shape (Spider&thinsp;/&thinsp;BIRD)</div><div class="ci">from the question alone: 71&thinsp;/&thinsp;49%</div></div>
     <div class="stat"><div class="v">&le;&thinsp;0.016</div><div class="l">Largest change in submit-or-continue sensitivity from any SFT variant (Spider)</div><div class="ci">data-order noise: 0.033</div></div>
@@ -226,15 +226,16 @@
   <h2>Findings</h2>
   <p><span class="rq">RQ1</span><b>Does observation supervision make RL stronger?</b> No. Before RL all variants are
     within about one point of each other. After the same GRPO, ActObs and ActionSFT reach the same pooled pass@16
-    (&minus;0.06 points, 95% CI [&minus;0.82, +0.68]), and GRPO extracts no consistently larger gain from ActObs than from the action-only models.</p>
+    (+0.26 points, 95% CI [&minus;0.38, +0.91], averaged over two RL seeds of each), and GRPO extracts no consistently larger gain from ActObs than from the action-only models.</p>
   <figure>
     <div class="plate narrow"><a href="static/img/fig_rl_gain.png"><img src="static/img/fig_rl_gain.png" alt="Gain during GRPO for each SFT initialisation at pass@1 and pass@16 on Spider and BIRD, with 95% intervals; ActObs does not gain more than ActionSFT."></a></div>
     <figcaption><b>RQ1.</b> Gain during RL from each initialisation: pass@k after GRPO minus pass@k before it, with 95%
       bootstrap intervals over questions.</figcaption>
   </figure>
-  <div class="callout"><b>Observation.</b> Two checkpoints that act the same before RL (ActionSFT-LR and ActObs) end
-    1.48 points apart on BIRD pass@1 after GRPO. Differences between SFT checkpoints thus reach about 1.5 points after RL,
-    so an effect as small as the one ActObs reports for a 4B model (+1.1 pass@16) would go undetected here.</div>
+  <div class="callout"><b>Observation.</b> Training itself is noisy. Two RL seeds of the same ActObs checkpoint end
+    0.97 points apart on Spider pass@1, and two checkpoints that act the same before RL (ActionSFT-LR and ActObs) end
+    1.48 points apart on BIRD pass@1. With variance of this size, an effect as small as the one ActObs reports for a 4B
+    model (+1.1 pass@16) would go undetected here.</div>
 
   <p><span class="rq">RQ2</span><b>What does the model learn, and does it reach the actions?</b> It learns the
     observations&rsquo; structure but not their content. On databases it never saw, ActObs predicts the output template

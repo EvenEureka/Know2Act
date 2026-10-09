@@ -224,11 +224,13 @@ def pooled(gc_all):
     keys = sorted(gc_all)
     if "grpoA1" in per and "grpoA2" in per:
         per["grpoAmean"] = {k: {q: (per["grpoA1"][k][q] + per["grpoA2"][k][q]) / 2 for q in keys} for k in (1, 16)}
+    if "grpoB1" in per and "grpoB2" in per:  # PREREG primary contrast: mean over seeds of B minus mean over seeds of A
+        per["grpoBmean"] = {k: {q: (per["grpoB1"][k][q] + per["grpoB2"][k][q]) / 2 for q in keys} for k in (1, 16)}
     rng = np.random.default_rng(0)
     idx = rng.integers(0, len(keys), size=(10000, len(keys)))
     out = {"runs": {r: {f"p{k}": round(100 * np.mean([per[r][k][q] for q in keys]), 2) for k in (1, 16)} for r in per}}
     pairs = [("grpoA1", "grpoA2"), ("grpoAmean", "grpoB1"), ("grpoA1", "grpoB1"), ("grpoA2", "grpoB1"),
-             ("grpoAmean", "grpoC1"), ("grpoB1", "grpoC1"), ("grpoAmean", "grpoB2"), ("grpoAmean", "grpoE3"),
+             ("grpoAmean", "grpoC1"), ("grpoB1", "grpoC1"), ("grpoAmean", "grpoB2"), ("grpoAmean", "grpoBmean"), ("grpoB1", "grpoB2"), ("grpoAmean", "grpoE3"),
              ("grpoAmean", "grpoE2")]
     out["pairs"] = {}
     for a, b in pairs:

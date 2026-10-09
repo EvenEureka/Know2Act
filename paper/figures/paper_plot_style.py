@@ -21,7 +21,8 @@ plt.rcParams.update({
 # (fill, dark) per arm; fixed across all figures
 ARM = {"base": ("#E3E1F2", "#8A85B8"), "ActionSFT": ("#BDCFEA", "#5F86C2"),
        "ActionSFT, seed 1": ("#BDCFEA", "#5F86C2"), "ActionSFT, seed 2": ("#D9E4F4", "#5F86C2"),
-       "ActObs": ("#F4C4B5", "#D9735A"), "ActionSFT-LR": ("#BFE3D9", "#4FA58C"),
+       "ActObs": ("#F4C4B5", "#D9735A"),
+       "ActObs, seed 1": ("#F4C4B5", "#D9735A"), "ActObs, seed 2": ("#F9E0D7", "#D9735A"), "ActionSFT-LR": ("#BFE3D9", "#4FA58C"),
        "ActionSFT+Wiki": ("#EFE0B6", "#B8923A"), "noise": ("#E4E4E4", "#8C8C8C"),
        "Contract": ("#D5CDEB", "#6B4C9A")}
 

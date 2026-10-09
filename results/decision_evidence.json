@@ -326,6 +326,23 @@
    0.0753
   ]
  },
+ "GRPO/spider_dev/ActObs (seed 2)": {
+  "S": 0.3133,
+  "p_submit_match": 0.992,
+  "p_submit_mismatch": 0.6787,
+  "n_match": 14255,
+  "n_mismatch": 1821,
+  "dS_vs_ActionSFT": -0.0254,
+  "dS_ci95": [
+   -0.0545,
+   0.0048
+  ],
+  "dPmis_vs_ActionSFT": 0.0352,
+  "dPmis_ci95": [
+   0.0047,
+   0.064
+  ]
+ },
  "GRPO/bird_dev/ActionSFT": {
   "S": 0.5287,
   "p_submit_match": 0.9364,
@@ -399,6 +416,23 @@
   "dPmis_ci95": [
    -0.004,
    0.0157
+  ]
+ },
+ "GRPO/bird_dev/ActObs (seed 2)": {
+  "S": 0.4973,
+  "p_submit_match": 0.9608,
+  "p_submit_mismatch": 0.4635,
+  "n_match": 20161,
+  "n_mismatch": 10855,
+  "dS_vs_ActionSFT": -0.0313,
+  "dS_ci95": [
+   -0.0422,
+   -0.0199
+  ],
+  "dPmis_vs_ActionSFT": 0.0557,
+  "dPmis_ci95": [
+   0.0458,
+   0.0651
   ]
  }
 }

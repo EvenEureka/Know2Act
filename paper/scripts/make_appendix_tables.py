@@ -67,6 +67,8 @@ PA = J(f"{R}/paper_analyses.json")["pooled_primary"]["pairs"]
 CON = [("\\armA{} s2 $-$ \\armA{} s1", "A1->A2", "grpoA2-grpoA1"),
        ("\\armB{} s1 $-$ \\armA{} s1", "A1->B1", "grpoB1-grpoA1"),
        ("\\armB{} s1 $-$ \\armA{} s2", "A2->B1", "grpoB1-grpoA2"),
+       ("\\armB{} s2 $-$ \\armA{} s1", "A1->B2", None), ("\\armB{} s2 $-$ \\armA{} s2", "A2->B2", None),
+       ("\\armB{} s2 $-$ \\armB{} s1", "B1->B2", "grpoB2-grpoB1"),
        ("\\armC{} s1 $-$ \\armB{} s1", "B1->C1", "grpoC1-grpoB1"),
        ("\\armG{} s1 $-$ \\armA{} s1", "A1->E3", None), ("\\armG{} s1 $-$ \\armA{} s2", "A2->E3", None)]
 
@@ -82,7 +84,8 @@ for lab, key, pooled in CON:
     pl = PA.get(f"{pooled}/p16") if pooled else None
     cells.append(f"{pl['diff_pp']:+.2f} [{pl['ci95'][0]:+.2f}, {pl['ci95'][1]:+.2f}]" if pl else "--")
     rows.append(lab + " & " + " & ".join(cells) + " \\\\")
-for lab, key in (("\\armB{} s1 $-$ mean(\\armA{})", "grpoB1-grpoAmean"), ("\\armG{} s1 $-$ mean(\\armA{})", "grpoE3-grpoAmean"),
+for lab, key in (("mean(\\armB{}) $-$ mean(\\armA{})", "grpoBmean-grpoAmean"),
+                 ("\\armB{} s1 $-$ mean(\\armA{})", "grpoB1-grpoAmean"), ("\\armB{} s2 $-$ mean(\\armA{})", "grpoB2-grpoAmean"), ("\\armG{} s1 $-$ mean(\\armA{})", "grpoE3-grpoAmean"),
                  ("\\armC{} s1 $-$ mean(\\armA{})", "grpoC1-grpoAmean")):
     p1, p16 = PA.get(f"{key}/p1"), PA.get(f"{key}/p16")
     if p1:
@@ -91,7 +94,7 @@ for lab, key in (("\\armB{} s1 $-$ mean(\\armA{})", "grpoB1-grpoAmean"), ("\\arm
 write("pairs.tex", table("@{}lccccc@{}",
       "Contrast (after GRPO) & Spider p@1 & Spider p@16 & BIRD p@1 & BIRD p@16 & Pooled p@16 \\\\",
       rows, "Paired differences in points with 95\\% bootstrap CIs over primary questions (10,000 resamples; 2,000 for "
-      "\\armC{}$-$\\armB{}). Pooled rows combine Spider and BIRD (2,515 questions), the pre-registered primary outcome.",
+      "\\armC{}$-$\\armB{}). Pooled rows combine Spider and BIRD (2,515 questions); the first is the pre-registered primary outcome.",
       "tab:pairs", star=True))
 
 # --- observation CE breakdown ------------------------------------------------------------------------
@@ -117,9 +120,9 @@ write("obs_ce.tex", table("@{}l" + "c" * 10 + "@{}",
 
 # --- RL dynamics -------------------------------------------------------------------------------------
 LOGS = {"\\armA{}, seed 1": "grpo_A_s1.1508971", "\\armA{}, seed 2": "grpo_A_s2.1510961", "\\armB{}, seed 1": "grpo_B_s1.1510918",
-        "\\armC{}, seed 1": "grpo_C_s1.1510955", "\\armG{}, seed 1": "grpo_E3_s1.1516402"}
+        "\\armB{}, seed 2": "grpo_B_s2.1510964", "\\armC{}, seed 1": "grpo_C_s1.1510955", "\\armG{}, seed 1": "grpo_E3_s1.1516402"}
 MOVE = {"\\armA{}, seed 1": "grpo_A_s1_1508971", "\\armA{}, seed 2": "grpo_A_s2_1510961", "\\armB{}, seed 1": "grpo_B_s1_1510918",
-        "\\armC{}, seed 1": "grpo_C_s1_1510955", "\\armG{}, seed 1": "grpo_E3_s1_1516402"}
+        "\\armB{}, seed 2": "grpo_B_s2_1510964", "\\armC{}, seed 1": "grpo_C_s1_1510955", "\\armG{}, seed 1": "grpo_E3_s1_1516402"}
 rows = []
 for lab, lg in LOGS.items():
     t = open(os.path.join(ROOT, "logs", lg + ".log"), errors="ignore").read()

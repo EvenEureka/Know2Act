@@ -19,7 +19,8 @@ DROP = {("spider", int(q)) for q in json.load(open(f"{R}/gold_flags/spider_dev.j
        {("bird_dev", int(q)) for q in json.load(open(f"{R}/gold_flags/bird_dev.json"))}
 PAIRS = {"ActionSFT, seed 1": ("grpo_A_s1_1508971", "pre_A"),
          "ActionSFT, seed 2": ("grpo_A_s2_1510961", "pre_A"),
-         "ActObs": ("grpo_B_s1_1510918", "pre_B"),
+         "ActObs, seed 1": ("grpo_B_s1_1510918", "pre_B"),
+         "ActObs, seed 2": ("grpo_B_s2_1510964", "pre_B"),
          "ActionSFT-LR": ("grpo_C_s1_1510955", "pre_C")}
 KS = (1, 4, 16)
 

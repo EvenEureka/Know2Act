@@ -499,3 +499,13 @@ A_s2 and B_s2 still run as pre-registered, to test whether B ≈ A holds in a se
 - E3 − mean(A): pass@16 −0.06 [−0.78, 0.66]; pass@1 −0.22 [−0.58, 0.12]. C − B pass@1 +1.06 [0.60, 1.52].
 - Decisions (BIRD): max |ΔS| over SFT arms 0.0095 vs data-order reference 0.020; GRPO RL-seed reference 0.019; A submits after a gold-shape mismatch 0.29 → 0.41 after RL (was 0.40). Spider unchanged.
 - Selection, computed in one pipeline on the same set (`selection_own_contract` added): E3's own contract 77.0 / 57.0 vs free rule 72.7 / 53.6 (+4.3 / +3.4). **E3p's own contract 73.7 / 54.5 vs 72.5 / 53.4, i.e. about +1 point**, not "no gain" as in Addendum 7 (73.22 / 52.70 came from e3_readouts.py on a different question set). On SFT-A: contract 76.9 / 56.5, contract + vote 78.4 / 59.7 vs vote 75.8 / 58.3. After GRPO: contract + vote on A1 82.5 / 63.3 vs vote 82.6 / 63.9; E3-GRPO own contract 81.3 / 59.4 vs free rule 81.2 / 59.6.
+
+### Addendum 9 (2026-10-09 18:30): B seed 2 results
+
+B_s2 (job 1510964, same SFT checkpoint as B_s1, RL seed 2) finished; eval 1510965, movement 1510966. Primary sets (983 Spider + 1,532 BIRD; results/eval/primary_pairs_B2.json, results/paper_analyses.json).
+
+- B_s2 pass@1 / pass@16: Spider 81.39 / 88.91, BIRD 57.62 / 77.48.
+- **Primary outcome, averaged over seeds as pre-registered (§4):** mean(B) − mean(A) pooled pass@16 = +0.26 [−0.38, 0.91]; pass@1 −0.24 [−0.65, 0.16]. Per seed vs mean(A): B_s1 −0.06 [−0.82, 0.68], B_s2 +0.58 [−0.22, 1.35]. **H-rep not supported:** no CI excludes 0 and the two seeds run have opposite signs (seed 3 on hold, Addendum 6).
+- RL-seed variance is larger than the A seeds suggested: B_s2 − B_s1 (same checkpoint) is +0.97 [0.50, 1.47] on Spider pass@1 (A_s2 − A_s1: −0.23). B_s2 vs A on BIRD pass@1: −0.50 [−1.15, 0.16] and −0.55 [−1.24, 0.13], so B_s1's significant BIRD gap (−0.94/−0.98) does not replicate.
+- Decision sensitivity after GRPO: ΔS(B_s2 − A_s1) = −0.025 (Spider) / −0.031 (BIRD); the B seeds differ by 0.022 / 0.029, comparable to the A-seed reference (0.052 / 0.019).
+- RL movement: KL to its SFT init 0.100, action entropy 0.472 (B_s1: 0.107 / 0.474).

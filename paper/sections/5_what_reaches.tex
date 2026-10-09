@@ -24,12 +24,12 @@ The decision a SQL agent faces after every observation is whether to submit or k
 The result is uniform (Figure~\ref{fig:decisions}).
 The asymmetry predates the contract. \armA{} already submits far more often after a matching result than after a mismatching one ($S=0.43$ on Spider and $0.46$ on BIRD), a tendency inherited from the teacher. No SFT variant moves $S$ by more than the data-order reference does: $|\Delta S|\le0.016$ against 0.033 on Spider, and $\le0.010$ against 0.020 on BIRD. This holds even for \armG{}, whose own checks report each mismatch explicitly. It submits after 55\% and 31\% of the mismatches it reports, the same as \armA{} after mismatches judged against gold shapes (48\% and 29\%).
 
-After GRPO the arms remain inseparable. The differences are of the same size as the RL-seed reference (0.052 and 0.019) and have no consistent sign, and the largest comes from an action-only control (\armC{}: $+0.071$ and $+0.032$). What RL does change is shared by every arm: it raises the rate of submitting after a mismatch, on BIRD from 0.29 to 0.41 for \armA{} and from 0.28 to 0.41 for \armG{}. Measured with \armG's own checks, the rate rises from 31\% to 46\%. Per-arm numbers, including first and later observations, are in App.~\ref{app:decisions}.
+After GRPO the arms remain inseparable. Two RL seeds of the same checkpoint already differ in $S$ by 0.052 and 0.019 (\armA{}) and by 0.022 and 0.029 (\armB{}) on Spider and BIRD. Differences between arms are of this size and have no consistent sign: the largest come from an action-only control (\armC{}: $+0.071$ and $+0.032$) and from \armB's second seed ($-0.025$ and $-0.031$). What RL does change is shared by every arm: it raises the rate of submitting after a mismatch, on BIRD from 0.29 to 0.41 for \armA{} and from 0.28 to 0.41 for \armG{}. Measured with \armG's own checks, the rate rises from 31\% to 46\%. Per-arm numbers, including first and later observations, are in App.~\ref{app:decisions}.
 
 \begin{figure}[t]
 \centering
 \figplaceholder{figures/fig4_decisions.pdf}{5cm}
-\caption{Decision sensitivity, P(submit next $\mid$ result has the gold shape) minus P(submit next $\mid$ it does not), for each arm relative to \armA{}, with 95\% question-bootstrap CIs. Grey rows are noise references: \armA{} trained on another data order (after SFT), and a second RL seed (after GRPO). No variant changes this decision behaviour beyond the noise references.}
+\caption{Decision sensitivity, P(submit next $\mid$ result has the gold shape) minus P(submit next $\mid$ it does not), for each arm relative to \armA{}, with 95\% question-bootstrap CIs. Grey rows are noise references: \armA{} trained on another data order (after SFT), and a second RL seed (after GRPO). After SFT no variant moves beyond the data-order reference; after GRPO the differences are of the size of RL-seed variation and have no consistent sign.}
 \label{fig:decisions}
 \end{figure}
 

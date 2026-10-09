@@ -21,7 +21,9 @@ ys, labels, y = [], [], 0.0
 for k, (stage, name, kind) in enumerate(ROWS):
     if k > 0 and ROWS[k - 1][0] != stage:
         y -= 0.55
-    ys.append(y); labels.append(name)
+    # after GRPO, ActObs has two RL seeds; name the first explicitly
+    ys.append(y); labels.append("ActObs (seed 1)" if (stage, name) == ("GRPO", "ActObs") and
+                                f"GRPO/bird_dev/ActObs (seed 2)" in E else name)
     if kind == "noise":
         ax.axhspan(y - 0.42, y + 0.42, color=GREY_BAND, zorder=0, lw=0)
     for j, (ds, _, (fill, dark)) in enumerate(DS):

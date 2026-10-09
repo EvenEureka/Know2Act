@@ -10,6 +10,7 @@
   "grpoA2": "grpo_A_s2_1510961",
   "grpoB1": "grpo_B_s1_1510918",
   "grpoC1": "grpo_C_s1_1510955",
+  "grpoB2": "grpo_B_s2_1510964",
   "grpoE3": "grpo_E3_s1_1516402"
  },
  "behaviour": {
@@ -271,6 +272,32 @@
    "later/mismatch": {
     "n": 385,
     "p_submit": 0.5922
+   }
+  },
+  "grpoB2/spider_dev": {
+   "all/match": {
+    "n": 14255,
+    "p_submit": 0.992
+   },
+   "all/mismatch": {
+    "n": 1821,
+    "p_submit": 0.6787
+   },
+   "first/match": {
+    "n": 13816,
+    "p_submit": 0.9921
+   },
+   "first/mismatch": {
+    "n": 1561,
+    "p_submit": 0.6739
+   },
+   "later/match": {
+    "n": 439,
+    "p_submit": 0.9886
+   },
+   "later/mismatch": {
+    "n": 260,
+    "p_submit": 0.7077
    }
   },
   "grpoE3/spider_dev": {
@@ -557,6 +584,32 @@
    "later/mismatch": {
     "n": 4553,
     "p_submit": 0.4764
+   }
+  },
+  "grpoB2/bird_dev": {
+   "all/match": {
+    "n": 20161,
+    "p_submit": 0.9608
+   },
+   "all/mismatch": {
+    "n": 10855,
+    "p_submit": 0.4635
+   },
+   "first/match": {
+    "n": 17054,
+    "p_submit": 0.9669
+   },
+   "first/mismatch": {
+    "n": 7364,
+    "p_submit": 0.4037
+   },
+   "later/match": {
+    "n": 3107,
+    "p_submit": 0.9273
+   },
+   "later/mismatch": {
+    "n": 3491,
+    "p_submit": 0.5895
    }
   },
   "grpoE3/bird_dev": {
@@ -888,6 +941,10 @@
     "p1": 67.32,
     "p16": 81.71
    },
+   "grpoB2": {
+    "p1": 66.91,
+    "p16": 81.95
+   },
    "grpoE3": {
     "p1": 66.61,
     "p16": 81.31
@@ -895,6 +952,10 @@
    "grpoAmean": {
     "p1": 66.84,
     "p16": 81.37
+   },
+   "grpoBmean": {
+    "p1": 66.59,
+    "p16": 81.63
    }
   },
   "pairs": {
@@ -980,6 +1041,48 @@
     "ci95": [
      -0.44,
      1.19
+    ]
+   },
+   "grpoB2-grpoAmean/p1": {
+    "diff_pp": 0.08,
+    "ci95": [
+     -0.35,
+     0.52
+    ]
+   },
+   "grpoB2-grpoAmean/p16": {
+    "diff_pp": 0.58,
+    "ci95": [
+     -0.22,
+     1.35
+    ]
+   },
+   "grpoBmean-grpoAmean/p1": {
+    "diff_pp": -0.24,
+    "ci95": [
+     -0.65,
+     0.16
+    ]
+   },
+   "grpoBmean-grpoAmean/p16": {
+    "diff_pp": 0.26,
+    "ci95": [
+     -0.38,
+     0.91
+    ]
+   },
+   "grpoB2-grpoB1/p1": {
+    "diff_pp": 0.65,
+    "ci95": [
+     0.25,
+     1.04
+    ]
+   },
+   "grpoB2-grpoB1/p16": {
+    "diff_pp": 0.64,
+    "ci95": [
+     -0.24,
+     1.47
     ]
    },
    "grpoE3-grpoAmean/p1": {
