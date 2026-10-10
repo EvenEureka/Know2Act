@@ -18,9 +18,9 @@ The predictions inside \armF's actions are, however, blind to failure. In its ow
 \subsection{The knowledge is usable from outside, until RL}
 \label{sec:select}
 What the agent does not use itself, a selector can. For each question we take the contract \armG{} writes most often across its samples, and pick among the 16 samples one whose final result has that shape (Table~\ref{tab:select}).
-Before RL the contract helps selection. On \armG's own samples it beats an execution-validity filter by 4.3 (Spider) and 3.4 (BIRD) points. The placebo's own contracts add only about one point (73.7 and 54.5, against 72.5 and 53.4 for the filter). The contract also transfers to another model's samples: applied to \armA{} it gives 76.9 and 56.5, and combined with majority voting over execution results it adds 2.6 and 1.4 points to voting alone.
+Before RL the contract helps selection. On \armG's own samples it beats an execution-validity filter by 4.3 (Spider) and 3.4 (BIRD) points (paired question-bootstrap 95\% CIs $[3.3, 5.4]$ and $[2.6, 4.3]$). The placebo's own contracts add only about one point (73.7 and 54.5, against 72.5 and 53.4 for the filter). The contract also transfers to another model's samples: applied to \armA{} it gives 76.9 and 56.5, and combined with majority voting over execution results it adds 2.6 and 1.4 points to voting alone (CIs $[1.3, 3.8]$ and $[0.3, 2.6]$).
 
-After GRPO the contract no longer helps. On GRPO-trained \armA{}, contract plus voting does not beat voting alone (82.5 vs.\ 82.6 on Spider; 63.3 vs.\ 63.9 on BIRD), and on \armG's own GRPO samples its contract only matches the filter (81.3 vs.\ 81.2; 59.4 vs.\ 59.6). RL has already removed most of the shape errors that a contract would catch: among wrong answers on Spider, the share with the wrong number of columns falls from 36\% to 12\% (App.~\ref{app:headroom}).
+After GRPO the contract no longer helps. On GRPO-trained \armA{}, contract plus voting does not beat voting alone (82.5 vs.\ 82.6 on Spider; 63.3 vs.\ 63.9 on BIRD; CIs $[-0.7, 0.6]$ and $[-1.5, 0.1]$), and on \armG's own GRPO samples its contract only matches the filter (81.3 vs.\ 81.2; 59.4 vs.\ 59.6). RL has already removed most of the shape errors that a contract would catch: among wrong answers on Spider, the share with the wrong number of columns falls from 36\% to 12\% (App.~\ref{app:headroom}).
 
 \begin{table*}[t]
 \centering\small
@@ -49,9 +49,31 @@ Execution majority vote & 75.8 & 58.3 & 82.6 & 63.9 & 75.9 & 58.0 & 83.1 & 63.4 
 A selector can use the knowledge; the agent itself does not. The decision a SQL agent faces after every observation is whether to submit or keep querying. An agent that used answer knowledge would submit when the result has the right shape and keep querying when it does not. We therefore label every observation in the evaluation rollouts by whether its coarse shape matches the gold result. We define the \emph{decision sensitivity} $S$ as P(submit next | match) minus P(submit next | mismatch). We compare each arm with \armA{} using a bootstrap over questions. As noise references we use \armA{} trained on a different data order (before RL) and a second RL seed (after RL).
 
 The result is uniform (Figure~\ref{fig:decisions}).
-The asymmetry predates the contract. \armA{} already submits far more often after a matching result than after a mismatching one ($S=0.43$ on Spider and $0.46$ on BIRD), a tendency inherited from the teacher. No SFT variant moves $S$ by more than the data-order reference does: $|\Delta S|\le0.016$ against 0.033 on Spider, and $\le0.010$ against 0.020 on BIRD. This holds even for \armG{}, whose own checks report each mismatch explicitly. It submits after 55\% and 31\% of the mismatches it reports, the same as \armA{} after mismatches judged against gold shapes (48\% and 29\%).
+The asymmetry predates the contract. \armA{} already submits far more often after a matching result than after a mismatching one ($S=0.43$ on Spider and $0.46$ on BIRD), a tendency inherited from the teacher. No SFT variant moves $S$ by more than the data-order reference does: $|\Delta S|\le0.016$ against 0.033 on Spider, and $\le0.010$ against 0.020 on BIRD. Part of the asymmetry is the trivial reluctance to submit after an SQL error; with errors and timeouts excluded from the mismatches, $S$ falls to 0.35 and 0.36 for \armA{} and the picture is the same ($|\Delta S|\le0.012$ against 0.034 and 0.015; App.~\ref{app:decisions}). This holds even for \armG{}, whose own checks report each mismatch explicitly. It submits after 55\% and 31\% of the mismatches it reports, the same as \armA{} after mismatches judged against gold shapes (48\% and 29\%).
 
-After GRPO the arms remain inseparable. Two RL seeds of the same checkpoint already differ in $S$ by 0.052 and 0.019 (\armA{}) and by 0.022 and 0.029 (\armB{}) on Spider and BIRD. Differences between arms are of this size and have no consistent sign: the largest come from an action-only control (\armC{}: $+0.071$ and $+0.032$) and from \armB's second seed ($-0.025$ and $-0.031$). What RL does change is shared by every arm: it raises the rate of submitting after a mismatch, on BIRD from 0.29 to 0.41 for \armA{} and from 0.28 to 0.41 for \armG{}. Measured with \armG's own checks, the rate rises from 31\% to 46\%. Per-arm numbers, including first and later observations, are in App.~\ref{app:decisions}. This is the open step: the contract that improves selection from outside is in the agent's context and is followed by a check that names the mismatch, yet the decision that follows is the one an action-only model makes.
+After GRPO the arms remain inseparable. Two RL seeds of the same checkpoint already differ in $S$ by 0.052 and 0.019 (\armA{}) and by 0.022 and 0.029 (\armB{}) on Spider and BIRD. Differences between arms are of this size and have no consistent sign: the largest come from an action-only control (\armC{}: $+0.071$ and $+0.032$) and from \armB's second seed ($-0.025$ and $-0.031$). What RL does change is shared by every arm: it raises the rate of submitting after a mismatch, on BIRD from 0.29 to 0.41 for \armA{} and from 0.28 to 0.41 for \armG{}. Measured with \armG's own checks, the rate rises from 31\% to 46\%. Per-arm numbers, including first and later observations, are in App.~\ref{app:decisions}.
+
+\paragraph{Swapping the contract at the decision point.}
+These comparisons are between arms. The direct test holds the model and its context fixed and changes only the contract (pre-registered, App.~\ref{app:prereg}, Addendum~10). From the prefix up to \armG's first SQL result (four rollouts per primary question), the model continues four times per condition with common random numbers: its own contract; a contract under which the same result flips between match and mismatch; no contract and no check; and, in a further pair, a forced next check that agrees with the contract or reports the opposite. The contract is read: the check written next follows the new contract in 99.4--100\% of continuations. It is not consulted: flipping the contract, removing it, or forcing a check that names a mismatch moves the probability of submitting by at most 0.008, against a shape-driven asymmetry of 0.19--0.54 on the same decision points (Table~\ref{tab:intervention}). The decision follows the result, not what the agent's own contract or check says about it.
+
+\begin{table}[t]
+\centering\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+& & Shape-driven & \multicolumn{2}{c}{Change in P(submit) when} & & Check follows \\
+\cmidrule(lr){4-5}
+Model & Data & asymmetry & contract flips & check flips & No contract & new contract \\
+\midrule
+\armG{} SFT & Spider & 0.30 & +0.003 & $-$0.000 & +0.001 & 100\% \\
+\armG{} SFT & BIRD & 0.38 & +0.002 & +0.001 & +0.001 & 99.4\% \\
+\armG{} GRPO & Spider & 0.19 & +0.003 & +0.001 & +0.000 & 99.98\% \\
+\armG{} GRPO & BIRD & 0.54 & +0.008 & +0.003 & $-$0.001 & 99.6\% \\
+\bottomrule
+\end{tabular}}
+\caption{Decision-point intervention (first decision point; 3,882--6,115 decision points per row, four continuations per condition). Shape-driven asymmetry: P(submit) after a result that matches the agent's own contract minus after one that does not, on the unchanged continuations. Contract flips / check flips: P(submit) when the contract, or a forced check sentence, says ``matches'' minus when it says ``does not match'', for the same result; all 95\% question-bootstrap CIs lie within $[-0.003, 0.011]$. No contract: P(submit) without contract and check, minus with them.}
+\label{tab:intervention}
+\end{table}
 
 \begin{figure}[t]
 \centering
@@ -62,4 +84,4 @@ After GRPO the arms remain inseparable. Two RL seeds of the same checkpoint alre
 
 \subsection{The outcome reward does not pick up the contract}
 \label{sec:e3rl}
-Our pre-registered prediction for \armG{} was a BIRD pass@1 gain of at least one point after GRPO. It is refuted. \armG{} reaches 57.5, against 58.1 and 58.2 for the two \armA{} seeds (differences $-0.60$ $[-1.17,-0.03]$ and $-0.65$ $[-1.22,-0.07]$). On Spider it reaches 80.8, which is $+0.3$ and $+0.5$ points above the two seeds. On the pooled primary outcome, pass@16, \armG{} minus \armA{} is $-0.06$ $[-0.78, 0.66]$. Whether GRPO changes this for \armF{} is \pending. A reward on the final answer alone thus neither rewards the check nor preserves the selector's gain.
+Our pre-registered prediction for \armG{} was a BIRD pass@1 gain of at least one point after GRPO. It is refuted. \armG{} reaches 57.5, against 58.1 and 58.2 for the two \armA{} seeds (differences $-0.60$ $[-1.17,-0.03]$ and $-0.65$ $[-1.22,-0.07]$). On Spider it reaches 80.8, which is $+0.3$ and $+0.5$ points above the two seeds. On the pooled primary outcome, pass@16, \armG{} minus \armA{} is $-0.06$ $[-0.78, 0.66]$. \armF{}, the only variant whose prediction enters the action policy, ends in the same place: $-0.06$ $[-0.82, 0.68]$ on pooled pass@16, and within 0.3 points of both \armA{} seeds at pass@1 on each dataset. A reward on the final answer alone thus neither rewards the check nor preserves the selector's gain, whether or not the prediction moved the policy.

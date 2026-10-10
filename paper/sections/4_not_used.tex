@@ -28,8 +28,6 @@ Behaviour after observations agrees. On BIRD before RL, \armA{} and \armB{} prod
 
 GRPO does change how the agent uses observations. Re-issuing a query that has just failed drops from 23--26\% of failures to 6--7\%. But it changes \armA{} and \armB{} by the same amount (App.~\ref{app:behaviour}).
 
-The gradients agree. Action and observation gradients are nearly orthogonal at the end of SFT (cosine 0.007), as \citet{zhang2026actobs} also report. On training trajectories, the observation gradient is no larger than the action gradient: the norm ratio is 1.09, against 5.49 on held-out trajectories.
-
-The pre-registered dilution account also fails at the SFT stage: \armB{} moves the action policy as much as \armA{} does, although its pooled loss gives actions only 69\% of each update. App.~\ref{app:share} discusses why.
+The gradients and the pre-registered dilution account agree with this picture (App.~\ref{app:share}).
 
 Observation knowledge is therefore acquired but stops before the action policy, either because it is the wrong kind for the decisions the agent faces or because it sits in the wrong place. The next section varies both.

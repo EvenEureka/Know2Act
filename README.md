@@ -14,7 +14,7 @@ pre-registered study of a multi-turn text-to-SQL agent (Qwen3-4B, supervised fin
 SkyRL). Every prediction we supervise is learned and transfers to unseen databases, up to a contract that states
 the shape of the correct answer; whether it reaches the action policy depends on where it is placed; the learned
 contract is usable at once as a selector among sampled answers; but the agent's own decision to submit or keep
-querying is unchanged by every variant, and RL, which rewards only the final answer, removes even the selector's gain.
+querying does not consult it (a decision-point intervention shows this causally), and RL, which rewards only the final answer, removes even the selector's gain.
 
 ## Findings
 
@@ -23,11 +23,11 @@ querying is unchanged by every variant, and RL, which rewards only the final ans
 | 1. Is the knowledge acquired? | Yes, and it transfers to unseen databases | Contract states the correct answer shape in 89% / 82% of rollouts (Spider / BIRD), vs. 71% / 49% from the question alone; observation supervision learns the result template and header (header-start cross-entropy 5.64 → 1.02 nats) but memorises row values (1.92 vs. 1.88 on unseen databases) |
 | 2. Does it enter the actions? | Only when placed in the action | The same outcome line moves the policy only inside the action (2.3× the data-order noise floor); as an auxiliary target, and for observation supervision (KL 0.0049 vs. a floor of 0.0070), it stays within the noise |
 | 3a. Is it used by a selector outside the agent? | Yes, before RL | Contract-based selection +4.3 / +3.4 points over a validity filter, and +2.6 / +1.4 over execution majority voting when combined with it; nothing after GRPO |
-| 3b. Is it used by the agent's own decision? | No | Change in submit-or-continue sensitivity ≤ 0.016 on Spider, vs. 0.033 from reshuffling the training data; holds for Contract, whose own check names every mismatch |
-| Does the outcome reward pick it up? | No | ActObs − ActionSFT, pooled pass@16 after GRPO (two seeds each): +0.26 points [−0.38, +0.91]; Contract − ActionSFT: −0.06 [−0.78, +0.66]; RL raises submitting after a reported mismatch from 31% to 46% |
+| 3b. Is it used by the agent's own decision? | No (causal test) | Holding model and context fixed, flipping or removing the contract at the decision point changes P(submit) by ≤ 0.008 while the regenerated check follows the new contract in 99.4–100% of continuations; the result's shape alone moves P(submit) by 0.19–0.54. Arm-level: submit-or-continue sensitivity changes ≤ 0.016 vs 0.033 data-order noise |
+| Does the outcome reward pick it up? | No | Pooled pass@16 after GRPO vs ActionSFT: ActObs +0.26 [−0.38, +0.91] (two seeds each); Contract −0.06 [−0.78, +0.66]; Outcome-in-Action −0.06 [−0.82, +0.68]; RL raises submitting after a reported mismatch from 31% to 46% |
 
-The open step is the last one. Its direct test holds the model and the decision context fixed and replaces or
-removes the contract at the point where the agent submits or retries.
+The decision-point intervention (`scripts/contract_intervention.py`, pre-registered as Addendum 10) is the causal test of
+step 3b: the contract is in the context and read, but not consulted when the agent decides to submit or retry.
 
 We also find that 290 of the 653 training tasks (44%) in SkyRL's public text-to-SQL environment give full reward
 to an empty answer, because their gold queries return no rows. We reported this upstream as
@@ -83,7 +83,7 @@ Each job template starts with a `usage:` line. The unit tests need no GPU:
 python -m unittest discover -s tests
 ```
 
-One run is still training (Outcome-in-Action after GRPO); its row in Table 1 will be added when it finishes.
+Third RL seeds of ActionSFT and ActObs are running; their rows will be added when they finish.
 
 ## Pre-registration
 

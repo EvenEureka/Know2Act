@@ -9,6 +9,9 @@ it does not, i.e. have a larger S. We compare every arm with ActionSFT (A) using
 bootstrap (2,000 resamples) and report the data-order noise reference (A, seed-1 data order).
 Also reported: P(submit | mismatch), the decision that matters most, with the same CIs.
 Output: results/decision_evidence.json
+With --valid_only, observations that are SQL errors or timeouts are excluded from the mismatch class
+(they can never match a gold shape), so S only compares valid non-matching results with matching ones;
+output then goes to results/decision_evidence_valid.json.
 """
 import collections
 import glob
@@ -23,6 +26,7 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from e3_readouts import coarse, obs_coarse  # noqa: E402
 
 R = os.path.join(ROOT, "results")
+VALID_ONLY = "--valid_only" in sys.argv
 RUNS = {"SFT": {"ActionSFT": "pre_A", "ActionSFT (new data order)": "pre_Aseed1", "ActObs": "pre_B",
                 "ActionSFT-LR": "pre_C", "Outcome-Aux": "pre_E1", "Outcome-in-Action": "pre_E2",
                 "Contract": "pre_E3", "Contract-Placebo": "pre_E3p"},
@@ -55,7 +59,7 @@ def counts(run, ds, gc):
                 if s[i]["type"] != "obs" or s[i + 1]["type"] != "act":
                     continue
                 got = obs_coarse(s[i]["text"])
-                if got is None:
+                if got is None or (VALID_ONLY and got[0] in ("error", "timeout")):
                     continue
                 sub = float("<solution>" in s[i + 1]["text"])
                 if got == gc[q]:
@@ -97,4 +101,4 @@ for stage, runs in RUNS.items():
                 row["dPmis_ci95"] = [round(float(np.percentile(bmm, q)), 4) for q in (2.5, 97.5)]
             out[f"{stage}/{ds}/{name}"] = row
             print(stage, ds, f"{name:28s}", row, flush=True)
-json.dump(out, open(f"{R}/decision_evidence.json", "w"), indent=1)
+json.dump(out, open(f"{R}/decision_evidence{'_valid' if VALID_ONLY else ''}.json", "w"), indent=1)

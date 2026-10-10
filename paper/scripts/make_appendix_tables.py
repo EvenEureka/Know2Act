@@ -64,13 +64,17 @@ P = {}
 for fn in glob.glob(f"{R}/eval/primary_pairs_*.json"):
     P.update(J(fn)["pairs"])
 PA = J(f"{R}/paper_analyses.json")["pooled_primary"]["pairs"]
+_e2 = os.path.join(R, "eval", "pooled_E2_vs_meanA.json")  # Outcome-in-Action GRPO vs mean of the ActionSFT seeds (2026-10-10)
+if os.path.exists(_e2):
+    PA.update({"grpoE2-grpoAmean/" + k.split("/")[1]: v for k, v in J(_e2).items() if k.startswith("E2-meanA/")})
 CON = [("\\armA{} s2 $-$ \\armA{} s1", "A1->A2", "grpoA2-grpoA1"),
        ("\\armB{} s1 $-$ \\armA{} s1", "A1->B1", "grpoB1-grpoA1"),
        ("\\armB{} s1 $-$ \\armA{} s2", "A2->B1", "grpoB1-grpoA2"),
        ("\\armB{} s2 $-$ \\armA{} s1", "A1->B2", None), ("\\armB{} s2 $-$ \\armA{} s2", "A2->B2", None),
        ("\\armB{} s2 $-$ \\armB{} s1", "B1->B2", "grpoB2-grpoB1"),
        ("\\armC{} s1 $-$ \\armB{} s1", "B1->C1", "grpoC1-grpoB1"),
-       ("\\armG{} s1 $-$ \\armA{} s1", "A1->E3", None), ("\\armG{} s1 $-$ \\armA{} s2", "A2->E3", None)]
+       ("\\armG{} s1 $-$ \\armA{} s1", "A1->E3", None), ("\\armG{} s1 $-$ \\armA{} s2", "A2->E3", None),
+       ("\\armF{} s1 $-$ \\armA{} s1", "A1->E2", None), ("\\armF{} s1 $-$ \\armA{} s2", "A2->E2", None)]
 
 
 def ci(d):
@@ -85,7 +89,7 @@ for lab, key, pooled in CON:
     cells.append(f"{pl['diff_pp']:+.2f} [{pl['ci95'][0]:+.2f}, {pl['ci95'][1]:+.2f}]" if pl else "--")
     rows.append(lab + " & " + " & ".join(cells) + " \\\\")
 for lab, key in (("mean(\\armB{}) $-$ mean(\\armA{})", "grpoBmean-grpoAmean"),
-                 ("\\armB{} s1 $-$ mean(\\armA{})", "grpoB1-grpoAmean"), ("\\armB{} s2 $-$ mean(\\armA{})", "grpoB2-grpoAmean"), ("\\armG{} s1 $-$ mean(\\armA{})", "grpoE3-grpoAmean"),
+                 ("\\armB{} s1 $-$ mean(\\armA{})", "grpoB1-grpoAmean"), ("\\armB{} s2 $-$ mean(\\armA{})", "grpoB2-grpoAmean"), ("\\armG{} s1 $-$ mean(\\armA{})", "grpoE3-grpoAmean"), ("\\armF{} s1 $-$ mean(\\armA{})", "grpoE2-grpoAmean"),
                  ("\\armC{} s1 $-$ mean(\\armA{})", "grpoC1-grpoAmean")):
     p1, p16 = PA.get(f"{key}/p1"), PA.get(f"{key}/p16")
     if p1:

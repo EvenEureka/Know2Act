@@ -1,0 +1,84 @@
+{
+ "smoke": {
+  "decision_points": 24,
+  "p_submit_orig": 0.9167,
+  "natural_asymmetry": {
+   "p_submit_own_match": 0.9524,
+   "p_submit_own_mismatch": 0.6667,
+   "n_match": 21,
+   "n_mismatch": 3
+  },
+  "flip": {
+   "S_int": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "n": 24,
+   "p_submit_matching_contract": 0.9167,
+   "p_submit_mismatching_contract": 0.9167,
+   "own_matched_then_flipped_to_mismatch": {
+    "S_int": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "n": 21
+   },
+   "own_mismatched_then_flipped_to_match": {
+    "S_int": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "n": 3
+   },
+   "check_fidelity": {
+    "follows_new_contract": 1.0,
+    "follows_old_contract": 0.0,
+    "no_check_line": 0.0,
+    "n": 48
+   }
+  },
+  "remove": {
+   "dP_submit_vs_orig": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "n": 24,
+   "p_submit": 0.9167,
+   "writes_check_anyway": 0.9167
+  },
+  "forced_check": {
+   "S_check": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "n": 24,
+   "p_submit_check_match": 0.9167,
+   "p_submit_check_mismatch": 0.9167
+  },
+  "accuracy": {
+   "flip": {
+    "acc_cond": 87.5,
+    "acc_orig": 87.5,
+    "diff_pts": 0.0,
+    "ci95_pts": [
+     0.0,
+     0.0
+    ]
+   },
+   "remove": {
+    "acc_cond": 87.5,
+    "acc_orig": 87.5,
+    "diff_pts": 0.0,
+    "ci95_pts": [
+     0.0,
+     0.0
+    ]
+   }
+  }
+ }
+}

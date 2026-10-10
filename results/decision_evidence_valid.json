@@ -1,0 +1,438 @@
+{
+ "SFT/spider_dev/ActionSFT": {
+  "S": 0.352,
+  "p_submit_match": 0.9002,
+  "p_submit_mismatch": 0.5482,
+  "n_match": 14160,
+  "n_mismatch": 5082
+ },
+ "SFT/spider_dev/ActionSFT (new data order)": {
+  "S": 0.3184,
+  "p_submit_match": 0.8948,
+  "p_submit_mismatch": 0.5764,
+  "n_match": 14077,
+  "n_mismatch": 5090,
+  "dS_vs_ActionSFT": -0.0336,
+  "dS_ci95": [
+   -0.0503,
+   -0.0155
+  ],
+  "dPmis_vs_ActionSFT": 0.0282,
+  "dPmis_ci95": [
+   0.0127,
+   0.0435
+  ]
+ },
+ "SFT/spider_dev/ActObs": {
+  "S": 0.3399,
+  "p_submit_match": 0.8996,
+  "p_submit_mismatch": 0.5597,
+  "n_match": 14262,
+  "n_mismatch": 4776,
+  "dS_vs_ActionSFT": -0.0121,
+  "dS_ci95": [
+   -0.0291,
+   0.005
+  ],
+  "dPmis_vs_ActionSFT": 0.0115,
+  "dPmis_ci95": [
+   -0.0048,
+   0.0283
+  ]
+ },
+ "SFT/spider_dev/ActionSFT-LR": {
+  "S": 0.3472,
+  "p_submit_match": 0.8988,
+  "p_submit_mismatch": 0.5516,
+  "n_match": 14228,
+  "n_mismatch": 4984,
+  "dS_vs_ActionSFT": -0.0048,
+  "dS_ci95": [
+   -0.0196,
+   0.0111
+  ],
+  "dPmis_vs_ActionSFT": 0.0034,
+  "dPmis_ci95": [
+   -0.0116,
+   0.0173
+  ]
+ },
+ "SFT/spider_dev/Outcome-Aux": {
+  "S": 0.3393,
+  "p_submit_match": 0.8977,
+  "p_submit_mismatch": 0.5584,
+  "n_match": 14226,
+  "n_mismatch": 4955,
+  "dS_vs_ActionSFT": -0.0127,
+  "dS_ci95": [
+   -0.0278,
+   0.0029
+  ],
+  "dPmis_vs_ActionSFT": 0.0102,
+  "dPmis_ci95": [
+   -0.0047,
+   0.0246
+  ]
+ },
+ "SFT/spider_dev/Outcome-in-Action": {
+  "S": 0.3415,
+  "p_submit_match": 0.8958,
+  "p_submit_mismatch": 0.5544,
+  "n_match": 14218,
+  "n_mismatch": 4937,
+  "dS_vs_ActionSFT": -0.0106,
+  "dS_ci95": [
+   -0.0277,
+   0.0068
+  ],
+  "dPmis_vs_ActionSFT": 0.0062,
+  "dPmis_ci95": [
+   -0.0104,
+   0.0225
+  ]
+ },
+ "SFT/spider_dev/Contract": {
+  "S": 0.3487,
+  "p_submit_match": 0.9041,
+  "p_submit_mismatch": 0.5554,
+  "n_match": 14113,
+  "n_mismatch": 5007,
+  "dS_vs_ActionSFT": -0.0033,
+  "dS_ci95": [
+   -0.0202,
+   0.0156
+  ],
+  "dPmis_vs_ActionSFT": 0.0072,
+  "dPmis_ci95": [
+   -0.0094,
+   0.0237
+  ]
+ },
+ "SFT/spider_dev/Contract-Placebo": {
+  "S": 0.3467,
+  "p_submit_match": 0.901,
+  "p_submit_mismatch": 0.5544,
+  "n_match": 14128,
+  "n_mismatch": 5040,
+  "dS_vs_ActionSFT": -0.0053,
+  "dS_ci95": [
+   -0.0232,
+   0.0122
+  ],
+  "dPmis_vs_ActionSFT": 0.0062,
+  "dPmis_ci95": [
+   -0.0101,
+   0.0229
+  ]
+ },
+ "SFT/bird_dev/ActionSFT": {
+  "S": 0.355,
+  "p_submit_match": 0.755,
+  "p_submit_mismatch": 0.4,
+  "n_match": 21564,
+  "n_mismatch": 16439
+ },
+ "SFT/bird_dev/ActionSFT (new data order)": {
+  "S": 0.34,
+  "p_submit_match": 0.7389,
+  "p_submit_mismatch": 0.3989,
+  "n_match": 22100,
+  "n_mismatch": 16522,
+  "dS_vs_ActionSFT": -0.015,
+  "dS_ci95": [
+   -0.0268,
+   -0.0031
+  ],
+  "dPmis_vs_ActionSFT": -0.001,
+  "dPmis_ci95": [
+   -0.0103,
+   0.0077
+  ]
+ },
+ "SFT/bird_dev/ActObs": {
+  "S": 0.3597,
+  "p_submit_match": 0.7579,
+  "p_submit_mismatch": 0.3982,
+  "n_match": 21430,
+  "n_mismatch": 16417,
+  "dS_vs_ActionSFT": 0.0047,
+  "dS_ci95": [
+   -0.0068,
+   0.0158
+  ],
+  "dPmis_vs_ActionSFT": -0.0018,
+  "dPmis_ci95": [
+   -0.0101,
+   0.0072
+  ]
+ },
+ "SFT/bird_dev/ActionSFT-LR": {
+  "S": 0.3682,
+  "p_submit_match": 0.7585,
+  "p_submit_mismatch": 0.3903,
+  "n_match": 21552,
+  "n_mismatch": 16519,
+  "dS_vs_ActionSFT": 0.0132,
+  "dS_ci95": [
+   0.003,
+   0.0235
+  ],
+  "dPmis_vs_ActionSFT": -0.0097,
+  "dPmis_ci95": [
+   -0.0177,
+   -0.002
+  ]
+ },
+ "SFT/bird_dev/Outcome-Aux": {
+  "S": 0.3523,
+  "p_submit_match": 0.7584,
+  "p_submit_mismatch": 0.4061,
+  "n_match": 21365,
+  "n_mismatch": 16222,
+  "dS_vs_ActionSFT": -0.0027,
+  "dS_ci95": [
+   -0.0125,
+   0.008
+  ],
+  "dPmis_vs_ActionSFT": 0.0062,
+  "dPmis_ci95": [
+   -0.0017,
+   0.014
+  ]
+ },
+ "SFT/bird_dev/Outcome-in-Action": {
+  "S": 0.352,
+  "p_submit_match": 0.7389,
+  "p_submit_mismatch": 0.3869,
+  "n_match": 22571,
+  "n_mismatch": 15862,
+  "dS_vs_ActionSFT": -0.003,
+  "dS_ci95": [
+   -0.0151,
+   0.009
+  ],
+  "dPmis_vs_ActionSFT": -0.0131,
+  "dPmis_ci95": [
+   -0.0226,
+   -0.0037
+  ]
+ },
+ "SFT/bird_dev/Contract": {
+  "S": 0.3665,
+  "p_submit_match": 0.7528,
+  "p_submit_mismatch": 0.3863,
+  "n_match": 21488,
+  "n_mismatch": 16881,
+  "dS_vs_ActionSFT": 0.0115,
+  "dS_ci95": [
+   -0.0007,
+   0.024
+  ],
+  "dPmis_vs_ActionSFT": -0.0137,
+  "dPmis_ci95": [
+   -0.0229,
+   -0.0045
+  ]
+ },
+ "SFT/bird_dev/Contract-Placebo": {
+  "S": 0.3595,
+  "p_submit_match": 0.752,
+  "p_submit_mismatch": 0.3925,
+  "n_match": 21626,
+  "n_mismatch": 16663,
+  "dS_vs_ActionSFT": 0.0045,
+  "dS_ci95": [
+   -0.0072,
+   0.0171
+  ],
+  "dPmis_vs_ActionSFT": -0.0074,
+  "dPmis_ci95": [
+   -0.0168,
+   0.0017
+  ]
+ },
+ "GRPO/spider_dev/ActionSFT": {
+  "S": 0.1965,
+  "p_submit_match": 0.9822,
+  "p_submit_mismatch": 0.7856,
+  "n_match": 14516,
+  "n_mismatch": 1754
+ },
+ "GRPO/spider_dev/ActionSFT (seed 2)": {
+  "S": 0.2313,
+  "p_submit_match": 0.9878,
+  "p_submit_mismatch": 0.7565,
+  "n_match": 14697,
+  "n_mismatch": 1499,
+  "dS_vs_ActionSFT": 0.0348,
+  "dS_ci95": [
+   0.0042,
+   0.0679
+  ],
+  "dPmis_vs_ActionSFT": -0.0291,
+  "dPmis_ci95": [
+   -0.0617,
+   0.0006
+  ]
+ },
+ "GRPO/spider_dev/ActObs": {
+  "S": 0.1641,
+  "p_submit_match": 0.99,
+  "p_submit_mismatch": 0.8259,
+  "n_match": 14534,
+  "n_mismatch": 1476,
+  "dS_vs_ActionSFT": -0.0324,
+  "dS_ci95": [
+   -0.0605,
+   -0.0054
+  ],
+  "dPmis_vs_ActionSFT": 0.0402,
+  "dPmis_ci95": [
+   0.0133,
+   0.0678
+  ]
+ },
+ "GRPO/spider_dev/ActionSFT-LR": {
+  "S": 0.2245,
+  "p_submit_match": 0.9862,
+  "p_submit_mismatch": 0.7617,
+  "n_match": 14709,
+  "n_mismatch": 1410,
+  "dS_vs_ActionSFT": 0.028,
+  "dS_ci95": [
+   -0.0029,
+   0.0594
+  ],
+  "dPmis_vs_ActionSFT": -0.0239,
+  "dPmis_ci95": [
+   -0.0547,
+   0.0069
+  ]
+ },
+ "GRPO/spider_dev/Contract": {
+  "S": 0.1578,
+  "p_submit_match": 0.9903,
+  "p_submit_mismatch": 0.8325,
+  "n_match": 14461,
+  "n_mismatch": 1439,
+  "dS_vs_ActionSFT": -0.0387,
+  "dS_ci95": [
+   -0.0683,
+   -0.0105
+  ],
+  "dPmis_vs_ActionSFT": 0.0469,
+  "dPmis_ci95": [
+   0.0185,
+   0.0766
+  ]
+ },
+ "GRPO/spider_dev/ActObs (seed 2)": {
+  "S": 0.1352,
+  "p_submit_match": 0.992,
+  "p_submit_mismatch": 0.8568,
+  "n_match": 14255,
+  "n_mismatch": 1383,
+  "dS_vs_ActionSFT": -0.0614,
+  "dS_ci95": [
+   -0.0899,
+   -0.0342
+  ],
+  "dPmis_vs_ActionSFT": 0.0712,
+  "dPmis_ci95": [
+   0.0446,
+   0.099
+  ]
+ },
+ "GRPO/bird_dev/ActionSFT": {
+  "S": 0.331,
+  "p_submit_match": 0.9364,
+  "p_submit_mismatch": 0.6055,
+  "n_match": 20855,
+  "n_mismatch": 7026
+ },
+ "GRPO/bird_dev/ActionSFT (seed 2)": {
+  "S": 0.3576,
+  "p_submit_match": 0.9492,
+  "p_submit_mismatch": 0.5916,
+  "n_match": 20879,
+  "n_mismatch": 6682,
+  "dS_vs_ActionSFT": 0.0266,
+  "dS_ci95": [
+   0.0111,
+   0.0425
+  ],
+  "dPmis_vs_ActionSFT": -0.0139,
+  "dPmis_ci95": [
+   -0.0285,
+   0.0012
+  ]
+ },
+ "GRPO/bird_dev/ActObs": {
+  "S": 0.3148,
+  "p_submit_match": 0.9595,
+  "p_submit_mismatch": 0.6447,
+  "n_match": 20260,
+  "n_mismatch": 6580,
+  "dS_vs_ActionSFT": -0.0161,
+  "dS_ci95": [
+   -0.0344,
+   0.0013
+  ],
+  "dPmis_vs_ActionSFT": 0.0392,
+  "dPmis_ci95": [
+   0.0234,
+   0.0563
+  ]
+ },
+ "GRPO/bird_dev/ActionSFT-LR": {
+  "S": 0.3636,
+  "p_submit_match": 0.9529,
+  "p_submit_mismatch": 0.5893,
+  "n_match": 20698,
+  "n_mismatch": 6696,
+  "dS_vs_ActionSFT": 0.0327,
+  "dS_ci95": [
+   0.0162,
+   0.0482
+  ],
+  "dPmis_vs_ActionSFT": -0.0162,
+  "dPmis_ci95": [
+   -0.0308,
+   -0.001
+  ]
+ },
+ "GRPO/bird_dev/Contract": {
+  "S": 0.3234,
+  "p_submit_match": 0.9609,
+  "p_submit_mismatch": 0.6376,
+  "n_match": 20433,
+  "n_mismatch": 6423,
+  "dS_vs_ActionSFT": -0.0076,
+  "dS_ci95": [
+   -0.0241,
+   0.0079
+  ],
+  "dPmis_vs_ActionSFT": 0.0321,
+  "dPmis_ci95": [
+   0.0175,
+   0.0472
+  ]
+ },
+ "GRPO/bird_dev/ActObs (seed 2)": {
+  "S": 0.2956,
+  "p_submit_match": 0.9608,
+  "p_submit_mismatch": 0.6652,
+  "n_match": 20161,
+  "n_mismatch": 6135,
+  "dS_vs_ActionSFT": -0.0353,
+  "dS_ci95": [
+   -0.0518,
+   -0.0189
+  ],
+  "dPmis_vs_ActionSFT": 0.0597,
+  "dPmis_ci95": [
+   0.0434,
+   0.0752
+  ]
+ }
+}

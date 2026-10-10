@@ -1,10 +1,6 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Between a prediction and an action lie three steps, and Know2Act measured each. The knowledge is acquired: every target we supervised, up to the shape of the correct answer, is learned and transfers to unseen databases. Whether it enters the actions depends on placement: an outcome line moves the policy only once it is written into the action, and observation supervision, whose targets are never generated, moves the policy less than reshuffling the training data does. It is usable at once, but only from outside: before RL, the agent's own contract selects among its samples better than an execution-validity filter and adds to execution-based voting.
-
-What does not change is the agent's own decision. It submits after a mismatching result as often as an action-only model does, even when its own check has just reported the mismatch, and the outcome reward does not close the gap: RL gives observation supervision and the contract no advantage, removes the selector's gain, and makes every variant more willing to submit after a failed check.
-
-Learning, entering and using are therefore separate claims. The direct test of the open step holds the model and the decision context fixed while the contract is replaced or removed where the agent submits or retries. Making knowledge reach decisions then probably requires rewarding its use, or training on the agent's own failure-rich interaction, rather than another prediction target.
+Between a prediction and an action lie three steps, and Know2Act measured each. Every target we supervised, up to the shape of the correct answer, is acquired and transfers to unseen databases; it enters the action policy only when written into the action; and it is usable at once from outside, as a selector. The agent's own decision is the step that fails: with model and context held fixed, it ignores both the contract and its own check, and outcome-only RL does not close the gap; that probably requires rewarding the use of knowledge.
 
 \label{sec:conclusion-end}

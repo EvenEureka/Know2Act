@@ -60,6 +60,13 @@ Table~\ref{tab:fullpassk} lists pass@$k$ for every model at $k\in\{1,2,4,8,16\}$
 \input{tables/full_passk}
 \input{tables/pairs}
 
+\begin{figure}[h]
+\centering
+\figplaceholder{figures/fig2_rl_gain.pdf}{4.6cm}
+\caption{Gain during RL from each SFT initialisation: post-GRPO minus pre-GRPO pass@1 and pass@16 of the same initialisation, with 95\% bootstrap CIs over primary questions. Unlike on Terminal-Bench \citep{zhang2026actobs}, GRPO extracts no consistently larger gain from \armB{}. In both seeds its BIRD pass@1 gain is 1.0--1.4 points smaller than \armA's; elsewhere its two seeds lie on either side of the \armA{} seeds or above them by less than one point, with overlapping CIs.}
+\label{fig:rlgain}
+\end{figure}
+
 \section{SFT-Stage Measurements}
 \label{app:sft}
 
@@ -92,6 +99,10 @@ lr $0.40\times$ & .334 & .305 & 2.02 & 2.83 & & \\
 
 \subsection{Why pooled dilution vanishes}
 \label{sec:share}\label{app:share}
+The gradients agree. Action and observation gradients are nearly orthogonal at the end of SFT (cosine 0.007), as \citet{zhang2026actobs} also report. On training trajectories, the observation gradient is no larger than the action gradient: the norm ratio is 1.09, against 5.49 on held-out trajectories.
+
+The pre-registered dilution account also fails at the SFT stage: \armB{} moves the action policy as much as \armA{} does, although its pooled loss gives actions only 69\% of each update. The rest of this section discusses why.
+
 The dilution reading predicts that \armB{} moves the action policy as if its learning rate were scaled by 0.69. It does not: \armB's action KL to the base model (0.363) equals \armA's (0.364). Lowering the learning rate to $0.4\times$ gives 0.334, and Wikipedia dilution at the same token share gives 0.352, which is close to a $0.7\times$ learning rate.
 
 One account consistent with the training logs is that Adam normalises each coordinate's update by a running estimate of its gradient magnitude. Down-weighting the action loss uniformly therefore changes little unless the extra tokens keep producing large gradients in the same coordinates \citep{elich2023mtl}. \armB's observations are fitted early and their gradients shrink, whereas Wikipedia stays hard to predict (training CE from 3.18 to 2.44) and keeps diluting.
@@ -291,6 +302,11 @@ Three engineering problems could have distorted the measurements. We describe ea
 \paragraph{Disk and evaluator.} SkyRL saves a full checkpoint at every epoch end whenever a checkpoint interval is set. Together with per-job environments, this filled a 1.8\,TB local disk, and we reran the affected jobs with checkpointing disabled. Our evaluator agrees with SkyRL's built-in one on a shared checkpoint.
 
 \paragraph{Compute.} All runs used NVIDIA RTX PRO 6000 Blackwell GPUs (96\,GB). Excluding failed attempts, the study used about 280 GPU-hours. Most of it went to the 7 GRPO runs (about 185) and the 13 SFT runs (about 47). Evaluation took about 35 GPU-hours over roughly 25 evaluations, teacher generation and pilots about 8, and the measurements a few more.
+
+\section{Further Related Work}
+\label{app:morerelated}
+\paragraph{SFT to RL.}
+Over-trained SFT checkpoints can lose plasticity for RL \citep{plasticity2026}. Acting on execution feedback usually needs on-policy RL \citep{gehring2024rlef,kumar2024score}. Multi-turn RL for text-to-SQL is an active area \citep{xu2025mtirsql,liu2026serlsql}. Adam is partly invariant to scaling a task's loss \citep{elich2023mtl,kurin2022unitary}.
 
 \section{Hyper-parameters}
 \label{app:hparams}

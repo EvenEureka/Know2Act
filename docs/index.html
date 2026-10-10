@@ -175,8 +175,9 @@
       prediction reaches the action policy depends on where it is placed: the same outcome line moves the policy only
       when it is written into the action. The learned contract is usable at once from outside the agent, as a selector
       among sampled answers that adds to execution-based voting. Yet the agent&rsquo;s own decision to submit or keep
-      querying is unchanged by every variant, and RL, which rewards only the final answer, gives observation supervision
-      and the contract no advantage and removes even the selector&rsquo;s gain. Learned knowledge thus reaches selection
+      querying does not consult it: holding the model and context fixed, swapping or removing the contract at the decision
+      point changes the check the agent writes next but not whether it submits. RL, which rewards only the final answer,
+      gives no variant an advantage and removes even the selector&rsquo;s gain. Learned knowledge thus reaches selection
       before it reaches decisions, and each step needs its own test. We also find that 44% of the training tasks in a
       public SQL RL environment reward an empty answer.</p>
   </section>
@@ -268,7 +269,7 @@
     After GRPO the contract adds nothing: RL has already removed most of the shape errors a contract would catch (among
     wrong Spider answers, the share with the wrong number of columns falls from 36% to 12%).</p>
 
-  <h2>The open step: the agent&rsquo;s own decision</h2>
+  <h2>Where it stops: the agent&rsquo;s own decision</h2>
   <p>A selector can use the contract; the agent itself does not. After every result the agent either submits or keeps
     querying, and an agent that used answer knowledge would submit when the result has the right shape and keep querying
     when it does not. We measure the <i>decision sensitivity</i>, how much more often the agent submits after a result
@@ -283,9 +284,34 @@
       shape), relative to ActionSFT, with 95% question-bootstrap intervals. Grey rows are noise references: another data
       order after SFT, another RL seed after GRPO.</figcaption>
   </figure>
+  <h3>The direct test: swap the contract at the decision point</h3>
+  <p>The comparison above is between models. To test whether the decision <i>consults</i> the contract, we hold the model
+    and its context fixed and change only the contract. From the Contract model&rsquo;s own prefix up to its first SQL
+    result, it continues four times under each condition, with the same random numbers: its own contract, a contract under
+    which the same result flips between match and mismatch, no contract at all, and a forced next check sentence that
+    agrees or disagrees. <b>The contract is read</b>: the check the model writes next follows the new contract in 99.4&ndash;100% of
+    continuations. <b>It is not consulted</b>: the probability of submitting moves by at most 0.008, while on the same decision
+    points the result&rsquo;s own shape moves it by 0.19&ndash;0.54. The decision follows the result, not what the agent&rsquo;s
+    contract or check says about it.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Contract model</th><th class="num">Shape-driven asymmetry</th><th class="num">Contract flips</th><th class="num">Check sentence flips</th><th class="num">Contract removed</th><th class="num">Check follows new contract</th></tr></thead>
+    <tbody>
+      <tr><td>After SFT, Spider</td><td class="num">0.30</td><td class="num">+0.003</td><td class="num">&minus;0.000</td><td class="num">+0.001</td><td class="num">100%</td></tr>
+      <tr><td>After SFT, BIRD</td><td class="num">0.38</td><td class="num">+0.002</td><td class="num">+0.001</td><td class="num">+0.001</td><td class="num">99.4%</td></tr>
+      <tr><td>After GRPO, Spider</td><td class="num">0.19</td><td class="num">+0.003</td><td class="num">+0.001</td><td class="num">+0.000</td><td class="num">99.98%</td></tr>
+      <tr><td>After GRPO, BIRD</td><td class="num">0.54</td><td class="num">+0.008</td><td class="num">+0.003</td><td class="num">&minus;0.001</td><td class="num">99.6%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="font-size:15.5px">Change in the probability of submitting at the first decision point (3,882&ndash;6,115 decision
+    points per row, four continuations per condition). All 95% intervals lie within [&minus;0.003, 0.011]. The test was
+    pre-registered before it ran.</p>
+
   <p>The outcome reward does not close the gap. After the same GRPO from every initialisation, observation supervision
-    and the contract reach the same pooled pass@16 as the action-only model (ActObs minus ActionSFT +0.26 points,
-    95% CI [&minus;0.38, +0.91], averaged over two RL seeds each; Contract minus ActionSFT &minus;0.06 [&minus;0.78, +0.66]),
+    and both outcome lines reach the same pooled pass@16 as the action-only model (ActObs minus ActionSFT +0.26 points,
+    95% CI [&minus;0.38, +0.91], averaged over two RL seeds each; Contract &minus;0.06 [&minus;0.78, +0.66]; Outcome-in-Action,
+    the only variant whose prediction moves the policy, &minus;0.06 [&minus;0.82, +0.68]),
     the contract no longer helps a selector, and what RL does change is shared by every variant: it makes the agent more
     willing to submit after a mismatching result. Measured with Contract&rsquo;s own checks on BIRD, submitting after a
     reported mismatch rises from 31% to 46%.</p>
@@ -298,14 +324,11 @@
     0.97 points apart on Spider pass@1, and two checkpoints that act the same before RL (ActionSFT-LR and ActObs) end
     1.48 points apart on BIRD pass@1. With variance of this size, an effect as small as the one ActObs reports for a 4B
     model (+1.1 pass@16) would go undetected here.</div>
-  <div class="callout insight"><b>What this means, and the next test.</b> Learning, entering and using are separate claims,
-    and a gain at the end of training does not say which of them holds. Here the knowledge reaches selection before it
-    reaches decisions: the contract is correct, sits in the agent&rsquo;s context, and is followed by a check that names
-    the mismatch, yet the decision that follows is the one an action-only model makes. The direct test of this last step
-    holds the model and the decision context fixed and replaces or removes the contract at the point where the agent
-    submits or retries; if the decision does not move, the contract is not consulted. Making knowledge reach decisions
-    then probably requires rewarding its use, or training on the agent&rsquo;s own failure-rich interaction, rather than
-    adding another prediction target.</div>
+  <div class="callout insight"><b>What this means.</b> Learning, entering and using are separate claims, and a gain at the
+    end of training does not say which of them holds. Here the first two hold and the last one fails: the contract is
+    correct, sits in the agent&rsquo;s context and is read when the agent writes its check, yet the submit-or-retry
+    decision does not consult it. Making knowledge reach decisions probably requires rewarding its use, or training on
+    the agent&rsquo;s own failure-rich interaction, rather than adding another prediction target.</div>
 
   <h2>Full results</h2>
   <h3>Key numbers</h3>
@@ -315,7 +338,7 @@
     <div class="stat"><div class="v">89&thinsp;/&thinsp;82%</div><div class="l">Contract states the correct answer shape on unseen databases (Spider&thinsp;/&thinsp;BIRD)</div><div class="ci">from the question alone: 71&thinsp;/&thinsp;49%</div></div>
     <div class="stat"><div class="v">2.3&times;</div><div class="l">The outcome line moves the action policy only inside the action, relative to the data-order noise floor</div><div class="ci">as an auxiliary target, and ActObs: within the noise</div></div>
     <div class="stat"><div class="v">+2.6&thinsp;/&thinsp;+1.4</div><div class="l">Contract plus execution vote over vote alone, before RL (Spider&thinsp;/&thinsp;BIRD points)</div><div class="ci">after GRPO: no gain</div></div>
-    <div class="stat"><div class="v">&le;&thinsp;0.016</div><div class="l">Largest change in submit-or-continue sensitivity from any SFT variant (Spider)</div><div class="ci">data-order noise: 0.033</div></div>
+    <div class="stat"><div class="v">&le;&thinsp;0.008</div><div class="l">Change in P(submit) when the contract at the decision point is flipped or removed</div><div class="ci">result shape alone: 0.19&ndash;0.54</div></div>
   </div>
 
   <h3>Training variants</h3>
