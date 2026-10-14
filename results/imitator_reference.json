@@ -1,0 +1,218 @@
+{
+ "N100|0": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100|1": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100|2": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100|3": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100|4": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100|5": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100|6": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100|7": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "NQ50op|0": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2074,
+  "n_real": 2056,
+  "P_follow_real": 1.0
+ },
+ "NQ50op|1": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2052,
+  "n_real": 2044,
+  "P_follow_real": 1.0
+ },
+ "NQ50op|2": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2058,
+  "n_real": 1984,
+  "P_follow_real": 1.0
+ },
+ "NQ50op|3": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2050,
+  "n_real": 2087,
+  "P_follow_real": 1.0
+ },
+ "NQ50op|4": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2058,
+  "n_real": 1991,
+  "P_follow_real": 1.0
+ },
+ "NQ50op|5": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2119,
+  "n_real": 2020,
+  "P_follow_real": 1.0
+ },
+ "NQ50op|6": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2075,
+  "n_real": 2051,
+  "P_follow_real": 1.0
+ },
+ "NQ50op|7": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2060,
+  "n_real": 2082,
+  "P_follow_real": 1.0
+ },
+ "NQ50|0": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2074,
+  "n_real": 2056,
+  "P_follow_real": 1.0
+ },
+ "NQ50|1": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2052,
+  "n_real": 2044,
+  "P_follow_real": 1.0
+ },
+ "NQ50|2": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 2058,
+  "n_real": 1984,
+  "P_follow_real": 1.0
+ },
+ "SA50v2|0": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 0.5004574565416285,
+  "realised_plus_share": 0.5004574565416285,
+  "n": 3279,
+  "minus_coincides_with_foil_top": 0.10012210012210013
+ },
+ "SA50v2|1": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 0.4908928038220364,
+  "realised_plus_share": 0.4908928038220364,
+  "n": 3349,
+  "minus_coincides_with_foil_top": 0.09618768328445748
+ },
+ "SA50v2|2": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 0.49863677673432294,
+  "realised_plus_share": 0.49863677673432294,
+  "n": 3301,
+  "minus_coincides_with_foil_top": 0.09365558912386707
+ },
+ "N100M|0": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100M|1": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "N100M|2": {
+  "kind": "bounds",
+  "S_star_low": 0.0,
+  "S_star_high": 1.0,
+  "note": "no foil in training and S_data = 1: P(a | obs, foil) undefined"
+ },
+ "NQ25op|0": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 1063,
+  "n_real": 3067,
+  "P_follow_real": 1.0
+ },
+ "NQ25op|1": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 1017,
+  "n_real": 3079,
+  "P_follow_real": 1.0
+ },
+ "NQ25op|2": {
+  "kind": "point",
+  "S_star": 0.0,
+  "P_foiltop_given_foil": 0.0,
+  "P_foiltop_given_real": 0.0,
+  "n_foil": 1048,
+  "n_real": 2994,
+  "P_follow_real": 1.0
+ }
+}

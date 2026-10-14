@@ -1,0 +1,58 @@
+\section{Measuring Control by the Written Note}
+\label{sec:measurement}
+
+\paragraph{Decision-point interventions.}
+Each model plays every test game greedily, for at most 50 steps. At each fallback decision point with at least two receptacle types left to visit, we keep the model's own history and place one of several note lines before a prefilled \texttt{<action>}. We then sample the next action four times at temperature 0.7, using the same random numbers across conditions. The outcome is the receptacle type of the next \texttt{go to}.
+
+Table~\ref{tab:conditions} lists the conditions.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{@{}lp{0.72\columnwidth}@{}}
+\toprule
+Condition & Note line placed before the action \\
+\midrule
+intact & the model's own note \\
+flip & the note the same model writes when the task names another learnable class $o'$ of the same scene type, renamed back to the target; $o'$ is drawn uniformly among classes whose predicted top type is unvisited and differs from the intact top \\
+remove & no note line \\
+presence & the template with every type slot replaced by the word ``receptacle'' (no location, nothing to copy) \\
+random & the template with a random order of the remaining types, a form no arm sees in training \\
+placebo & the alphabetical placebo of the training data (manipulation check only) \\
+\bottomrule
+\end{tabular}
+\caption{Conditions at a fallback decision point. Each is sampled four times at temperature 0.7 with common random numbers.}
+\label{tab:conditions}
+\end{table}
+
+At later decision points we also remove every earlier note from the history and repeat the intact and flip conditions.
+
+At the episode level, we run counterfactual rollouts in which every note slot is forced to the template prediction for $o'$ (\emph{cf-foil}) or for the true class (\emph{cf-true}), while the model chooses its own actions.
+
+\paragraph{Estimands.}
+Write $P_c(t)$ for the probability that the next \texttt{go to} under condition $c$ targets receptacle type $t$. The primary estimand is the flip effect at the first fallback decision point of a game,
+\[
+\sflipfirst = P_{\text{flip}}(\text{foil top}) - P_{\text{intact}}(\text{foil top}),
+\]
+averaged over games of learnable classes, one decision point per game. The first decision point is the only one at which every arm has the same context: no search evidence and no earlier note.
+
+Later decision points are reported by position and by whether the convention receptacle has already been visited. They are never pooled across positions when arms are compared, because an arm that searches longer has more of them.
+
+The removal effect is $P_{\text{intact}}(\text{intact top}) - P_{\text{remove}}(\text{intact top})$. The presence effect is $P_{\text{remove}}(\text{intact top}) - P_{\text{presence}}(\text{intact top})$, and we also report the flip effect measured against the presence condition. Resistance is $\sflipfirst$ for unlearnable classes minus $\sflipfirst$ for learnable classes. Because the weights hold no convention for unlearnable classes, a positive resistance means the learned convention pushes back against a contradicting note. Every model's note-writing rate in free play is reported as a covariate.
+
+\paragraph{A perfect-imitator reference.}
+Some values of $\sflipfirst$ follow from how the training data were built. We therefore compare each arm with $\sstar$, the flip effect of a policy that reproduces its training data's $P(\text{action type}\mid\text{observation},\text{note})$ exactly.
+
+In the three note-side arms, a foil note in training is always followed by the true convention. An imitator therefore ignores a flipped note, and $\sstar = 0$ (computed from the data in every draw).
+
+In \arm{N100} and \arm{N100M}, a flipped note never occurs in training and notes always agree with the convention. $\sstar$ is undefined there. Its bounds are 0 if a tie goes to the convention and 1 if it goes to the note.
+
+\arm{SA50v2} also never shows a foil. An imitator that credits its convention-following half to the note would follow a flipped note at the realised rate of convention-following steps, so $\sstar \in [0, 0.50]$.
+
+The \emph{copy bias} $\sflipfirst - \sstar$ is a secondary, descriptive quantity. It is an interval for the arms whose reference is bounded.
+
+\paragraph{Statistics and status.}
+The unit of inference is the seed. Each seed is a separate construction draw and data order, with eight seeds for each primary arm and three for each other arm.
+
+The primary contrast is \arm{N100} against \arm{NQ50op} on $\sflipfirst$ in the primary test population (Welch $t$ on seed values, two-sided, $\alpha=0.05$). Eight secondary contrasts are Holm-corrected. Within a seed, intervals come from a bootstrap over games.
+
+The protocol, the analysis script and the reading rules for \arm{NQ50op} were committed by hash to a private, timestamped repository before the test split was opened, and the hashed texts are released with the code. We call the primary contrast and the eight registered secondary tests confirmatory. The other read-outs are registered descriptive quantities.

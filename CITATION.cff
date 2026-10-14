@@ -1,18 +1,19 @@
 cff-version: 1.2.0
 message: "If you use this code or these results, please cite the manuscript."
-title: "Know2Act: What Knowledge Reaches a Tool-Using Agent's Actions?"
+title: "Know2Act: When Does an Agent's Written Prediction Control Its Next Action?"
 authors:
   - family-names: Lu
     given-names: Yiwen
     affiliation: University of Notre Dame
+    email: ylu37@nd.edu
 type: software
 license: Apache-2.0
 repository-code: "https://github.com/EvenEureka/Know2Act"
 url: "https://eveneureka.github.io/Know2Act/"
-date-released: 2026-10-09
+date-released: 2026-10-14
 preferred-citation:
   type: unpublished
-  title: "Know2Act: What Knowledge Reaches a Tool-Using Agent's Actions?"
+  title: "Know2Act: When Does an Agent's Written Prediction Control Its Next Action?"
   authors:
     - family-names: Lu
       given-names: Yiwen

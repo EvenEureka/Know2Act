@@ -1,0 +1,34 @@
+% Conceptual overview (no bookkeeping numbers). Included from the introduction.
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  box/.style={draw=black!55, rounded corners=3pt, align=left, inner sep=4pt, fill=white, minimum height=1.55cm},
+  ctx/.style={box, fill=black!4},
+  note/.style={box, fill=blue!7, draw=blue!55!black},
+  act/.style={box, fill=black!4},
+  wts/.style={draw=black!45, rounded corners=3pt, align=center, inner sep=3pt, fill=black!4, minimum height=0.6cm},
+  ivn/.style={box, fill=orange!9, draw=orange!70!black, minimum height=1.3cm},
+  read/.style={box, fill=white, draw=black!35, minimum height=1.3cm},
+  data/.style={box, fill=green!6, draw=green!45!black},
+  arr/.style={-{Latex[length=2.2mm]}, thick, black!65},
+  darr/.style={-{Latex[length=2.2mm]}, thick, dashed, orange!75!black},
+]
+\node[data, text width=3.0cm] (data) {\textbf{Training data}\\[1pt] predictions always followed, sometimes contradicted by the action, or ignored by it};
+\node[ctx, right=0.9cm of data, text width=2.6cm] (ctx) {\textbf{Context}\\[1pt] the room and the task; the target is not yet in view};
+\node[note, right=0.4cm of ctx, text width=3.3cm] (note) {\textbf{Written prediction}\\[1pt] \texttt{The mug is most likely in a toaster, then \dots}};
+\node[act, right=0.4cm of note, text width=1.9cm] (act) {\textbf{Next action}\\[1pt] \texttt{go to ?}};
+\node[wts, above=0.55cm of note.north west, anchor=south west, text width=6.3cm] (wts) {\textbf{Model weights}: location knowledge from fine-tuning};
+\draw[arr, green!45!black] (data.north) |- node[pos=0.72, above, font=\scriptsize, green!35!black] {fine-tune} (wts.west);
+\draw[arr] (ctx) -- (note);
+\draw[arr] (note) -- (act);
+\draw[arr, black!40] (wts.south -| note.north) -- (note.north);
+\draw[arr, black!40] (wts.south -| act.north) -- (act.north);
+\node[ivn, below=0.6cm of note, text width=3.3cm] (ivn) {\textbf{Interventions}\\[1pt] \emph{flip}: the agent's own prediction for another object\\ \emph{remove}: no prediction};
+\draw[darr] (ivn) -- (note);
+\node[read, below=0.6cm of act.south west, anchor=north west, text width=3.7cm] (read) {\textbf{Reading}\\[1pt] the action follows the flip: the prediction steers the step\\ the action survives removal: the prediction is not needed};
+\draw[arr, black!40] (act.south) -- (act.south |- read.north);
+\end{tikzpicture}
+\caption{The question and the design. Before each search step the agent writes where it expects the target. Fine-tuning puts the location knowledge into the weights, from which it can reach the action directly or through the written prediction. We fine-tune on data that differ only in how predictions and actions are coupled. At the first search step, where the prediction is the only location information in context, we flip or remove the prediction and record where the agent goes. Each training arm is also compared with what a perfect imitator of its data would do.}
+\label{fig:overview}
+\end{figure*}

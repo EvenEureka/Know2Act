@@ -1,0 +1,500 @@
+{"idx": 0, "model": "qwen3-8b", "response": "toilet, cabinet, countertop, sinkbasin, bathtubbasin, garbagecan, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 1, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, microwave, garbagecan, stoveburner, toaster, sidetable"}
+{"idx": 2, "model": "qwen3-8b", "response": "shelf, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, toiletpaperhanger, towelholder"}
+{"idx": 3, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, shelf, garbagecan, towelholder, handtowelholder, toilet, toiletpaperhanger, bathtubbasin"}
+{"idx": 4, "model": "qwen3-8b", "response": "shelf, dresser, drawer, bed, garbagecan, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf"}
+{"idx": 5, "model": "qwen3-8b", "response": "drawer, sidetable, diningtable, garbagecan, bed, cabinet"}
+{"idx": 6, "model": "qwen3-8b", "response": "drawer, sidetable, diningtable, garbagecan, bed, cabinet"}
+{"idx": 7, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 8, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 9, "model": "qwen3-8b", "response": "fridge, cabinet, drawer, countertop, sinkbasin, stoveburner, microwave, toaster, garbagecan, coffeemachine"}
+{"idx": 10, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 11, "model": "qwen3-8b", "response": "sidetable, armchair, coffeetable, diningtable, garbagecan, sofa, receptacle"}
+{"idx": 12, "model": "qwen3-8b", "response": "fridge, cabinet, countertop, drawer, sinkbasin, diningtable, toaster, microwave, stoveburner, garbagecan"}
+{"idx": 13, "model": "qwen3-8b", "response": "cabinet, countertop, bathtubbasin, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 14, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, desk, garbagecan, safe, bed, cabinet, countertop, shelf, table, chair, floor, window, door, wall, ceiling, mirror, lamp, desklamp, alarmclock, clock, timer, device, object, item, thing, entity, container, receptacle, holder, stand, base, frame, cover, panel, surface, edge, corner, side, top, bottom, back, front, left, right, inside, outside, above, below, near, far, next to, under, over, behind, in front of, to the left of, to the right of, on, off, up, down, open, closed, locked, unlocked, empty, full, clean, dirty, broken, working, broken, damaged, intact, functional, non-functional, static, moving, still, active, inactive, visible, hidden, transparent, opaque, reflective, non-reflective, metallic, wooden, plastic, glass, fabric, leather, paper, stone, metal, wood, plastic, glass, fabric, leather, paper, stone, metal, wood, plastic, glass, fabric, leather, paper, stone, metal, wood, plastic, glass, fabric,"}
+{"idx": 15, "model": "qwen3-8b", "response": "sinkbasin, shelf, towelholder, handtowelholder, garbagecan, bathtubbasin, cart, toilet, toiletpaperhanger"}
+{"idx": 16, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, microwave, stoveburner, garbagecan, toaster"}
+{"idx": 17, "model": "qwen3-8b", "response": "coffeetable, diningtable, sidetable, tvstand, drawer, garbagecan, armchair, sofa, diningtable, sidetable, tvstand, drawer, garbagecan, armchair, sofa"}
+{"idx": 18, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 19, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 20, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, diningtable, garbagecan"}
+{"idx": 21, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, diningtable, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 22, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 23, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, towelholder, handtowelholder, garbagecan, toilet"}
+{"idx": 24, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, diningtable, microwave, garbagecan, stoveburner, toaster, sidetable, coffeemachine, stoveburner, sinkbasin, diningtable, cabinet, drawer, fridge, microwave, garbagecan, stoveburner, toaster, coffeemachine, sinkbasin, diningtable, cabinet, drawer, fridge, microwave, garbagecan, stoveburner, toaster, coffeemachine, sinkbasin, diningtable, cabinet, drawer, fridge, microwave, garbagecan, stoveburner, toaster, coffeemachine, sinkbasin, diningtable, cabinet, drawer, fridge, microwave, garbagecan, stoveburner, toaster, coffeemachine, sinkbasin, diningtable, cabinet, drawer, fridge, microwave, garbagecan, stoveburner, toaster, coffeemachine, sinkbasin, diningtable, cabinet, drawer, fridge, microwave, garbagecan, stoveburner, toaster, coffeemachine, sinkbasin, diningtable, cabinet, drawer, fridge, microwave, garbagecan, stoveburner, toaster, coffeemachine, sinkbasin, diningtable, cabinet, drawer, fridge, microwave, garbagecan, stoveburner"}
+{"idx": 25, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, diningtable, sinkbasin, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 26, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, diningtable, garbagecan, coffeemachine"}
+{"idx": 27, "model": "qwen3-8b", "response": "cabinet, drawer, fridge, countertop, sinkbasin, diningtable, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 28, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, handtowelholder, sinkbasin, toilet, towelholder, bathtubbasin"}
+{"idx": 29, "model": "qwen3-8b", "response": "shelf, sidetable, desk, drawer, garbagecan, bed"}
+{"idx": 30, "model": "qwen3-8b", "response": "drawer, cabinet, sidetable, dresser, garbagecan, armchair, sofa, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer"}
+{"idx": 31, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 32, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 33, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, desk, garbagecan, bed"}
+{"idx": 34, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, diningtable, stoveburner, microwave, garbagecan, toaster, coffeemachine"}
+{"idx": 35, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, sidetable, stoveburner, toaster"}
+{"idx": 36, "model": "qwen3-8b", "response": "shelf, drawer, sidetable, garbagecan, safe, bed, desk"}
+{"idx": 37, "model": "qwen3-8b", "response": "cabinet, fridge, countertop, drawer, sinkbasin, diningtable, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 38, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, coffeetable, garbagecan, sofa, armchair"}
+{"idx": 39, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, microwave, garbagecan, stoveburner, toaster, coffeemachine"}
+{"idx": 40, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, fridge, sinkbasin, diningtable, garbagecan, microwave, toaster, stoveburner, coffeemachine, drawer, cabinet, countertop, fridge, sinkbasin, diningtable, garbagecan, microwave, toaster, stoveburner, coffeemachine"}
+{"idx": 41, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, fridge, sinkbasin, diningtable, garbagecan, microwave, toaster, stoveburner, coffeemachine, stoveburner, stoveburner, stoveburner, toaster, microwave, sinkbasin, fridge, diningtable, countertop, countertop, countertop, drawer, drawer, drawer, drawer, drawer, drawer, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet"}
+{"idx": 42, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, bathtubbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 43, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, sinkbasin, diningtable, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 44, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, sinkbasin, bathtubbasin, toilet, towelholder, handtowelholder, toiletpaperhanger"}
+{"idx": 45, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 46, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 47, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, diningtable, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 48, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, stoveburner, microwave, garbagecan, toaster, coffeemachine"}
+{"idx": 49, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, sinkbasin, diningtable, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 50, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 51, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, sinkbasin, drawer, fridge, diningtable, stoveburner, microwave, toaster, garbagecan, coffeemachine, stoveburner, sinkbasin"}
+{"idx": 52, "model": "qwen3-8b", "response": "sinkbasin, cabinet, countertop, garbagecan, handtowelholder, toilet, toiletpaperhanger, towelholder"}
+{"idx": 53, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, diningtable, microwave, garbagecan, stoveburner, toaster, sidetable"}
+{"idx": 54, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, ottoman, garbagecan, diningtable, armchair, sofa, desklamp"}
+{"idx": 55, "model": "qwen3-8b", "response": "cabinet, drawer, sidetable, dresser, garbagecan, sofa, armchair, dresser, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer,"}
+{"idx": 56, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, diningtable, sinkbasin, fridge, garbagecan, microwave, sidetable, stoveburner, toaster, coffeemachine"}
+{"idx": 57, "model": "qwen3-8b", "response": "countertop, cabinet, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 58, "model": "qwen3-8b", "response": "sinkbasin, cabinet, fridge, countertop, microwave, toaster, stoveburner, garbagecan, coffeemachine"}
+{"idx": 59, "model": "qwen3-8b", "response": "tvstand, shelf, sofa, armchair, coffeetable, garbagecan"}
+{"idx": 60, "model": "qwen3-8b", "response": "shelf, desk, garbagecan, bed, receptacle"}
+{"idx": 61, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, fridge, diningtable, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 62, "model": "qwen3-8b", "response": "sinkbasin, shelf, towelholder, handtowelholder, garbagecan, bathtubbasin, toilet, toiletpaperhanger, cart, towelholder, handtowelholder, shelf, shelf, shelf, shelf, sinkbasin, toilet, toiletpaperhanger, cart, towelholder, handtowelholder, shelf, shelf, shelf, shelf, sinkbasin, toilet, toiletpaperhanger, cart, towelholder, handtowelholder, shelf, shelf, shelf, shelf, sinkbasin, toilet, toiletpaperhanger, cart, towelholder, handtowelholder, shelf, shelf, shelf, shelf, sinkbasin, toilet, toiletpaperhanger, cart, towelholder, handtowelholder, shelf, shelf, shelf, shelf, sinkbasin, toilet, toiletpaperhanger, cart, towelholder, handtowelholder, shelf, shelf, shelf, shelf, sinkbasin, toilet, toiletpaperhanger, cart, towelholder, handtowelholder, shelf, shelf, shelf, shelf, sinkbasin, toilet, toiletpaperhanger, cart, towelholder, handtowelholder, shelf, shelf, shelf, shelf"}
+{"idx": 63, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, fridge, sinkbasin, garbagecan, microwave, toaster, stoveburner, coffeemachine"}
+{"idx": 64, "model": "qwen3-8b", "response": "drawer, shelf, dresser, bed, desk, garbagecan, laundryhamper"}
+{"idx": 65, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, fridge, sinkbasin, diningtable, garbagecan, microwave, toaster, stoveburner, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sink"}
+{"idx": 66, "model": "qwen3-8b", "response": "shelf, sidetable, drawer, armchair, diningtable, garbagecan, sofa"}
+{"idx": 67, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, garbagecan, dresser, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 68, "model": "qwen3-8b", "response": "cabinet, countertop, diningtable, drawer, fridge, garbagecan, microwave, sinkbasin, stoveburner, toaster"}
+{"idx": 69, "model": "qwen3-8b", "response": "drawer, sidetable, shelf, desk, garbagecan, bed"}
+{"idx": 70, "model": "qwen3-8b", "response": "drawer, cabinet, dresser, desk, bed, armchair, garbagecan"}
+{"idx": 71, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 72, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 73, "model": "qwen3-8b", "response": "toilet, towelholder, handtowelholder, shelf, dresser, garbagecan, sinkbasin, bathtubbasin, drawer, countertop"}
+{"idx": 74, "model": "qwen3-8b", "response": "drawer, shelf, dresser, bed, garbagecan, desk"}
+{"idx": 75, "model": "qwen3-8b", "response": "sidetable, ottoman, armchair, diningtable, sofa, coffeetable, drawer, garbagecan, drawer 1, drawer 2, drawer 3, drawer 4, drawer 5, drawer 6, drawer 7"}
+{"idx": 76, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 77, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, shelf, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 78, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan, diningtable"}
+{"idx": 79, "model": "qwen3-8b", "response": "countertop, cabinet, fridge, sinkbasin, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 80, "model": "qwen3-8b", "response": "cabinet, drawer, fridge, countertop, diningtable, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 81, "model": "qwen3-8b", "response": "sidetable, dresser, bed, drawer, garbagecan, safe, desk"}
+{"idx": 82, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, sinkbasin, diningtable, microwave, stoveburner, garbagecan, toaster"}
+{"idx": 83, "model": "qwen3-8b", "response": "drawer, shelf, desk, laundryhamper, garbagecan, bed"}
+{"idx": 84, "model": "qwen3-8b", "response": "sinkbasin, drawer, bathtubbasin, sidetable, towelholder, handtowelholder, garbagecan, toilet, toiletpaperhanger"}
+{"idx": 85, "model": "qwen3-8b", "response": "drawer, shelf, dresser, sidetable, bed, desk, garbagecan"}
+{"idx": 86, "model": "qwen3-8b", "response": "tvstand, shelf, sofa, coffeetable, armchair, garbagecan"}
+{"idx": 87, "model": "qwen3-8b", "response": "drawer, countertop, handtowelholder, towelholder, garbagecan, bathtubbasin, sinkbasin, toilet, toiletpaperhanger"}
+{"idx": 88, "model": "qwen3-8b", "response": "drawer, countertop, sinkbasin, bathtubbasin, towelholder, handtowelholder, garbagecan, toilet, toiletpaperhanger"}
+{"idx": 89, "model": "qwen3-8b", "response": "drawer, sidetable, countertop, dresser, diningtable, laundryhamper, garbagecan, bed"}
+{"idx": 90, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, fridge, sinkbasin, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 91, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, shelf, garbagecan, bed, armchair"}
+{"idx": 92, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, garbagecan, microwave, safe, stoveburner, toaster, coffeemachine"}
+{"idx": 93, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, coffeetable, diningtable, armchair, sofa, garbagecan"}
+{"idx": 94, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, toilet, toiletpaperhanger, towelholder"}
+{"idx": 95, "model": "qwen3-8b", "response": "shelf, cabinet, drawer, countertop, fridge, diningtable, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine, shelf, cabinet, drawer, countertop, fridge, diningtable, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 96, "model": "qwen3-8b", "response": "drawer, countertop, shelf, sinkbasin, bathtubbasin, dresser, garbagecan, handtowelholder, towelholder, toiletpaperhanger, toilet"}
+{"idx": 97, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 98, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 99, "model": "qwen3-8b", "response": "drawer, countertop, sinkbasin, towelholder, handtowelholder, garbagecan, toilet, toiletpaperhanger"}
+{"idx": 100, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan, coffeemachine"}
+{"idx": 101, "model": "qwen3-8b", "response": "drawer, dresser, desk, garbagecan, bed"}
+{"idx": 102, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, garbagecan, safe, desk, bed"}
+{"idx": 103, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, ottoman, garbagecan, diningtable, armchair, sofa"}
+{"idx": 104, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 105, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, diningtable, coffeemachine, stoveburner"}
+{"idx": 106, "model": "qwen3-8b", "response": "shelf, dresser, desk, garbagecan, bed, drawer"}
+{"idx": 107, "model": "qwen3-8b", "response": "fridge, cabinet, drawer, shelf, sinkbasin, countertop, microwave, garbagecan, toaster, stoveburner"}
+{"idx": 108, "model": "qwen3-8b", "response": "sinkbasin, fridge, cabinet, drawer, countertop, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 109, "model": "qwen3-8b", "response": "desk, shelf, sidetable, drawer, garbagecan, bed"}
+{"idx": 110, "model": "qwen3-8b", "response": "sidetable, shelf, drawer, bed, garbagecan, safe, desklamp"}
+{"idx": 111, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 112, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toiletpaperhanger, toilet"}
+{"idx": 113, "model": "qwen3-8b", "response": "drawer, cabinet, sinkbasin, fridge, countertop, diningtable, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 114, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, sinkbasin, microwave, stoveburner, garbagecan, toaster, coffeemachine"}
+{"idx": 115, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 116, "model": "qwen3-8b", "response": "drawer, sidetable, diningtable, armchair, garbagecan, tvstand, sofa, coffeetable"}
+{"idx": 117, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, fridge, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 118, "model": "qwen3-8b", "response": "sinkbasin, shelf, towelholder, handtowelholder, garbagecan, bathtubbasin, toilet, toiletpaperhanger, towelholder"}
+{"idx": 119, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, shelf, sinkbasin, fridge, stoveburner, microwave, toaster, diningtable, garbagecan, coffeemachine, stoveburner"}
+{"idx": 120, "model": "qwen3-8b", "response": "shelf, table, drawer, cabinet, safe, stand, chair, sofa, can, diningtable, tvstand, armchair, desk"}
+{"idx": 121, "model": "qwen3-8b", "response": "drawer, sidetable, diningtable, garbagecan, bed, cabinet"}
+{"idx": 122, "model": "qwen3-8b", "response": "toilet, cabinet, countertop, garbagecan, bathtubbasin, sinkbasin, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 123, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, diningtable, garbagecan, toaster"}
+{"idx": 124, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, diningtable, armchair, sofa, coffeetable, garbagecan"}
+{"idx": 125, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, shelf, garbagecan, bathtubbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 126, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, microwave, stoveburner, toaster, garbagecan, sidetable, coffeemachine, diningtable, stoveburner, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, dining"}
+{"idx": 127, "model": "qwen3-8b", "response": "cabinet, drawer, sidetable, dresser, garbagecan, armchair, sofa, sofa 1, sidetable 1, sidetable 2, sidetable 3, sidetable 4, sidetable 5, drawer 1, drawer 2, drawer 3, drawer 4, drawer 5, drawer 6, drawer 7, drawer 8, drawer 9, drawer 10, drawer 11, drawer 12, drawer 13, drawer 14, drawer 15, drawer 16, drawer 17, drawer 18, drawer 19, drawer 20, drawer 21, armchair 1, dresser 1, garbagecan 1, sidetable 5, sidetable 4, sidetable 3, sidetable 2, sidetable 1, sofa 1"}
+{"idx": 128, "model": "qwen3-8b", "response": "countertop, drawer, sidetable, dresser, diningtable, laundryhamper, garbagecan, bed"}
+{"idx": 129, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, diningtable, garbagecan, coffeemachine, stoveburner"}
+{"idx": 130, "model": "qwen3-8b", "response": "shelf, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, shelf, shelf, shelf, countertop, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet,"}
+{"idx": 131, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, garbagecan, handtowelholder, sinkbasin, toilet, toiletpaperhanger, towelholder, bathtubbasin"}
+{"idx": 132, "model": "qwen3-8b", "response": "sidetable, drawer, armchair, coffeetable, garbagecan, sofa, tvstand, sidetable"}
+{"idx": 133, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, stoveburner, diningtable, garbagecan, microwave, safe, toaster, coffeemachine, drawer, cabinet, countertop, sinkbasin, fridge, stoveburner, diningtable, garbagecan, microwave, safe, toaster, coffeemachine"}
+{"idx": 134, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, desk, garbagecan, safe, bed"}
+{"idx": 135, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, diningtable, fridge, garbagecan, microwave, sinkbasin, stoveburner, toaster"}
+{"idx": 136, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, diningtable, fridge, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 137, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 138, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 139, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan, safe, diningtable, coffeemachine"}
+{"idx": 140, "model": "qwen3-8b", "response": "fridge, cabinet, shelf, drawer, countertop, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 141, "model": "qwen3-8b", "response": "fridge, cabinet, shelf, drawer, countertop, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 142, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan"}
+{"idx": 143, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 144, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 145, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 146, "model": "qwen3-8b", "response": "desk, shelf, drawer, bed, garbagecan, laundryhamper, safe"}
+{"idx": 147, "model": "qwen3-8b", "response": "desk, shelf, drawer, bed, garbagecan, laundryhamper, safe"}
+{"idx": 148, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe, bed"}
+{"idx": 149, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, toaster, stoveburner, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbas"}
+{"idx": 150, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, toaster, stoveburner, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbas"}
+{"idx": 151, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, toaster, stoveburner, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine, sinkbas"}
+{"idx": 152, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 153, "model": "qwen3-8b", "response": "sinkbasin, cabinet, countertop, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 154, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine"}
+{"idx": 155, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 156, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 157, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 158, "model": "qwen3-8b", "response": "shelf, countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, toaster, garbagecan, microwave"}
+{"idx": 159, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 160, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 161, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe, bed"}
+{"idx": 162, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 163, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 164, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 165, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 166, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe"}
+{"idx": 167, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe, bed"}
+{"idx": 168, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe"}
+{"idx": 169, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 170, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 171, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 172, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, toilet, towelholder, toiletpaperhanger"}
+{"idx": 173, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 174, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, toilet, towelholder, toiletpaperhanger"}
+{"idx": 175, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 176, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 177, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 178, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 179, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 180, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 181, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, shelf, fridge, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 182, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, shelf, fridge, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 183, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 184, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 185, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 186, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 187, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, countertop, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan, coffeemachine, stoveburner, sinkbasin, countertop, drawer, cabinet, shelf, fridge, microwave, toaster, garbagecan, coffeemachine"}
+{"idx": 188, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, countertop, sinkbasin, fridge, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 189, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, sidetable, dresser, armchair, garbagecan, safe, sofa, dresser, cabinet, cabinet, cabinet, drawer, drawer, drawer, drawer, drawer, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, sidetable, sofa"}
+{"idx": 190, "model": "qwen3-8b", "response": "cabinet, shelf, drawer, dresser, sidetable, armchair, sofa, garbagecan, safe"}
+{"idx": 191, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, sidetable, dresser, armchair, garbagecan, safe, sofa, dresser, cabinet, cabinet, cabinet, drawer, drawer, drawer, drawer, drawer, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, sidetable, sofa"}
+{"idx": 192, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, dresser, garbagecan, sofa, armchair, safe"}
+{"idx": 193, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, dresser, garbagecan, sofa, armchair, safe"}
+{"idx": 194, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 195, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 196, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 197, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 198, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 199, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 200, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe, bed"}
+{"idx": 201, "model": "qwen3-8b", "response": "shelf, desk, drawer, garbagecan, laundryhamper, safe"}
+{"idx": 202, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe, bed"}
+{"idx": 203, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 204, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 205, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 206, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 207, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 208, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 209, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, microwave, toaster, stoveburner, garbagecan, coffeemachine"}
+{"idx": 210, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, microwave, toaster, stoveburner, garbagecan, coffeemachine"}
+{"idx": 211, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan, coffeemachine"}
+{"idx": 212, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe"}
+{"idx": 213, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe"}
+{"idx": 214, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe"}
+{"idx": 215, "model": "qwen3-8b", "response": "sinkbasin, cabinet, countertop, garbagecan, handtowelholder, toilet, toiletpaperhanger, towelholder"}
+{"idx": 216, "model": "qwen3-8b", "response": "sinkbasin, cabinet, countertop, garbagecan, handtowelholder, toilet, toiletpaperhanger, towelholder"}
+{"idx": 217, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 218, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan"}
+{"idx": 219, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan"}
+{"idx": 220, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 221, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 222, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 223, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, toaster, stoveburner, coffeemachine, sinkbasin"}
+{"idx": 224, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, toaster, stoveburner, coffeemachine, sinkbasin"}
+{"idx": 225, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, toaster, stoveburner, coffeemachine, sinkbasin"}
+{"idx": 226, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 227, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 228, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 229, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 230, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 231, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, dresser, safe, garbagecan, armchair, sofa, drawer, cabinet, cabinet, cabinet, drawer, drawer, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, sidetable, sofa"}
+{"idx": 232, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, dresser, safe, garbagecan, armchair, sofa, drawer, cabinet, cabinet, cabinet, drawer, drawer, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, sidetable, sofa"}
+{"idx": 233, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, dresser, safe, garbagecan, armchair, sofa, drawer, cabinet, cabinet, cabinet, drawer, drawer, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, sidetable, sofa"}
+{"idx": 234, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe, bed"}
+{"idx": 235, "model": "qwen3-8b", "response": "desk, shelf, drawer, garbagecan, laundryhamper, safe, bed"}
+{"idx": 236, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe, bed"}
+{"idx": 237, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, garbagecan, microwave, toaster, stoveburner, coffeemachine, sinkbasin"}
+{"idx": 238, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan"}
+{"idx": 239, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan"}
+{"idx": 240, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan"}
+{"idx": 241, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan"}
+{"idx": 242, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan"}
+{"idx": 243, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, dresser, garbagecan, safe, armchair, sofa, dresser, drawer, cabinet, cabinet, cabinet, drawer, drawer, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, sidetable, sofa"}
+{"idx": 244, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, dresser, garbagecan, safe, armchair, sofa, dresser, drawer, cabinet, cabinet, cabinet, drawer, drawer, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, sidetable, sofa"}
+{"idx": 245, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, dresser, garbagecan, safe, armchair, sofa, dresser, drawer, cabinet, cabinet, cabinet, drawer, drawer, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, sidetable, sofa"}
+{"idx": 246, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, toilet, toiletpaperhanger, towelholder"}
+{"idx": 247, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, toilet, toiletpaperhanger, towelholder"}
+{"idx": 248, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 249, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 250, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 251, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 252, "model": "qwen3-8b", "response": "toilet, cabinet, sinkbasin, countertop, garbagecan, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 253, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 254, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 255, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 256, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 257, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 258, "model": "qwen3-8b", "response": "drawer, shelf, desk, garbagecan, laundryhamper, safe"}
+{"idx": 259, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine"}
+{"idx": 260, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine, sinkbasin, stoveburner, toaster, coffeemachine"}
+{"idx": 261, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine, drawer, cabinet, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 262, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 263, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 264, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 265, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 266, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 267, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 268, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, shelf, fridge, garbagecan, microwave, toaster, stoveburner"}
+{"idx": 269, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine, sinkbasin"}
+{"idx": 270, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, shelf, fridge, garbagecan, microwave, toaster, stoveburner"}
+{"idx": 271, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 272, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 273, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 274, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, toaster, stoveburner, garbagecan, coffeemachine"}
+{"idx": 275, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, sinkbasin, drawer, fridge, garbagecan, microwave, stoveburner, toaster, diningtable, coffeemachine, stoveburner, sinkbasin"}
+{"idx": 276, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan, diningtable, coffeemachine, stoveburner, sinkbasin"}
+{"idx": 277, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, bathtubbasin, garbagecan, towelholder, handtowelholder, toilet, toiletpaperhanger"}
+{"idx": 278, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, towelholder, handtowelholder, toilet, toiletpaperhanger"}
+{"idx": 279, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, desk, garbagecan, safe, bed"}
+{"idx": 280, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 281, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, countertop, diningtable, laundryhamper, garbagecan, bed"}
+{"idx": 282, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, diningtable, armchair, garbagecan, sofa, tvstand, coffeetable"}
+{"idx": 283, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 284, "model": "qwen3-8b", "response": "cabinet, drawer, dresser, sidetable, armchair, sofa, coffeetable, garbagecan"}
+{"idx": 285, "model": "qwen3-8b", "response": "shelf, desk, garbagecan, bed, receptacle"}
+{"idx": 286, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, coffeetable, diningtable, garbagecan, sofa, drawer, drawer, drawer, drawer, sidetable, sidetable, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa"}
+{"idx": 287, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, fridge, diningtable, microwave, garbagecan, toaster, stoveburner, sidetable, coffeemachine, diningtable, stoveburner, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable, diningtable"}
+{"idx": 288, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 289, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, shelf, garbagecan, bathtubbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 290, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, fridge, sinkbasin, garbagecan, microwave, toaster, stoveburner, coffeemachine"}
+{"idx": 291, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, desk, garbagecan, bed"}
+{"idx": 292, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan, sidetable, coffeemachine, stoveburner, sinkbasin, countertop, drawer, cabinet, fridge, microwave, toaster, garbagecan, sidetable, coffeemachine"}
+{"idx": 293, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, fridge, sinkbasin, diningtable, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 294, "model": "qwen3-8b", "response": "drawer, sidetable, diningtable, garbagecan, bed"}
+{"idx": 295, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 296, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 297, "model": "qwen3-8b", "response": "sinkbasin, fridge, cabinet, countertop, diningtable, drawer, garbagecan, microwave, sidetable, stoveburner, toaster"}
+{"idx": 298, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, sinkbasin, stoveburner, microwave, toaster, diningtable, garbagecan, coffeemachine, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin, stoveburner, sinkbasin,"}
+{"idx": 299, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, desk, laundryhamper, garbagecan, bed"}
+{"idx": 300, "model": "qwen3-8b", "response": "sidetable, dresser, drawer, laundryhamper, garbagecan, bed, safe, countertop, cabinet, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf"}
+{"idx": 301, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, garbagecan, towelholder, handtowelholder, toilet, toiletpaperhanger, bathtubbasin"}
+{"idx": 302, "model": "qwen3-8b", "response": "sinkbasin, drawer, bathtubbasin, sidetable, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 303, "model": "qwen3-8b", "response": "countertop, cabinet, fridge, sinkbasin, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 304, "model": "qwen3-8b", "response": "drawer, dresser, sidetable, laundryhamper, garbagecan, safe, bed"}
+{"idx": 305, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, sinkbasin, bathtubbasin, towelholder, handtowelholder, toilet, toiletpaperhanger"}
+{"idx": 306, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, diningtable, fridge, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 307, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, microwave, stoveburner, garbagecan, toaster"}
+{"idx": 308, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, diningtable, fridge, garbagecan, microwave, sinkbasin, stoveburner, toaster"}
+{"idx": 309, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, garbagecan, towelholder, handtowelholder, toilet, toiletpaperhanger, bathtubbasin"}
+{"idx": 310, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, safe, garbagecan, diningtable, coffeemachine, stoveburner, sinkbasin, fridge, microwave, toaster, safe, garbagecan, diningtable, coffeemachine"}
+{"idx": 311, "model": "qwen3-8b", "response": "sidetable, shelf, desk, drawer, laundryhamper, garbagecan, bed"}
+{"idx": 312, "model": "qwen3-8b", "response": "drawer, towelholder, sidetable, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, toiletpaperhanger"}
+{"idx": 313, "model": "qwen3-8b", "response": "fridge, cabinet, drawer, countertop, sinkbasin, garbagecan, microwave, toaster, stoveburner, coffeemachine"}
+{"idx": 314, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, garbagecan, microwave, coffeemachine, stoveburner, toaster, stoveburner, stoveburner, stoveburner"}
+{"idx": 315, "model": "qwen3-8b", "response": "drawer, cabinet, sidetable, shelf, desk, garbagecan, bed"}
+{"idx": 316, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, towelholder, handtowelholder, sinkbasin, bathtubbasin, toilet, toiletpaperhanger"}
+{"idx": 317, "model": "qwen3-8b", "response": "drawer, cabinet, sidetable, dresser, garbagecan, bed, armchair"}
+{"idx": 318, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, shelf, bed, garbagecan, desk"}
+{"idx": 319, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, stoveburner, toaster, microwave, diningtable, garbagecan, safe, coffeemachine"}
+{"idx": 320, "model": "qwen3-8b", "response": "shelf, sofa, armchair, tvstand, coffeetable, garbagecan, chair, table, bed, floor, cabinet, drawer, countertop, closet, bookshelf, wardrobe, suitcase, basket, bin, container, box, jar, pot, vessel, bag, pouch, case, frame, panel, screen, panel, stand, mount, bracket, hook, rail, ledge, shelf, wall, ceiling, floor, door, window, mirror, glass, tile, wood, metal, plastic, fabric, leather, stone, glass, ceramic, paper, cardboard, foam, rubber, silk, wool, cotton, linen, polyester, nylon, rayon, acrylic, vinyl, latex, silicone, rubber, plastic, metal, wood, glass, ceramic, paper, cardboard, foam, rubber, silk, wool, cotton, linen, polyester, nylon, rayon, acrylic, vinyl, latex, silicone, rubber, plastic, metal, wood, glass, ceramic, paper, cardboard, foam, rubber, silk, wool, cotton, linen, polyester, nylon, rayon, acrylic, vinyl, latex, silicone, rubber, plastic, metal, wood, glass, ceramic, paper, cardboard, foam, rubber, silk, wool,"}
+{"idx": 321, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, coffeetable, diningtable, garbagecan, sofa, drawer, drawer, drawer, drawer, sidetable, sidetable, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa, sofa"}
+{"idx": 322, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, microwave, stoveburner, garbagecan, toaster"}
+{"idx": 323, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, safe, diningtable, coffeemachine"}
+{"idx": 324, "model": "qwen3-8b", "response": "toilet, towelholder, countertop, cabinet, shelf, garbagecan, sinkbasin, bathtubbasin, handtowelholder, toiletpaperhanger"}
+{"idx": 325, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, sinkbasin, bathtubbasin, garbagecan, handtowelholder, toilet, toiletpaperhanger, towelholder"}
+{"idx": 326, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, diningtable, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 327, "model": "qwen3-8b", "response": "cabinet, drawer, desk, dresser, bed, armchair, garbagecan"}
+{"idx": 328, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, diningtable, microwave, stoveburner, toaster, garbagecan, sidetable"}
+{"idx": 329, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, sinkbasin, stoveburner, microwave, toaster, diningtable, garbagecan, coffeemachine"}
+{"idx": 330, "model": "qwen3-8b", "response": "sinkbasin, towelholder, shelf, handtowelholder, garbagecan, bathtubbasin, toilet, toiletpaperhanger"}
+{"idx": 331, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, countertop, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan, coffeemachine"}
+{"idx": 332, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, diningtable, sinkbasin, microwave, toaster, stoveburner, garbagecan, coffeemachine, sinkbasin, stoveburner, toaster, microwave, fridge, diningtable, countertop, drawer, cabinet"}
+{"idx": 333, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 334, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, diningtable, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, sidetable"}
+{"idx": 335, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, diningtable, fridge, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 336, "model": "qwen3-8b", "response": "drawer, sidetable, diningtable, garbagecan, bed, cabinet"}
+{"idx": 337, "model": "qwen3-8b", "response": "cabinet, fridge, countertop, drawer, sinkbasin, diningtable, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 338, "model": "qwen3-8b", "response": "sinkbasin, cabinet, countertop, drawer, fridge, diningtable, microwave, toaster, stoveburner, garbagecan, coffeemachine, garbagecan, sinkbasin, cabinet, countertop, drawer, fridge, diningtable, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 339, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, diningtable, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 340, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, toaster, stoveburner, garbagecan, coffeemachine"}
+{"idx": 341, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, fridge, diningtable, drawer, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 342, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 343, "model": "qwen3-8b", "response": "toilet, cabinet, countertop, garbagecan, sinkbasin, bathtubbasin, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 344, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, sidetable, stoveburner, microwave, toaster, garbagecan, coffeemachine"}
+{"idx": 345, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, diningtable, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 346, "model": "qwen3-8b", "response": "toilet, towelholder, sinkbasin, drawer, bathtubbasin, garbagecan, sidetable, handtowelholder, toiletpaperhanger"}
+{"idx": 347, "model": "qwen3-8b", "response": "shelf, sidetable, tvstand, drawer, garbagecan, coffeetable, armchair, sofa, shelf, tvstand, shelf, shelf, sofa, armchair, sofa"}
+{"idx": 348, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, diningtable, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 349, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 350, "model": "qwen3-8b", "response": "shelf, towelholder, handtowelholder, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger, towelholder, handtowelholder, shelf, shelf, shelf, garbagecan, bathtubbasin, sinkbasin, toilet, cart, toiletpaperhanger"}
+{"idx": 351, "model": "qwen3-8b", "response": "drawer, cabinet, sidetable, dresser, garbagecan, armchair, sofa, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer"}
+{"idx": 352, "model": "qwen3-8b", "response": "sinkbasin, shelf, towelholder, handtowelholder, garbagecan, bathtubbasin, toilet, toiletpaperhanger, cart"}
+{"idx": 353, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, shelf, fridge, sinkbasin, diningtable, garbagecan, microwave, coffeemachine, stoveburner, toaster, stoveburner, stoveburner, stoveburner"}
+{"idx": 354, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, desk, laundryhamper, garbagecan, bed"}
+{"idx": 355, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan, diningtable, coffeemachine, stoveburner, sinkbasin, fridge, microwave, toaster, garbagecan, diningtable, coffeemachine"}
+{"idx": 356, "model": "qwen3-8b", "response": "drawer, shelf, bed, laundryhamper, garbagecan, desk"}
+{"idx": 357, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, toaster, stoveburner, garbagecan, coffeemachine"}
+{"idx": 358, "model": "qwen3-8b", "response": "sidetable, ottoman, armchair, dresser, drawer, diningtable, garbagecan, sofa, desklamp"}
+{"idx": 359, "model": "qwen3-8b", "response": "sinkbasin, fridge, cabinet, drawer, countertop, diningtable, toaster, microwave, stoveburner, garbagecan"}
+{"idx": 360, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, towelholder, handtowelholder, toilet, toiletpaperhanger"}
+{"idx": 361, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 362, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 363, "model": "qwen3-8b", "response": "toilet, cabinet, drawer, countertop, garbagecan, sinkbasin, towelholder, handtowelholder, dresser, bathtubbasin, toiletpaperhanger"}
+{"idx": 364, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, shelf, fridge, garbagecan, microwave, toaster, stoveburner"}
+{"idx": 365, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, microwave, garbagecan, stoveburner, toaster, sidetable"}
+{"idx": 366, "model": "qwen3-8b", "response": "drawer, cabinet, fridge, countertop, sinkbasin, stoveburner, microwave, toaster, garbagecan, diningtable, coffeemachine"}
+{"idx": 367, "model": "qwen3-8b", "response": "toilet, towelholder, handtowelholder, shelf, garbagecan, cart, bathtubbasin, sinkbasin, toiletpaperhanger"}
+{"idx": 368, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, sinkbasin, diningtable, garbagecan, microwave, toaster, stoveburner, coffeemachine"}
+{"idx": 369, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, garbagecan, bathtubbasin, towelholder, handtowelholder, toilet, toiletpaperhanger"}
+{"idx": 370, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, fridge, sinkbasin, stoveburner, microwave, garbagecan, toaster, diningtable, coffeemachine, stoveburner"}
+{"idx": 371, "model": "qwen3-8b", "response": "drawer, sidetable, shelf, desk, garbagecan, bed"}
+{"idx": 372, "model": "qwen3-8b", "response": "toilet, towelholder, handtowelholder, sinkbasin, garbagecan, drawer, countertop, toiletpaperhanger"}
+{"idx": 373, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, shelf, sinkbasin, fridge, stoveburner, microwave, garbagecan, toaster, coffeemachine"}
+{"idx": 374, "model": "qwen3-8b", "response": "drawer, countertop, shelf, sinkbasin, bathtubbasin, dresser, garbagecan, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 375, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, garbagecan, bathtubbasin, towelholder, handtowelholder, toilet, toiletpaperhanger"}
+{"idx": 376, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 377, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, desk, garbagecan, bed"}
+{"idx": 378, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, diningtable, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 379, "model": "qwen3-8b", "response": "sidetable, ottoman, armchair, dresser, drawer, diningtable, garbagecan, sofa, desklamp"}
+{"idx": 380, "model": "qwen3-8b", "response": "shelf, sidetable, desk, drawer, garbagecan, bed"}
+{"idx": 381, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, desk, garbagecan, bed"}
+{"idx": 382, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, sinkbasin, drawer, fridge, garbagecan, microwave, stoveburner, toaster, diningtable, coffeemachine, stoveburner, sinkbasin"}
+{"idx": 383, "model": "qwen3-8b", "response": "sinkbasin, bathtubbasin, drawer, towelholder, handtowelholder, sidetable, garbagecan, toilet"}
+{"idx": 384, "model": "qwen3-8b", "response": "tvstand, sofa, diningtable, armchair, coffeetable, garbagecan"}
+{"idx": 385, "model": "qwen3-8b", "response": "drawer, cabinet, sidetable, dresser, coffeetable, armchair, garbagecan, sofa"}
+{"idx": 386, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 387, "model": "qwen3-8b", "response": "drawer, dresser, ottoman, armchair, sofa, coffeetable, garbagecan, desklamp"}
+{"idx": 388, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, sinkbasin, fridge, drawer, diningtable, garbagecan, microwave, stoveburner, toaster, coffeemachine, stoveburner"}
+{"idx": 389, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, sinkbasin, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 390, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, diningtable, fridge, garbagecan, microwave, sidetable, sinkbasin, stoveburner, toaster"}
+{"idx": 391, "model": "qwen3-8b", "response": "sidetable, dresser, armchair, sofa, drawer, garbagecan, coffeetable"}
+{"idx": 392, "model": "qwen3-8b", "response": "toiletpaperhanger, towelholder, drawer, sidetable, garbagecan, bathtubbasin, sinkbasin, handtowelholder, toilet"}
+{"idx": 393, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, fridge, sinkbasin, countertop, diningtable, stoveburner, microwave, toaster, coffeemachine, garbagecan, stoveburner"}
+{"idx": 394, "model": "qwen3-8b", "response": "cabinet, countertop, shelf, sinkbasin, bathtubbasin, garbagecan, handtowelholder, toilet, toiletpaperhanger, towelholder"}
+{"idx": 395, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, garbagecan, coffeetable, diningtable, sofa, drawer, drawer, drawer, drawer, sidetable, sidetable, sofa, drawer, drawer, drawer, drawer, sidetable, sidetable, sofa"}
+{"idx": 396, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 397, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, drawer, fridge, microwave, toaster, stoveburner, garbagecan"}
+{"idx": 398, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, diningtable, coffeetable, garbagecan, armchair, sofa, armchair, sidetable, sidetable, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer"}
+{"idx": 399, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, bathtubbasin, garbagecan, towelholder, handtowelholder, toiletpaperhanger, toilet"}
+{"idx": 400, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, garbagecan, bathtubbasin, towelholder, handtowelholder, toilet, toiletpaperhanger"}
+{"idx": 401, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, stoveburner, toaster, sidetable, coffeemachine, microwave, stoveburner, sinkbasin, countertop, drawer, cabinet, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer, drawer,"}
+{"idx": 402, "model": "qwen3-8b", "response": "sinkbasin, drawer, bathtubbasin, garbagecan, handtowelholder, sidetable, toilet, toiletpaperhanger, towelholder"}
+{"idx": 403, "model": "qwen3-8b", "response": "drawer, shelf, laundryhamper, garbagecan, desk, bed, countertop, cabinet"}
+{"idx": 404, "model": "qwen3-8b", "response": "sidetable, shelf, tvstand, drawer, garbagecan, armchair, sofa, coffeetable"}
+{"idx": 405, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, diningtable, microwave, garbagecan, toaster, stoveburner, coffeemachine, sidetable, stoveburner, stoveburner, stoveburner, toaster, sinkbasin, fridge, drawer, cabinet, cabinet, cabinet, cabinet, coffeemachine"}
+{"idx": 406, "model": "qwen3-8b", "response": "cabinet, drawer, dresser, sidetable, armchair, sofa, coffeetable, garbagecan"}
+{"idx": 407, "model": "qwen3-8b", "response": "toilet, towelholder, handtowelholder, sinkbasin, garbagecan, drawer, countertop, toiletpaperhanger"}
+{"idx": 408, "model": "qwen3-8b", "response": "fridge, cabinet, drawer, countertop, sinkbasin, stoveburner, microwave, toaster, garbagecan, sidetable"}
+{"idx": 409, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, bathtubbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 410, "model": "qwen3-8b", "response": "drawer, sidetable, garbagecan, tvstand, sofa, armchair, coffeetable, dresser, cabinet, countertop, shelf, container, box, bag, pouch, envelope, bottle, jar, can, container, case, crate, barrel, drum, tank, vessel, cask, urn, vial, flask, jug, cask, urn, vial, flask, jug"}
+{"idx": 411, "model": "qwen3-8b", "response": "sinkbasin, countertop, cabinet, garbagecan, bathtubbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 412, "model": "qwen3-8b", "response": "toilet, countertop, drawer, garbagecan, sinkbasin, towelholder, handtowelholder, bathtubbasin, toiletpaperhanger"}
+{"idx": 413, "model": "qwen3-8b", "response": "sinkbasin, countertop, shelf, drawer, garbagecan, bathtubbasin, towelholder, handtowelholder, toilet, toiletpaperhanger"}
+{"idx": 414, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, desk, garbagecan, bed"}
+{"idx": 415, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 416, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 417, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 418, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 419, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, countertop, fridge, sinkbasin, diningtable, stoveburner, microwave, toaster, coffeemachine, garbagecan, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet, cabinet"}
+{"idx": 420, "model": "qwen3-8b", "response": "toilet, cabinet, countertop, sinkbasin, garbagecan, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 421, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 422, "model": "qwen3-8b", "response": "drawer, sidetable, bed, diningtable, garbagecan, drawer, drawer, drawer"}
+{"idx": 423, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, desk, bed, garbagecan"}
+{"idx": 424, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 425, "model": "qwen3-8b", "response": "sidetable, dresser, drawer, coffeetable, diningtable, garbagecan, sofa, sofa 1, sidetable 1, sidetable 2, dresser 1, drawer 1, drawer 2, drawer 3, drawer 4, garbagecan 1, diningtable 1, coffeetable 1, sofa 1"}
+{"idx": 426, "model": "qwen3-8b", "response": "sinkbasin, shelf, towelholder, handtowelholder, garbagecan, bathtubbasin, toilet, toiletpaperhanger, towelholder"}
+{"idx": 427, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, diningtable, garbagecan, coffeemachine, stoveburner"}
+{"idx": 428, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, garbagecan, sofa, armchair, coffeetable"}
+{"idx": 429, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, countertop, diningtable, laundryhamper, garbagecan, bed"}
+{"idx": 430, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 431, "model": "qwen3-8b", "response": "countertop, drawer, cabinet, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan, diningtable"}
+{"idx": 432, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, diningtable, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 433, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 434, "model": "qwen3-8b", "response": "drawer, cabinet, sidetable, dresser, coffeetable, garbagecan, armchair, sofa, armchair"}
+{"idx": 435, "model": "qwen3-8b", "response": "drawer, countertop, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 436, "model": "qwen3-8b", "response": "shelf, coffeetable, armchair, sofa, tvstand, garbagecan"}
+{"idx": 437, "model": "qwen3-8b", "response": "sidetable, diningtable, armchair, drawer, tvstand, sofa, garbagecan, coffeetable"}
+{"idx": 438, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 439, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan, diningtable, coffeemachine, stoveburner, sinkbasin"}
+{"idx": 440, "model": "qwen3-8b", "response": "drawer, sidetable, ottoman, armchair, diningtable, coffeetable, garbagecan, sofa, countertop, cabinet"}
+{"idx": 441, "model": "qwen3-8b", "response": "drawer, shelf, dresser, bed, desk, garbagecan"}
+{"idx": 442, "model": "qwen3-8b", "response": "shelf, tvstand, sofa, armchair, coffeetable, garbagecan"}
+{"idx": 443, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 444, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, diningtable, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 445, "model": "qwen3-8b", "response": "sidetable, dresser, drawer, laundryhamper, garbagecan, bed, safe, countertop, cabinet, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf, shelf"}
+{"idx": 446, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, diningtable, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 447, "model": "qwen3-8b", "response": "cabinet, drawer, shelf, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 448, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, diningtable, garbagecan, toaster"}
+{"idx": 449, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan, coffeemachine, sidetable"}
+{"idx": 450, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, diningtable, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 451, "model": "qwen3-8b", "response": "shelf, sidetable, armchair, sofa, coffeetable, garbagecan"}
+{"idx": 452, "model": "qwen3-8b", "response": "drawer, shelf, dresser, bed, desk, garbagecan"}
+{"idx": 453, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, garbagecan, sinkbasin, bathtubbasin, dresser, handtowelholder, toilet, towelholder, toiletpaperhanger"}
+{"idx": 454, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 455, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, microwave, stoveburner, garbagecan, toaster"}
+{"idx": 456, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, diningtable, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 457, "model": "qwen3-8b", "response": "drawer, sidetable, shelf, diningtable, garbagecan, bed"}
+{"idx": 458, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, garbagecan, sinkbasin, bathtubbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 459, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, desk, garbagecan, safe, bed"}
+{"idx": 460, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, shelf, garbagecan, bathtubbasin, toilet, handtowelholder, towelholder, cart"}
+{"idx": 461, "model": "qwen3-8b", "response": "sidetable, shelf, drawer, garbagecan, safe, bed, desk"}
+{"idx": 462, "model": "qwen3-8b", "response": "tvstand, shelf, sofa, coffeetable, armchair, garbagecan"}
+{"idx": 463, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, diningtable, sinkbasin, fridge, microwave, toaster, stoveburner, garbagecan, coffeemachine, sinkbasin, stoveburner, countertop, diningtable, sinkbasin, fridge, microwave, toaster, stoveburner, garbagecan, coffeemachine"}
+{"idx": 464, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, diningtable, garbagecan, coffeemachine"}
+{"idx": 465, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, sinkbasin, fridge, drawer, stoveburner, microwave, toaster, garbagecan, diningtable, coffeemachine, stoveburner, sinkbasin"}
+{"idx": 466, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, diningtable, garbagecan, coffeemachine"}
+{"idx": 467, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, fridge, sinkbasin, diningtable, garbagecan, microwave, toaster, stoveburner, coffeemachine"}
+{"idx": 468, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, desk, bed, garbagecan"}
+{"idx": 469, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan"}
+{"idx": 470, "model": "qwen3-8b", "response": "countertop, cabinet, fridge, sinkbasin, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 471, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, drawer, sinkbasin, fridge, stoveburner, microwave, toaster, garbagecan, diningtable, coffeemachine, stoveburner, sinkbasin"}
+{"idx": 472, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, fridge, countertop, diningtable, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine, sinkbasin"}
+{"idx": 473, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, sinkbasin, fridge, diningtable, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 474, "model": "qwen3-8b", "response": "sidetable, ottoman, armchair, dresser, drawer, diningtable, garbagecan, sofa, desklamp"}
+{"idx": 475, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, bathtubbasin, garbagecan, handtowelholder, toilet, towelholder"}
+{"idx": 476, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, garbagecan, handtowelholder, sinkbasin, toilet, toiletpaperhanger, towelholder, bathtubbasin"}
+{"idx": 477, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, fridge, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 478, "model": "qwen3-8b", "response": "drawer, cabinet, countertop, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 479, "model": "qwen3-8b", "response": "drawer, cabinet, shelf, sidetable, desk, garbagecan, bed"}
+{"idx": 480, "model": "qwen3-8b", "response": "drawer, countertop, dresser, sidetable, diningtable, laundryhamper, garbagecan, bed"}
+{"idx": 481, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, shelf, sinkbasin, fridge, garbagecan, microwave, stoveburner, toaster, coffeemachine"}
+{"idx": 482, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, sinkbasin, stoveburner, microwave, toaster, garbagecan, diningtable"}
+{"idx": 483, "model": "qwen3-8b", "response": "drawer, sidetable, dresser, coffeetable, garbagecan, sofa, armchair"}
+{"idx": 484, "model": "qwen3-8b", "response": "drawer, dresser, desk, garbagecan, bed"}
+{"idx": 485, "model": "qwen3-8b", "response": "countertop, cabinet, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 486, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, towelholder, handtowelholder, garbagecan, toilet, toiletpaperhanger, garbagecan"}
+{"idx": 487, "model": "qwen3-8b", "response": "sinkbasin, countertop, drawer, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger, bathtubbasin"}
+{"idx": 488, "model": "qwen3-8b", "response": "drawer, cabinet, sidetable, desk, bed, armchair, laundryhamper, garbagecan, safe"}
+{"idx": 489, "model": "qwen3-8b", "response": "cabinet, countertop, bathtubbasin, sinkbasin, garbagecan, handtowelholder, towelholder, toilet, toiletpaperhanger"}
+{"idx": 490, "model": "qwen3-8b", "response": "countertop, cabinet, shelf, garbagecan, bathtubbasin, sinkbasin, toilet, handtowelholder, towelholder, toiletpaperhanger"}
+{"idx": 491, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, sinkbasin, fridge, diningtable, microwave, stoveburner, toaster, garbagecan"}
+{"idx": 492, "model": "qwen3-8b", "response": "cabinet, countertop, drawer, fridge, diningtable, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 493, "model": "qwen3-8b", "response": "countertop, cabinet, drawer, fridge, diningtable, sinkbasin, stoveburner, microwave, garbagecan, toaster"}
+{"idx": 494, "model": "qwen3-8b", "response": "cabinet, drawer, countertop, diningtable, fridge, sinkbasin, stoveburner, toaster, microwave, garbagecan, coffeemachine"}
+{"idx": 495, "model": "qwen3-8b", "response": "drawer, shelf, sidetable, desk, bed, laundryhamper, garbagecan"}
+{"idx": 496, "model": "qwen3-8b", "response": "sinkbasin, fridge, cabinet, countertop, drawer, diningtable, garbagecan, microwave, stoveburner, toaster"}
+{"idx": 497, "model": "qwen3-8b", "response": "tvstand, shelf, sofa, armchair, coffeetable, garbagecan"}
+{"idx": 498, "model": "qwen3-8b", "response": "shelf, armchair, sofa, coffeetable, tvstand, garbagecan"}
+{"idx": 499, "model": "qwen3-8b", "response": "countertop, cabinet, fridge, sinkbasin, microwave, toaster, stoveburner, garbagecan"}

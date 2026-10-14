@@ -1,0 +1,15 @@
+{
+  "base_model": "Qwen/Qwen3-4B",
+  "thinking": "off (chat template enable_thinking=False)",
+  "trainer": "scripts/sft_train.py",
+  "lam": 0.0,
+  "loss": "token-level cross-entropy on assistant tokens (note lines and actions); observation tokens and loss-masked spans are not supervised",
+  "lr": 1e-05,
+  "schedule": "linear warmup (3% of steps) then cosine decay",
+  "epochs": 1,
+  "global_batch": 64,
+  "max_len": 12288,
+  "gpus": 2,
+  "optimizer": "AdamW (betas 0.9/0.95, eps 1e-8, weight decay 0), ZeRO-1, fp32 master weights, bf16 autocast",
+  "seed": "data-order seed d equals the construction draw d of the arm's data"
+}

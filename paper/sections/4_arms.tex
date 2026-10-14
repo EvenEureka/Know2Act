@@ -1,0 +1,40 @@
+\section{Training Arms That Differ in One Respect}
+\label{sec:arms}
+
+All arms fine-tune Qwen3-4B \citep{yang2025qwen3} with thinking disabled. The hyperparameters are identical across arms (learning rate $10^{-5}$, one epoch, global batch 64, maximum length 12,288 tokens). The loss covers the agent's own tokens, that is the note lines and the actions. Observations are never supervised.
+
+Each arm changes one thing relative to the reference arm \arm{N100}.\footnote{Arm names follow the registered protocol. \arm{N100} has fully reliable notes, \arm{NQ}$q$ turns $q$\% of the real notes into foils, the suffix \arm{op} marks a supervised opener, \arm{M} marks a masked action loss, and \arm{SA50} makes 50\% of search actions follow the standard prior (\arm{v2} is the protocol's version label).} Table~\ref{tab:arms} summarises them. We write $S_{\text{data}}$ for the share of real-form notes in the training data whose top type is the receptacle type the teacher visits next.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{@{}lp{0.58\columnwidth}c@{}}
+\toprule
+Arm & Change relative to \arm{N100} & $S_{\text{data}}$ \\
+\midrule
+\arm{N100} & none; every note is followed & 1.00 \\
+\arm{NQ50op} & half of the real notes are foils; actions unchanged & 0.51 \\
+\arm{NQ25op} & a quarter of the real notes are foils & 0.75 \\
+\arm{NQ50} & as \arm{NQ50op}, whole foil note unsupervised & 0.51 \\
+\arm{SA50v2} & half of all search actions follow the standard prior & 0.66 \\
+\arm{N100M} & no loss on actions taken without a note & 1.00 \\
+\bottomrule
+\end{tabular}
+\caption{Training arms. The primary arms \arm{N100} and \arm{NQ50op} have eight seeds each; the other arms have three. A seed fixes both the random draws used to build the data and the data order.}
+\label{tab:arms}
+\end{table}
+
+\paragraph{\arm{N100}.}
+Trajectories come from T$^+$. Every real note states the convention, and the next action visits its top type. Note and convention never disagree, so the data cannot tell a learner whether the action follows the note or follows what the weights know about the object.
+
+\paragraph{Contradicted notes: \arm{NQ50op}, \arm{NQ25op}, \arm{NQ50}.}
+These arms keep \arm{N100}'s trajectories and actions token for token. At a fraction $q$ of real-note decision points ($q=0.5$ or $0.25$), the note is replaced by a \emph{foil}, which is the convention ranking of another learnable class of the same scene type, written in the same template. The action still visits the true convention.
+
+In \arm{NQ50op} and \arm{NQ25op} the foil's receptacle names are excluded from the loss, so the model never learns to write a foil. The opener and template of the foil remain supervised. As a result, the share of decision points at which writing a note is supervised is exactly that of \arm{N100}: 0.69--0.71 depending on the draw. \arm{NQ50} excludes the whole foil note from the loss, which lowers that share to 0.39. Comparing \arm{NQ50} with \arm{NQ50op} checks whether writing fewer notes changes the result.
+
+\paragraph{Action-side unreliability: \arm{SA50v2}.}
+Notes are always correct, but at every fallback decision point a coin decides whether the teacher takes the convention-following step or the standard-prior step. This happens whether or not a note is written, so the presence of a note does not predict a deviation. In the data the deviation rate is 0.50 with and without a note, and a $\chi^2$ test of independence does not reject at any position or draw.
+
+Standard-prior steps lengthen the search. The arm is therefore subsampled to the same number of fallback decision points as \arm{N100}, about 6,600 of 8,148 trajectories.
+
+\paragraph{No action loss without a note: \arm{N100M}.}
+\arm{N100M} is \arm{N100} with the action loss removed at decision points that carry no note (30\%). The model is never trained to act without a note. Section~\ref{sec:related} compares this mask with the action-loss masking of \citet{liu2026cotgains}.

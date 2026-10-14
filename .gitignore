@@ -1,25 +1,17 @@
-# large or machine-specific outputs (not part of the repository)
-data/*
-!data/sft/
-data/sft/*
-!data/sft/*.json
-results/eval/
-results/sft/
-results/grpo/
-results/exec_cache/
-results/pilots/
-logs/
-containers/*.sif
-skyrl-upstream/
-.skyrl_venv/
-.uv-cache/
+# generated data, model weights and run outputs (not part of the repository)
+data/
+runs/
+results/test/*/rollouts.shard*.jsonl
+results/test/*/interventions.shard*.jsonl
+results/test/*/cf_rollouts.shard*.jsonl
+*.safetensors
+*.bin
 __pycache__/
 *.pyc
-# LaTeX build files
+# LaTeX build files (paper/manuscript.pdf is kept)
 paper/*.aux
 paper/*.log
 paper/*.bbl
 paper/*.blg
 paper/*.out
 paper/main.pdf
-paper/main_public.*

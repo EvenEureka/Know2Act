@@ -1,0 +1,18 @@
+{
+  "rollouts": "greedy, at most 50 steps, same system prompt and stream format as training",
+  "decision_point": "a `go to` taken while the target has never been seen, with >= 2 receptacle types unvisited; p = 0 is the first in the episode",
+  "conditions": {
+    "intact": "the model's own note",
+    "flip": "the model's own note for another learnable class o' of the same scene type (o' uniform among classes whose top type is unvisited and differs from the intact top), renamed back to the target",
+    "remove": "no note line",
+    "placebo": "same template, remaining types in alphabetical order (trained form; manipulation check)",
+    "random": "same template, random order of the remaining types (never trained)",
+    "presence": "same template with every type slot = 'receptacle' (content-free)",
+    "flip_tmpl": "p = 0 only: template ranking of the same o' (equivalence check)",
+    "nh_intact / nh_flip": "p >= 1 only: earlier <prediction> lines removed from the history"
+  },
+  "samples": {"K": 4, "temperature": 0.7, "common_random_numbers": true},
+  "counterfactual_rollouts": "greedy episodes with a forced template note for o' (cf_foil) or for the true class (cf_true) at every note slot",
+  "primary_estimand": "S_flip@first = P(type = foil top | flip) - P(same | intact) at p = 0, learnable classes, one decision point per game",
+  "primary_population": "test games from held-out floor plans + valid_unseen; valid_seen reported separately"
+}

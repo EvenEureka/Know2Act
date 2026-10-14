@@ -1,7 +1,7 @@
-% ARR / EMNLP long-paper submission (review mode, anonymous).
-% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main
+% Know2Act (ALF-CF study). ACL style, non-anonymous manuscript.
+% Build: ./build.sh   (pdflatex main && bibtex main && pdflatex main && pdflatex main)
 \documentclass[11pt]{article}
-\usepackage[review]{acl}
+\usepackage[final]{acl}
 
 \usepackage{times}
 \usepackage{latexsym}
@@ -11,50 +11,44 @@
 \usepackage{inconsolata}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{multirow}
+\usepackage{array}
 \usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumitem}
-\usepackage{fancyvrb}
-\usepackage{placeins}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing}
-% MemoHarness / SkillRC figure palette
-\definecolor{phaseA}{HTML}{6F9AD3}
-\definecolor{phaseB}{HTML}{B07A8F}
-\definecolor{gptblue}{HTML}{5F86C2}
-\definecolor{qwenmint}{HTML}{4FA58C}
-\definecolor{salmon}{HTML}{D9735A}
-\definecolor{sand}{HTML}{B8923A}
-\definecolor{contractv}{HTML}{6B4C9A}
+\usetikzlibrary{arrows.meta,positioning}
 
-\input{math_commands}
+\newcommand{\alfcf}{ALF-CF}
+\newcommand{\sflip}{S_{\mathrm{flip}}}
+\newcommand{\sflipfirst}{S_{\mathrm{flip}}^{\mathrm{first}}}
+\newcommand{\sstar}{S_{\mathrm{flip}}^{*}}
+\newcommand{\arm}[1]{\textsc{#1}}
 
-\title{Know2Act: What Knowledge Reaches\\a Tool-Using Agent's Actions?}
+\title{Know2Act: When Does an Agent's Written Prediction Control Its Next Action?}
 
-\author{Anonymous ARR Submission}
+\author{Yiwen Lu \\
+  University of Notre Dame \\
+  \texttt{ylu37@nd.edu} \\
+  Manuscript, 2026 \\
+  {\small Code, protocol texts and per-model read-outs: \url{https://github.com/EvenEureka/Know2Act}}}
 
 \begin{document}
 \maketitle
 
-\begin{abstract}
 \input{sections/0_abstract}
-\end{abstract}
-
 \input{sections/1_introduction}
-\input{sections/2_method}
-\input{sections/3_main_results}
-\input{sections/4_not_used}
-\input{sections/5_what_reaches}
-\input{sections/6_related_work}
+\input{sections/2_related}
+\input{sections/3_setting}
+\input{sections/4_arms}
+\input{sections/5_measurement}
+\input{sections/6_results}
 \input{sections/7_conclusion}
-
 \input{sections/limitations}
 
 \bibliography{references}
 
 \appendix
-\input{sections/A_appendix}
+\input{sections/appendix}
 
 \end{document}

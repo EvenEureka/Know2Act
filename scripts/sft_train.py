@@ -1,22 +1,20 @@
-"""SFT with per-token class masks: ActionSFT / ActObs (Eq. 1 of arXiv 2609.20715) and controls.
+"""SFT with per-token class masks (used for every ALF-CF arm with --lam 0).
 
 Every example carries `input_ids` and a parallel `token_class` list:
-    0 = never supervised (system/user prompt, chat-template tokens, generation-prompt header)
-    1 = action      (tokens the policy generates, incl. its end-of-turn token)
+    0 = never supervised (system/user prompt, chat-template tokens, loss-masked spans such as foil type names)
+    1 = assistant tokens (note lines and actions)
     2 = observation payload   (environment output content)
     3 = observation wrapper   (fixed text around the payload, e.g. <observation> tags)
 
-Per-example loss (`--norm pooled`, Eq. 1):
+Per-example loss (`--norm pooled`):
     L = -[sum_A log p + lam * sum_O log p] / (|A| + lam * |O|)
-`--norm separate` keeps the action term undiluted:
-    L = -[mean_A log p + lam * mean_O log p]
-`--dilute FILE` (control D) replaces the observation term with an unrelated-text LM loss on a
-token-count-matched chunk (|D| = |O| of the same example), pooled exactly like Eq. 1, so the
-action share is diluted the same way but nothing about this environment is predicted.
+With --lam 0 (all ALF-CF arms) only class-1 tokens are supervised. `--norm separate` and `--dilute FILE`
+(an unrelated-text auxiliary loss) are options of the trainer that this study does not use.
 The batch loss is the mean of per-example losses (micro-batch 1, gradient accumulation).
 
 DDP with fp32 master weights and bf16 autocast (pure-bf16 updates would round away lr~1e-5
-steps on many weights), ZeRO-1 sharded AdamW states and a chunked, recomputed LM head. Launch: torchrun --nproc_per_node 4 scripts/sft_train.py ...
+steps on many weights), ZeRO-1 sharded AdamW states and a chunked, recomputed LM head.
+Launch: torchrun --nproc_per_node 2 scripts/sft_train.py --data ... --model Qwen/Qwen3-4B --out ... --lam 0
 """
 import argparse
 import hashlib
@@ -47,10 +45,10 @@ def parse():
     p.add_argument("--data", required=True, help="jsonl with input_ids, token_class, id")
     p.add_argument("--model", required=True)
     p.add_argument("--out", required=True)
-    p.add_argument("--lam", type=float, default=0.0, help="observation weight; 0 = ActionSFT, 1 = ActObs")
+    p.add_argument("--lam", type=float, default=0.0, help="weight of the observation tokens in the loss; 0 (all ALF-CF arms) supervises only class-1 tokens")
     p.add_argument("--obs_classes", default="2,3", help="token classes counted as observation (O)")
     p.add_argument("--norm", choices=["pooled", "separate"], default="pooled")
-    p.add_argument("--dilute", default=None, help="jsonl of unrelated-text token chunks (control D)")
+    p.add_argument("--dilute", default=None, help="jsonl of unrelated-text token chunks for an auxiliary loss (not used in this study)")
     p.add_argument("--lr", type=float, default=1e-5)
     p.add_argument("--epochs", type=float, default=1.0)
     p.add_argument("--global_batch", type=int, default=64)
@@ -82,7 +80,7 @@ class PositionLogProbs(torch.nn.Module):
 
     Returns log p(ids[t] | ids[<t]) at the requested target positions (t >= 1), running the LM head
     only there (the full [T, vocab] logits of a 12k-token trajectory would cost ~7 GB in fp32).
-    An optional second sequence (control D's unrelated text) goes through the same forward call.
+    An optional second sequence (the unrelated text of --dilute) goes through the same forward call.
     """
 
     def __init__(self, lm):
@@ -124,7 +122,7 @@ def example_loss(model, ex, args, obs_classes, dilute_pool, rng, device):
     tgt = torch.cat([act_pos, obs_pos]) if supervise_obs else act_pos
     d_ids = d_pos = None
     if args.dilute is not None and args.lam > 0 and obs_pos.numel() > 0:
-        # control D: token-count-matched unrelated text (|D| = |O| of this example), pooled like Eq. 1
+        # --dilute: token-count-matched unrelated text (|D| = |O| of this example), pooled as in the loss above
         n = int(obs_pos.numel())
         chunk = list(dilute_pool[rng.randrange(len(dilute_pool))])
         while len(chunk) < n + 1:  # a few examples have |O| > one 4096-token chunk

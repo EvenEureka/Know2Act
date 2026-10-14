@@ -1,0 +1,27 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Intervening on written reasoning.}
+The standard way to ask whether a model uses its chain of thought is to change the text and watch the answer. \citet{lanham2023faithfulness} truncate the reasoning, insert mistakes, replace it with filler tokens and paraphrase it. How much the answer depends on the reasoning varies widely across tasks. \citet{turpin2023unfaithful} show that explanations can omit the feature that actually drove the answer. Our three main conditions descend from these probes. Removing the note corresponds to early answering, replacing it with another class's prediction corresponds to inserted mistakes, and the content-free note corresponds to filler. We apply these probes to a different object: a single line in which an agent states where it expects an object, at a point where nothing else in its context bears on that question.
+
+\paragraph{Reasoning in fine-tuned agents.}
+The closest work is \citet{liu2026cotgains}. They fine-tune Qwen3 agents on ALFWorld, ScienceWorld and BFCL trajectories and replace an agent's reasoning with a trace that supports a different action. With more training, their agents more often keep the prompt-based action under the substituted trace, whereas our agents trained on always-followed predictions (\arm{N100}, Section~\ref{sec:arms}) follow a substituted note at 80\% of first steps. Their traces are free-form reasoning, while our predictions are one-line rankings whose first item names the receptacle type of the next action, so an agent can follow our predictions by copying. Our design cannot tell which difference matters. \citet{liu2026cotgains} also propose a training lever that masks the loss on the final action tokens for 30\% of samples, under SFT and GRPO. They report that it improves out-of-domain performance, most in ALFWorld and ScienceWorld. Our \arm{N100M} arm targets the same shortcut with a different mask: it removes the action loss where no note is written, rather than on a random 30\% of samples.
+
+Three other studies edit an agent's reasoning and read off its actions. \citet{sediqin2026loadbearing} replace the private reasoning of frontier models at saved checkpoints and find that a replaced statement of intent changes the next action most of the time. \citet{kim2025reflact} edit a thought in a single ALFWorld episode. \citet{wang2026evu} append the true environment state to an embodied agent's history without editing its stated beliefs.
+
+None of these studies controls what the written text could know, uses as the edit the agent's own prediction for another object in the same context, or compares the result with what a perfect imitator of the training data would do. Our design adds all three.
+
+\paragraph{Training reasoning to be used.}
+FRODO \citep{paul2024frodo} trains small models so that answers depend on their rationales, using a causal reward and counterfactual preference data. CSR \citep{akter2025csr} and FRIT \citep{swaroop2025frit} train sensitivity to perturbed reasoning on question answering and math. Agent work has used predictions mainly as training objectives. Early Experience \citep{zhang2025earlyexperience} predicts next states during training but not at inference. \citet{wang2026darkroom} find that the content of auxiliary prediction targets matters less than the channel through which they are trained. We hold the training objective fixed and vary only how the data couple the note to the action.
+
+\paragraph{Which cue does fine-tuning adopt when the data do not decide?}
+When two cues predict the training labels equally well, fine-tuned models adopt one of them, often the more easily extracted, and a small share of disambiguating examples can switch them \citep{warstadt2020learning,lovering2021predicting}. This is one source of shortcut learning \citep{geirhos2020shortcut}. \arm{N100} is such a case for an agent: the note and the learned convention always agree, and the agent adopts the note. The arms with contradicted notes add disambiguating examples.
+
+\paragraph{Context versus parametric knowledge.}
+A flipped note pits text in the context against what the weights have learned. Question-answering models over-rely on parametric knowledge when a passage contradicts it \citep{longpre2021entity}. Large models, in contrast, accept coherent counter-evidence and fall back on memory when the evidence is mixed \citep{xie2024chameleon}. Our setting differs in two ways. The conflicting text is the agent's own kind of output, and for one group of object classes the weights hold nothing to resist with.
+
+\paragraph{Monitoring and steering through written reasoning.}
+Whether written reasoning is load-bearing matters for monitoring. \citet{emmons2025necessary} separate reasoning as rationalization from reasoning as computation. \citet{korbak2025monitorability} argue that monitorability depends on training choices. In our \arm{N100} agents, deleting the note barely changes the action while editing it redirects the agent, and the training data decide whether this happens.
+
+\paragraph{Counterfactual environments.}
+Changing the rules of a familiar task to separate learned knowledge from priors has precedents in planning \citep{valmeekam2023planbench} and in counterfactual task variants \citep{wu2024reciting}. \alfcf{} applies the same idea to object placement in ALFWorld \citep{shridhar2021alfworld}.

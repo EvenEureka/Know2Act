@@ -1,0 +1,8 @@
+{
+  "N100":   {"role": "primary",   "draws": [0,1,2,3,4,5,6,7], "data": "T+ teacher; every real note is the convention ranking and every action follows it"},
+  "NQ50op": {"role": "primary",   "draws": [0,1,2,3,4,5,6,7], "data": "N100 actions unchanged; at 50% of real-note decision points the note is a foil (another class's convention); only the foil's receptacle names are loss-masked, the opener and template stay supervised"},
+  "NQ50":   {"role": "secondary", "draws": [0,1,2], "data": "as NQ50op but the whole foil note is loss-masked"},
+  "NQ25op": {"role": "secondary", "draws": [0,1,2], "data": "as NQ50op with q = 0.25"},
+  "SA50v2": {"role": "secondary", "draws": [0,1,2], "data": "notes always correct; at every fallback decision point a coin with s = 0.5 picks the convention-following or the standard-prior action, independent of whether a note is written; subsampled to N100's decision-point count"},
+  "N100M":  {"role": "secondary", "draws": [0,1,2], "data": "N100 with the action loss masked at decision points that carry no note"}
+}

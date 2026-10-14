@@ -1,19 +1,11 @@
-\section*{Limitations}\label{sec:limitations}
+\section*{Limitations}
 
-\paragraph{Scope.}
-We study one student (Qwen3-4B), one teacher, one domain (SQL), and one RL algorithm. Our setting differs from \citet{zhang2026actobs} in ways that may matter. Terminal observations are longer and richer in failures, whereas in our teacher data only 2.8\% of SQL calls fail. Our negative result for observation supervision should therefore not be read as a refutation of their Terminal-Bench result.
+The study uses one model family and size (Qwen3-4B), supervised fine-tuning only, and a single counterfactual environment derived from ALFWorld. Reinforcement learning after fine-tuning could change how much the prediction is used, as \citet{liu2026cotgains} report for reasoning traces.
 
-\paragraph{Seeds and variance.}
-GRPO results rest on two seeds for \armA{} and \armB{} and on one seed for the other arms. After RL, two seeds of the same checkpoint differ by up to about one point and SFT checkpoints by about 1.5 points (\S\ref{sec:rl}), more than our question-level confidence intervals capture. Effects of about one point should be treated as unresolved.
+The predictions are one-line templates that name a receptacle type, and the action names a receptacle of that type. Following such a prediction can be implemented as copying, and the high flip effect for randomly ordered predictions is consistent with that. Free-form or paraphrased predictions may behave differently.
 
-\paragraph{Exploratory arms.}
-The outcome and contract arms were added after the first results were seen. Their predictions were written down before training, but they are not part of the original pre-registration.
+The conventions are arbitrary by construction, and the teachers are scripted searchers. Both choices make the knowledge identifiable but less natural than the knowledge of a deployed agent.
 
-\paragraph{Fairness of the contract arm.}
-\armG{} receives the gold result shapes of the training questions, which \armA{} does not. \armGp{} controls for the format of the inserted text, not for this information. A gold-matched control, SFT on correct trajectories only, is missing. Two further caveats apply to the placebo. Because the shapes are coarse, 24\% of the placebo contracts coincide with the gold shape. Most placebo checks also report a mismatch, which may bias \armGp{} as a control for behaviour, and \armGp{} was not trained with RL.
+The secondary arms have three seeds each, so the contrasts H3 and H4 have little power. The imitator reference is only bounded for \arm{N100}, \arm{N100M} and \arm{SA50v2}, so their copy biases are intervals.
 
-\paragraph{Mechanism.}
-The optimiser account in \S\ref{sec:share} is suggestive. Action KL to the base model is an insensitive metric, and we did not ablate the optimiser.
-
-\section*{Ethics Statement}
-This work uses public text-to-SQL benchmarks and open-weight models. The environment audit identifies a reward loophole in a public RL environment. We reported it to the maintainers together with a reproduction script\skyrlissue{}. We see no direct risks beyond those of the underlying models.
+The first decision point was chosen as the primary estimand after a validation pilot and was then confirmed on the held-out test split.

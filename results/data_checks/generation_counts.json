@@ -1,0 +1,19 @@
+{
+ "test|False|False|unmoved_draw": 76,
+ "test|False|True|uniform": 280,
+ "test|True|False|unmoved_draw": 226,
+ "test|True|True|r1": 772,
+ "test|True|True|r2": 42,
+ "train|False|False|unmoved_draw": 300,
+ "train|False|True|uniform": 1290,
+ "train|True|False|no_slot": 40,
+ "train|True|False|unmoved_draw": 1297,
+ "train|True|True|r1": 4837,
+ "train|True|True|r2": 384,
+ "val|False|False|unmoved_draw": 11,
+ "val|False|True|uniform": 60,
+ "val|True|False|no_slot": 1,
+ "val|True|False|unmoved_draw": 64,
+ "val|True|True|r1": 244,
+ "val|True|True|r2": 33
+}

@@ -1,0 +1,2113 @@
+{
+ "N100_d0": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "note_present": 0.7003721080731273,
+   "placebo_share_of_notes": 0.10244860244860245,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4130
+    ],
+    "real|p0|U": [
+     0.0,
+     1007
+    ],
+    "real|p1+|L": [
+     0.0,
+     3741
+    ],
+    "real|p1+|U": [
+     0.0,
+     6664
+    ],
+    "none|p0|L": [
+     0.0,
+     1966
+    ],
+    "none|p0|U": [
+     0.0,
+     464
+    ],
+    "none|p1+|L": [
+     0.0,
+     1790
+    ],
+    "none|p1+|U": [
+     0.0,
+     3188
+    ],
+    "placebo|p0|L": [
+     0.0,
+     462
+    ],
+    "placebo|p0|U": [
+     0.0,
+     119
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     761
+    ]
+   },
+   "sup_chars": 4671365
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "sup_chars": 4671365
+  },
+  "checks": {
+   "e3_wins_ge_0.98": true,
+   "e3_S_data_1": true,
+   "e3_note_present_0.70": true
+  },
+  "ok": true
+ },
+ "N100_d1": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "note_present": 0.695552054296449,
+   "placebo_share_of_notes": 0.10088865656037638,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "S_data": 1.0,
+   "teacher_win_rate": 1.0,
+   "sup_chars": 4688091
+  },
+  "checks": {
+   "e3_wins_ge_0.98": true,
+   "e3_S_data_1": true,
+   "e3_note_present_0.70": true,
+   "placebo_share_0.10": true
+  },
+  "ok": true,
+  "note": "This draw was built and checked before the main study, under the protocol of addendum 19, by an earlier version of the build step, with the same criteria (teacher wins >= 0.98, S_data = 1, note presence 0.70 +/- 0.02, placebo share of notes 0.10 +/- 0.02). The statistics are copied from that check. The base_N100_stats of the other draw-1 arms describe the same data."
+ },
+ "NQ50op_d0": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "note_present": 0.7003721080731273,
+   "placebo_share_of_notes": 0.10244860244860245,
+   "masked_action_share": 0.0,
+   "q_overall": 0.49266503667481665,
+   "q_p0": 0.5037959898773603,
+   "S_data": 0.5073349633251834,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2056
+    ],
+    "real|p0|U": [
+     0.0,
+     493
+    ],
+    "real|p1+|L": [
+     0.0,
+     1907
+    ],
+    "real|p1+|U": [
+     0.0,
+     3429
+    ],
+    "none|p0|L": [
+     0.0,
+     1966
+    ],
+    "none|p0|U": [
+     0.0,
+     464
+    ],
+    "none|p1+|L": [
+     0.0,
+     1790
+    ],
+    "none|p1+|U": [
+     0.0,
+     3188
+    ],
+    "placebo|p0|L": [
+     0.0,
+     462
+    ],
+    "placebo|p0|U": [
+     0.0,
+     119
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     761
+    ]
+   },
+   "sup_chars": 4680590
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "sup_chars": 4671365
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ50op_d1": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "note_present": 0.6954658335336057,
+   "placebo_share_of_notes": 0.10107700282209296,
+   "masked_action_share": 0.0,
+   "q_overall": 0.4934648898001025,
+   "q_p0": 0.496391652038229,
+   "S_data": 0.5065351101998975,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2044
+    ],
+    "real|p0|U": [
+     0.0,
+     538
+    ],
+    "real|p1+|L": [
+     0.0,
+     1905
+    ],
+    "real|p1+|U": [
+     0.0,
+     3419
+    ],
+    "none|p0|L": [
+     0.0,
+     2042
+    ],
+    "none|p0|U": [
+     0.0,
+     443
+    ],
+    "none|p1+|L": [
+     0.0,
+     1868
+    ],
+    "none|p1+|U": [
+     0.0,
+     3250
+    ],
+    "placebo|p0|L": [
+     0.0,
+     420
+    ],
+    "placebo|p0|U": [
+     0.0,
+     116
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     787
+    ]
+   },
+   "sup_chars": 4697369
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "sup_chars": 4688091
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ25op_d0": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "note_present": 0.7003721080731273,
+   "placebo_share_of_notes": 0.10244860244860245,
+   "masked_action_share": 0.0,
+   "q_overall": 0.2500321708917771,
+   "q_p0": 0.2567646486276037,
+   "S_data": 0.7499678291082229,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     3067
+    ],
+    "real|p0|U": [
+     0.0,
+     751
+    ],
+    "real|p1+|L": [
+     0.0,
+     2815
+    ],
+    "real|p1+|U": [
+     0.0,
+     5023
+    ],
+    "none|p0|L": [
+     0.0,
+     1966
+    ],
+    "none|p0|U": [
+     0.0,
+     464
+    ],
+    "none|p1+|L": [
+     0.0,
+     1790
+    ],
+    "none|p1+|U": [
+     0.0,
+     3188
+    ],
+    "placebo|p0|L": [
+     0.0,
+     462
+    ],
+    "placebo|p0|U": [
+     0.0,
+     119
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     761
+    ]
+   },
+   "sup_chars": 4676020
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "sup_chars": 4671365
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ25op_d1": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "note_present": 0.6954658335336057,
+   "placebo_share_of_notes": 0.10107700282209296,
+   "masked_action_share": 0.0,
+   "q_overall": 0.2480138390568939,
+   "q_p0": 0.24907353228008583,
+   "S_data": 0.7519861609431061,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     3079
+    ],
+    "real|p0|U": [
+     0.0,
+     771
+    ],
+    "real|p1+|L": [
+     0.0,
+     2878
+    ],
+    "real|p1+|U": [
+     0.0,
+     5009
+    ],
+    "none|p0|L": [
+     0.0,
+     2042
+    ],
+    "none|p0|U": [
+     0.0,
+     443
+    ],
+    "none|p1+|L": [
+     0.0,
+     1868
+    ],
+    "none|p1+|U": [
+     0.0,
+     3250
+    ],
+    "placebo|p0|L": [
+     0.0,
+     420
+    ],
+    "placebo|p0|U": [
+     0.0,
+     116
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     787
+    ]
+   },
+   "sup_chars": 4693164
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "sup_chars": 4688091
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "N100M_d0": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "note_present": 0.7003721080731273,
+   "placebo_share_of_notes": 0.10244860244860245,
+   "masked_action_share": 0.29962789192687267,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4130
+    ],
+    "real|p0|U": [
+     0.0,
+     1007
+    ],
+    "real|p1+|L": [
+     0.0,
+     3741
+    ],
+    "real|p1+|U": [
+     0.0,
+     6664
+    ],
+    "none|p0|L": [
+     0.0,
+     1966
+    ],
+    "none|p0|U": [
+     0.0,
+     464
+    ],
+    "none|p1+|L": [
+     0.0,
+     1790
+    ],
+    "none|p1+|U": [
+     0.0,
+     3188
+    ],
+    "placebo|p0|L": [
+     0.0,
+     462
+    ],
+    "placebo|p0|U": [
+     0.0,
+     119
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     761
+    ]
+   },
+   "sup_chars": 4422419
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "sup_chars": 4671365
+  },
+  "checks": {
+   "e4_masked_share_0.30": true
+  },
+  "ok": true
+ },
+ "N100M_d1": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "note_present": 0.6954658335336057,
+   "placebo_share_of_notes": 0.10107700282209296,
+   "masked_action_share": 0.3045341664663943,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4096
+    ],
+    "real|p0|U": [
+     0.0,
+     1031
+    ],
+    "real|p1+|L": [
+     0.0,
+     3828
+    ],
+    "real|p1+|U": [
+     0.0,
+     6653
+    ],
+    "none|p0|L": [
+     0.0,
+     2042
+    ],
+    "none|p0|U": [
+     0.0,
+     443
+    ],
+    "none|p1+|L": [
+     0.0,
+     1868
+    ],
+    "none|p1+|U": [
+     0.0,
+     3250
+    ],
+    "placebo|p0|L": [
+     0.0,
+     420
+    ],
+    "placebo|p0|U": [
+     0.0,
+     116
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     787
+    ]
+   },
+   "sup_chars": 4432700
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "sup_chars": 4688091
+  },
+  "checks": {
+   "e4_masked_share_0.30": true
+  },
+  "ok": true
+ },
+ "NQ50_d1": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.38696627413282064,
+   "note_present": 0.6954658335336057,
+   "placebo_share_of_notes": 0.10107700282209296,
+   "masked_action_share": 0.0,
+   "q_overall": 0.4934648898001025,
+   "q_p0": 0.496391652038229,
+   "S_data": 0.5065351101998975,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2044
+    ],
+    "real|p0|U": [
+     0.0,
+     538
+    ],
+    "real|p1+|L": [
+     0.0,
+     1905
+    ],
+    "real|p1+|U": [
+     0.0,
+     3419
+    ],
+    "none|p0|L": [
+     0.0,
+     2042
+    ],
+    "none|p0|U": [
+     0.0,
+     443
+    ],
+    "none|p1+|L": [
+     0.0,
+     1868
+    ],
+    "none|p1+|U": [
+     0.0,
+     3250
+    ],
+    "placebo|p0|L": [
+     0.0,
+     420
+    ],
+    "placebo|p0|U": [
+     0.0,
+     116
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     787
+    ]
+   },
+   "sup_chars": 3898191
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "sup_chars": 4688091
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true
+  },
+  "ok": true
+ },
+ "NQ50_d0": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.3906730302540042,
+   "note_present": 0.7003721080731273,
+   "placebo_share_of_notes": 0.10244860244860245,
+   "masked_action_share": 0.0,
+   "q_overall": 0.49266503667481665,
+   "q_p0": 0.5037959898773603,
+   "S_data": 0.5073349633251834,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2056
+    ],
+    "real|p0|U": [
+     0.0,
+     493
+    ],
+    "real|p1+|L": [
+     0.0,
+     1907
+    ],
+    "real|p1+|U": [
+     0.0,
+     3429
+    ],
+    "none|p0|L": [
+     0.0,
+     1966
+    ],
+    "none|p0|U": [
+     0.0,
+     464
+    ],
+    "none|p1+|L": [
+     0.0,
+     1790
+    ],
+    "none|p1+|U": [
+     0.0,
+     3188
+    ],
+    "placebo|p0|L": [
+     0.0,
+     462
+    ],
+    "placebo|p0|U": [
+     0.0,
+     119
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     432
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     761
+    ]
+   },
+   "sup_chars": 3885979
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "sup_chars": 4671365
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true
+  },
+  "ok": true
+ },
+ "N100_d2": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "note_present": 0.6944568166174029,
+   "placebo_share_of_notes": 0.10185994985715119,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4042
+    ],
+    "real|p0|U": [
+     0.0,
+     999
+    ],
+    "real|p1+|L": [
+     0.0,
+     3723
+    ],
+    "real|p1+|U": [
+     0.0,
+     6640
+    ],
+    "none|p0|L": [
+     0.0,
+     2032
+    ],
+    "none|p0|U": [
+     0.0,
+     479
+    ],
+    "none|p1+|L": [
+     0.0,
+     1794
+    ],
+    "none|p1+|U": [
+     0.0,
+     3241
+    ],
+    "placebo|p0|L": [
+     0.0,
+     484
+    ],
+    "placebo|p0|U": [
+     0.0,
+     112
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     443
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     708
+    ]
+   },
+   "sup_chars": 4653778
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "sup_chars": 4653778
+  },
+  "checks": {
+   "e3_wins_ge_0.98": true,
+   "e3_S_data_1": true,
+   "e3_note_present_0.70": true
+  },
+  "ok": true
+ },
+ "N100_d3": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24746,
+   "note_start_supervised_share": 0.700759718742423,
+   "note_present": 0.700759718742423,
+   "placebo_share_of_notes": 0.09947523210887492,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4137
+    ],
+    "real|p0|U": [
+     0.0,
+     1020
+    ],
+    "real|p1+|L": [
+     0.0,
+     3784
+    ],
+    "real|p1+|U": [
+     0.0,
+     6675
+    ],
+    "none|p0|L": [
+     0.0,
+     1977
+    ],
+    "none|p0|U": [
+     0.0,
+     448
+    ],
+    "none|p1+|L": [
+     0.0,
+     1758
+    ],
+    "none|p1+|U": [
+     0.0,
+     3222
+    ],
+    "placebo|p0|L": [
+     0.0,
+     444
+    ],
+    "placebo|p0|U": [
+     0.0,
+     122
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     413
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     746
+    ]
+   },
+   "sup_chars": 4675933
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24746,
+   "note_start_supervised_share": 0.700759718742423,
+   "sup_chars": 4675933
+  },
+  "checks": {
+   "e3_wins_ge_0.98": true,
+   "e3_S_data_1": true,
+   "e3_note_present_0.70": true
+  },
+  "ok": true
+ },
+ "N100_d4": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24772,
+   "note_start_supervised_share": 0.6974810269659293,
+   "note_present": 0.6974810269659293,
+   "placebo_share_of_notes": 0.1038314619747656,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4049
+    ],
+    "real|p0|U": [
+     0.0,
+     1014
+    ],
+    "real|p1+|L": [
+     0.0,
+     3774
+    ],
+    "real|p1+|U": [
+     0.0,
+     6647
+    ],
+    "none|p0|L": [
+     0.0,
+     2030
+    ],
+    "none|p0|U": [
+     0.0,
+     477
+    ],
+    "none|p1+|L": [
+     0.0,
+     1827
+    ],
+    "none|p1+|U": [
+     0.0,
+     3160
+    ],
+    "placebo|p0|L": [
+     0.0,
+     479
+    ],
+    "placebo|p0|U": [
+     0.0,
+     99
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     414
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     802
+    ]
+   },
+   "sup_chars": 4673335
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24772,
+   "note_start_supervised_share": 0.6974810269659293,
+   "sup_chars": 4673335
+  },
+  "checks": {
+   "e3_wins_ge_0.98": true,
+   "e3_S_data_1": true,
+   "e3_note_present_0.70": true
+  },
+  "ok": true
+ },
+ "N100_d5": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24719,
+   "note_start_supervised_share": 0.700109227719568,
+   "note_present": 0.700109227719568,
+   "placebo_share_of_notes": 0.09927192881081706,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4139
+    ],
+    "real|p0|U": [
+     0.0,
+     1022
+    ],
+    "real|p1+|L": [
+     0.0,
+     3760
+    ],
+    "real|p1+|U": [
+     0.0,
+     6667
+    ],
+    "none|p0|L": [
+     0.0,
+     1990
+    ],
+    "none|p0|U": [
+     0.0,
+     465
+    ],
+    "none|p1+|L": [
+     0.0,
+     1790
+    ],
+    "none|p1+|U": [
+     0.0,
+     3168
+    ],
+    "placebo|p0|L": [
+     0.0,
+     429
+    ],
+    "placebo|p0|U": [
+     0.0,
+     103
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     425
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     761
+    ]
+   },
+   "sup_chars": 4670865
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24719,
+   "note_start_supervised_share": 0.700109227719568,
+   "sup_chars": 4670865
+  },
+  "checks": {
+   "e3_wins_ge_0.98": true,
+   "e3_S_data_1": true,
+   "e3_note_present_0.70": true
+  },
+  "ok": true
+ },
+ "N100_d6": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24680,
+   "note_start_supervised_share": 0.7049837925445706,
+   "note_present": 0.7049837925445706,
+   "placebo_share_of_notes": 0.10035059486177367,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4126
+    ],
+    "real|p0|U": [
+     0.0,
+     1003
+    ],
+    "real|p1+|L": [
+     0.0,
+     3715
+    ],
+    "real|p1+|U": [
+     0.0,
+     6809
+    ],
+    "none|p0|L": [
+     0.0,
+     1971
+    ],
+    "none|p0|U": [
+     0.0,
+     473
+    ],
+    "none|p1+|L": [
+     0.0,
+     1744
+    ],
+    "none|p1+|U": [
+     0.0,
+     3093
+    ],
+    "placebo|p0|L": [
+     0.0,
+     461
+    ],
+    "placebo|p0|U": [
+     0.0,
+     114
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     429
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     742
+    ]
+   },
+   "sup_chars": 4675784
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24680,
+   "note_start_supervised_share": 0.7049837925445706,
+   "sup_chars": 4675784
+  },
+  "checks": {
+   "e3_wins_ge_0.98": true,
+   "e3_S_data_1": true,
+   "e3_note_present_0.70": true
+  },
+  "ok": true
+ },
+ "N100_d7": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24786,
+   "note_start_supervised_share": 0.7051157911724361,
+   "note_present": 0.7051157911724361,
+   "placebo_share_of_notes": 0.1008754362876924,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4142
+    ],
+    "real|p0|U": [
+     0.0,
+     1018
+    ],
+    "real|p1+|L": [
+     0.0,
+     3775
+    ],
+    "real|p1+|U": [
+     0.0,
+     6779
+    ],
+    "none|p0|L": [
+     0.0,
+     1951
+    ],
+    "none|p0|U": [
+     0.0,
+     474
+    ],
+    "none|p1+|L": [
+     0.0,
+     1760
+    ],
+    "none|p1+|U": [
+     0.0,
+     3124
+    ],
+    "placebo|p0|L": [
+     0.0,
+     465
+    ],
+    "placebo|p0|U": [
+     0.0,
+     98
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     431
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     769
+    ]
+   },
+   "sup_chars": 4691684
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24786,
+   "note_start_supervised_share": 0.7051157911724361,
+   "sup_chars": 4691684
+  },
+  "checks": {
+   "e3_wins_ge_0.98": true,
+   "e3_S_data_1": true,
+   "e3_note_present_0.70": true
+  },
+  "ok": true
+ },
+ "NQ50op_d2": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "note_present": 0.6944568166174029,
+   "placebo_share_of_notes": 0.10185994985715119,
+   "masked_action_share": 0.0,
+   "q_overall": 0.49428719813035576,
+   "q_p0": 0.503074786748661,
+   "S_data": 0.5057128018696443,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     1984
+    ],
+    "real|p0|U": [
+     0.0,
+     521
+    ],
+    "real|p1+|L": [
+     0.0,
+     1895
+    ],
+    "real|p1+|U": [
+     0.0,
+     3390
+    ],
+    "none|p0|L": [
+     0.0,
+     2032
+    ],
+    "none|p0|U": [
+     0.0,
+     479
+    ],
+    "none|p1+|L": [
+     0.0,
+     1794
+    ],
+    "none|p1+|U": [
+     0.0,
+     3241
+    ],
+    "placebo|p0|L": [
+     0.0,
+     484
+    ],
+    "placebo|p0|U": [
+     0.0,
+     112
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     443
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     708
+    ]
+   },
+   "sup_chars": 4663853
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "sup_chars": 4653778
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ50op_d3": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24746,
+   "note_start_supervised_share": 0.700759718742423,
+   "note_present": 0.700759718742423,
+   "placebo_share_of_notes": 0.09947523210887492,
+   "masked_action_share": 0.0,
+   "q_overall": 0.4956454918032787,
+   "q_p0": 0.49350397517936784,
+   "S_data": 0.5043545081967213,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2087
+    ],
+    "real|p0|U": [
+     0.0,
+     525
+    ],
+    "real|p1+|L": [
+     0.0,
+     1851
+    ],
+    "real|p1+|U": [
+     0.0,
+     3413
+    ],
+    "none|p0|L": [
+     0.0,
+     1977
+    ],
+    "none|p0|U": [
+     0.0,
+     448
+    ],
+    "none|p1+|L": [
+     0.0,
+     1758
+    ],
+    "none|p1+|U": [
+     0.0,
+     3222
+    ],
+    "placebo|p0|L": [
+     0.0,
+     444
+    ],
+    "placebo|p0|U": [
+     0.0,
+     122
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     413
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     746
+    ]
+   },
+   "sup_chars": 4685468
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24746,
+   "note_start_supervised_share": 0.700759718742423,
+   "sup_chars": 4675933
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ50op_d4": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24772,
+   "note_start_supervised_share": 0.6974810269659293,
+   "note_present": 0.6974810269659293,
+   "placebo_share_of_notes": 0.1038314619747656,
+   "masked_action_share": 0.0,
+   "q_overall": 0.49244381296822526,
+   "q_p0": 0.5087892553821844,
+   "S_data": 0.5075561870317747,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     1991
+    ],
+    "real|p0|U": [
+     0.0,
+     496
+    ],
+    "real|p1+|L": [
+     0.0,
+     1957
+    ],
+    "real|p1+|U": [
+     0.0,
+     3415
+    ],
+    "none|p0|L": [
+     0.0,
+     2030
+    ],
+    "none|p0|U": [
+     0.0,
+     477
+    ],
+    "none|p1+|L": [
+     0.0,
+     1827
+    ],
+    "none|p1+|U": [
+     0.0,
+     3160
+    ],
+    "placebo|p0|L": [
+     0.0,
+     479
+    ],
+    "placebo|p0|U": [
+     0.0,
+     99
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     414
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     802
+    ]
+   },
+   "sup_chars": 4682764
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24772,
+   "note_start_supervised_share": 0.6974810269659293,
+   "sup_chars": 4673335
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ50op_d5": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24719,
+   "note_start_supervised_share": 0.700109227719568,
+   "note_present": 0.700109227719568,
+   "placebo_share_of_notes": 0.09927192881081706,
+   "masked_action_share": 0.0,
+   "q_overall": 0.5014754939697202,
+   "q_p0": 0.5039720984305367,
+   "S_data": 0.4985245060302797,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2020
+    ],
+    "real|p0|U": [
+     0.0,
+     540
+    ],
+    "real|p1+|L": [
+     0.0,
+     1815
+    ],
+    "real|p1+|U": [
+     0.0,
+     3396
+    ],
+    "none|p0|L": [
+     0.0,
+     1990
+    ],
+    "none|p0|U": [
+     0.0,
+     465
+    ],
+    "none|p1+|L": [
+     0.0,
+     1790
+    ],
+    "none|p1+|U": [
+     0.0,
+     3168
+    ],
+    "placebo|p0|L": [
+     0.0,
+     429
+    ],
+    "placebo|p0|U": [
+     0.0,
+     103
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     425
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     761
+    ]
+   },
+   "sup_chars": 4680613
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24719,
+   "note_start_supervised_share": 0.700109227719568,
+   "sup_chars": 4670865
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ50op_d6": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24680,
+   "note_start_supervised_share": 0.7049837925445706,
+   "note_present": 0.7049837925445706,
+   "placebo_share_of_notes": 0.10035059486177367,
+   "masked_action_share": 0.0,
+   "q_overall": 0.49632658276368746,
+   "q_p0": 0.5030220315851043,
+   "S_data": 0.5036734172363125,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2051
+    ],
+    "real|p0|U": [
+     0.0,
+     498
+    ],
+    "real|p1+|L": [
+     0.0,
+     1828
+    ],
+    "real|p1+|U": [
+     0.0,
+     3507
+    ],
+    "none|p0|L": [
+     0.0,
+     1971
+    ],
+    "none|p0|U": [
+     0.0,
+     473
+    ],
+    "none|p1+|L": [
+     0.0,
+     1744
+    ],
+    "none|p1+|U": [
+     0.0,
+     3093
+    ],
+    "placebo|p0|L": [
+     0.0,
+     461
+    ],
+    "placebo|p0|U": [
+     0.0,
+     114
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     429
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     742
+    ]
+   },
+   "sup_chars": 4685354
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24680,
+   "note_start_supervised_share": 0.7049837925445706,
+   "sup_chars": 4675784
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ50op_d7": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24786,
+   "note_start_supervised_share": 0.7051157911724361,
+   "note_present": 0.7051157911724361,
+   "placebo_share_of_notes": 0.1008754362876924,
+   "masked_action_share": 0.0,
+   "q_overall": 0.49312714776632305,
+   "q_p0": 0.4994186046511628,
+   "S_data": 0.506872852233677,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2082
+    ],
+    "real|p0|U": [
+     0.0,
+     501
+    ],
+    "real|p1+|L": [
+     0.0,
+     1883
+    ],
+    "real|p1+|U": [
+     0.0,
+     3499
+    ],
+    "none|p0|L": [
+     0.0,
+     1951
+    ],
+    "none|p0|U": [
+     0.0,
+     474
+    ],
+    "none|p1+|L": [
+     0.0,
+     1760
+    ],
+    "none|p1+|U": [
+     0.0,
+     3124
+    ],
+    "placebo|p0|L": [
+     0.0,
+     465
+    ],
+    "placebo|p0|U": [
+     0.0,
+     98
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     431
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     769
+    ]
+   },
+   "sup_chars": 4701717
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24786,
+   "note_start_supervised_share": 0.7051157911724361,
+   "sup_chars": 4691684
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "NQ25op_d2": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "note_present": 0.6944568166174029,
+   "placebo_share_of_notes": 0.10185994985715119,
+   "masked_action_share": 0.0,
+   "q_overall": 0.25019475460919244,
+   "q_p0": 0.25411624677643324,
+   "S_data": 0.7498052453908076,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     2994
+    ],
+    "real|p0|U": [
+     0.0,
+     766
+    ],
+    "real|p1+|L": [
+     0.0,
+     2811
+    ],
+    "real|p1+|U": [
+     0.0,
+     4979
+    ],
+    "none|p0|L": [
+     0.0,
+     2032
+    ],
+    "none|p0|U": [
+     0.0,
+     479
+    ],
+    "none|p1+|L": [
+     0.0,
+     1794
+    ],
+    "none|p1+|U": [
+     0.0,
+     3241
+    ],
+    "placebo|p0|L": [
+     0.0,
+     484
+    ],
+    "placebo|p0|U": [
+     0.0,
+     112
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     443
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     708
+    ]
+   },
+   "sup_chars": 4658880
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "sup_chars": 4653778
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true,
+   "e1_note_start_supervised_equal_N100": true,
+   "e1_mask_spans_are_type_names": true
+  },
+  "ok": true
+ },
+ "N100M_d2": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "note_present": 0.6944568166174029,
+   "placebo_share_of_notes": 0.10185994985715119,
+   "masked_action_share": 0.30554318338259706,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 1.0,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     4042
+    ],
+    "real|p0|U": [
+     0.0,
+     999
+    ],
+    "real|p1+|L": [
+     0.0,
+     3723
+    ],
+    "real|p1+|U": [
+     0.0,
+     6640
+    ],
+    "none|p0|L": [
+     0.0,
+     2032
+    ],
+    "none|p0|U": [
+     0.0,
+     479
+    ],
+    "none|p1+|L": [
+     0.0,
+     1794
+    ],
+    "none|p1+|U": [
+     0.0,
+     3241
+    ],
+    "placebo|p0|L": [
+     0.0,
+     484
+    ],
+    "placebo|p0|U": [
+     0.0,
+     112
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     443
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     708
+    ]
+   },
+   "sup_chars": 4399778
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "sup_chars": 4653778
+  },
+  "checks": {
+   "e4_masked_share_0.30": true
+  },
+  "ok": true
+ },
+ "NQ50_d2": {
+  "stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.38616026238004614,
+   "note_present": 0.6944568166174029,
+   "placebo_share_of_notes": 0.10185994985715119,
+   "masked_action_share": 0.0,
+   "q_overall": 0.49428719813035576,
+   "q_p0": 0.503074786748661,
+   "S_data": 0.5057128018696443,
+   "minus_share": {
+    "real|p0|L": [
+     0.0,
+     1984
+    ],
+    "real|p0|U": [
+     0.0,
+     521
+    ],
+    "real|p1+|L": [
+     0.0,
+     1895
+    ],
+    "real|p1+|U": [
+     0.0,
+     3390
+    ],
+    "none|p0|L": [
+     0.0,
+     2032
+    ],
+    "none|p0|U": [
+     0.0,
+     479
+    ],
+    "none|p1+|L": [
+     0.0,
+     1794
+    ],
+    "none|p1+|U": [
+     0.0,
+     3241
+    ],
+    "placebo|p0|L": [
+     0.0,
+     484
+    ],
+    "placebo|p0|U": [
+     0.0,
+     112
+    ],
+    "placebo|p1+|L": [
+     0.0,
+     443
+    ],
+    "placebo|p1+|U": [
+     0.0,
+     708
+    ]
+   },
+   "sup_chars": 3872010
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "sup_chars": 4653778
+  },
+  "checks": {
+   "e1_actions_identical": true,
+   "e1_q_overall": true,
+   "e1_q_p0": true
+  },
+  "ok": true
+ },
+ "SA50v2_d0": {
+  "stats": {
+   "n_examples": 6468,
+   "n_dp": 24725,
+   "note_start_supervised_share": 0.6997775530839232,
+   "note_present": 0.6997775530839232,
+   "placebo_share_of_notes": 0.10328285747312449,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 0.6570415726716081,
+   "minus_share": {
+    "real|p0|L": [
+     0.49954254345837146,
+     3279
+    ],
+    "real|p0|U": [
+     0.47176913425345046,
+     797
+    ],
+    "real|p1+|L": [
+     0.5095372659837514,
+     5662
+    ],
+    "real|p1+|U": [
+     0.4983555478622122,
+     5777
+    ],
+    "none|p0|L": [
+     0.5092651757188499,
+     1565
+    ],
+    "none|p0|U": [
+     0.4223433242506812,
+     367
+    ],
+    "none|p1+|L": [
+     0.49962962962962965,
+     2700
+    ],
+    "none|p1+|U": [
+     0.514152633464708,
+     2791
+    ],
+    "placebo|p0|L": [
+     0.5335195530726257,
+     358
+    ],
+    "placebo|p0|U": [
+     0.5392156862745098,
+     102
+    ],
+    "placebo|p1+|L": [
+     0.470679012345679,
+     648
+    ],
+    "placebo|p1+|U": [
+     0.48600883652430044,
+     679
+    ]
+   },
+   "sup_chars": 4253820
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24724,
+   "note_start_supervised_share": 0.7003721080731273,
+   "sup_chars": 4671365
+  },
+  "checks": {
+   "e2_p0_L_real_none_in_0.45_0.55": true,
+   "e2_p0_L_placebo_in_0.40_0.60": true,
+   "e2_p0_L_present_minus_none_within_0.03": true,
+   "e2_p0_L_chi2_independence_p_gt_0.01": true,
+   "e2_p1+_L_real_none_in_0.45_0.55": true,
+   "e2_p1+_L_placebo_in_0.40_0.60": true,
+   "e2_p1+_L_present_minus_none_within_0.03": true,
+   "e2_p1+_L_chi2_independence_p_gt_0.01": true,
+   "e2_dp_ratio_within_1pct": true,
+   "e2_teacher_wins_ge_0.98": true
+  },
+  "ok": true
+ },
+ "SA50v2_d1": {
+  "stats": {
+   "n_examples": 6673,
+   "n_dp": 24982,
+   "note_start_supervised_share": 0.6995837002641903,
+   "note_present": 0.6995837002641903,
+   "placebo_share_of_notes": 0.09898724037306174,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 0.655807455388328,
+   "minus_share": {
+    "real|p0|L": [
+     0.5091071961779635,
+     3349
+    ],
+    "real|p0|U": [
+     0.46199524940617576,
+     842
+    ],
+    "real|p1+|L": [
+     0.4975481611208406,
+     5710
+    ],
+    "real|p1+|U": [
+     0.5059869996578857,
+     5846
+    ],
+    "none|p0|L": [
+     0.4967006598680264,
+     1667
+    ],
+    "none|p0|U": [
+     0.555858310626703,
+     367
+    ],
+    "none|p1+|L": [
+     0.5066514633219308,
+     2631
+    ],
+    "none|p1+|U": [
+     0.5010563380281691,
+     2840
+    ],
+    "placebo|p0|L": [
+     0.49859943977591037,
+     357
+    ],
+    "placebo|p0|U": [
+     0.6043956043956044,
+     91
+    ],
+    "placebo|p1+|L": [
+     0.4756944444444444,
+     576
+    ],
+    "placebo|p1+|U": [
+     0.4631728045325779,
+     706
+    ]
+   },
+   "sup_chars": 4331799
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24966,
+   "note_start_supervised_share": 0.6954658335336057,
+   "sup_chars": 4688091
+  },
+  "checks": {
+   "e2_p0_L_real_none_in_0.45_0.55": true,
+   "e2_p0_L_placebo_in_0.40_0.60": true,
+   "e2_p0_L_present_minus_none_within_0.03": true,
+   "e2_p0_L_chi2_independence_p_gt_0.01": true,
+   "e2_p1+_L_real_none_in_0.45_0.55": true,
+   "e2_p1+_L_placebo_in_0.40_0.60": true,
+   "e2_p1+_L_present_minus_none_within_0.03": true,
+   "e2_p1+_L_chi2_independence_p_gt_0.01": true,
+   "e2_dp_ratio_within_1pct": true,
+   "e2_teacher_wins_ge_0.98": true
+  },
+  "ok": true
+ },
+ "SA50v2_d2": {
+  "stats": {
+   "n_examples": 6640,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6966028262542009,
+   "note_present": 0.6966028262542009,
+   "placebo_share_of_notes": 0.10323180655661474,
+   "masked_action_share": 0.0,
+   "q_overall": 0.0,
+   "q_p0": 0.0,
+   "S_data": 0.6542649727767695,
+   "minus_share": {
+    "real|p0|L": [
+     0.5013632232656771,
+     3301
+    ],
+    "real|p0|U": [
+     0.4854368932038835,
+     824
+    ],
+    "real|p1+|L": [
+     0.5019642857142858,
+     5600
+    ],
+    "real|p1+|U": [
+     0.49710678590215673,
+     5703
+    ],
+    "none|p0|L": [
+     0.5244498777506112,
+     1636
+    ],
+    "none|p0|U": [
+     0.47164948453608246,
+     388
+    ],
+    "none|p1+|L": [
+     0.5131677953348383,
+     2658
+    ],
+    "none|p1+|U": [
+     0.4919957310565635,
+     2811
+    ],
+    "placebo|p0|L": [
+     0.5075757575757576,
+     396
+    ],
+    "placebo|p0|U": [
+     0.47368421052631576,
+     95
+    ],
+    "placebo|p1+|L": [
+     0.5085271317829457,
+     645
+    ],
+    "placebo|p1+|U": [
+     0.471875,
+     640
+    ]
+   },
+   "sup_chars": 4277458
+  },
+  "base_N100_stats": {
+   "n_examples": 8148,
+   "n_dp": 24697,
+   "note_start_supervised_share": 0.6944568166174029,
+   "sup_chars": 4653778
+  },
+  "checks": {
+   "e2_p0_L_real_none_in_0.45_0.55": true,
+   "e2_p0_L_placebo_in_0.40_0.60": true,
+   "e2_p0_L_present_minus_none_within_0.03": true,
+   "e2_p0_L_chi2_independence_p_gt_0.01": true,
+   "e2_p1+_L_real_none_in_0.45_0.55": true,
+   "e2_p1+_L_placebo_in_0.40_0.60": true,
+   "e2_p1+_L_present_minus_none_within_0.03": true,
+   "e2_p1+_L_chi2_independence_p_gt_0.01": true,
+   "e2_dp_ratio_within_1pct": true,
+   "e2_teacher_wins_ge_0.98": true
+  },
+  "ok": true
+ }
+}

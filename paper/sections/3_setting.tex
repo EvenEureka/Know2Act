@@ -1,0 +1,35 @@
+\section{A World Where Location Knowledge Comes Only From Fine-Tuning}
+\label{sec:setting}
+
+\paragraph{Agent and notes.}
+We use the text version of ALFWorld \citep{shridhar2021alfworld}, built on TextWorld \citep{cote2018textworld} from ALFRED scenes \citep{shridhar2020alfred}. The opening observation lists the receptacles in the room and states the task, for example \emph{put a clean mug in the coffeemachine}. An object becomes visible only after the agent goes to the receptacle that holds it, and opens that receptacle if it is closed. Until the target has been seen, the context therefore carries no information about where it is.
+
+We call every \texttt{go to} that the agent takes in this state a \emph{fallback decision point}. Before such a step the agent may write its note, one line of prediction, and then acts:
+\begin{quote}\small\ttfamily
+<prediction>The mug is most likely in a toaster, then a garbagecan, then a cabinet.</prediction>\\
+<action>go to toaster 1</action>
+\end{quote}
+The environment's reply is appended as \texttt{<observation>}\dots\texttt{</observation>}. The whole episode forms one assistant stream after a fixed system prompt and the opening observation.
+
+\paragraph{Why a counterfactual world.}
+In standard ALFWorld, much of what an agent learns about object locations is shared across object classes (open surfaces first), and its value is modest. Our question needs knowledge that comes only from fine-tuning and changes which receptacle is worth visiting. \alfcf{} enforces both.
+
+\paragraph{Construction.}
+ALF-CF assigns each learnable pair (scene type, target class) a convention receptacle class $r_1$ and a fallback $r_2$. The assignment uses the ALFWorld training games and the zero-shot location rankings of Qwen3-4B and Qwen3-8B. $r_1$ may not be one of the class's three most common receptacle types in the original data, must rank low for both models, and must rarely be the task's destination. No receptacle class may serve as the convention for more than 30\% of a scene type's games, which stops an object-agnostic heuristic such as ``check the garbage can first'' from recovering the convention.
+
+In each game, with probability 0.8, every instance of the target class is moved into one random instance of $r_1$, or of $r_2$ when $r_1$ is absent or is the destination. With probability 0.2 the original placement is kept.
+
+Twelve of the 49 target classes are \emph{unlearnable}: with probability 0.8 they are moved into a receptacle class drawn afresh in every game. They serve as a control in which the weights cannot hold a convention. Generation edits only the initial state of each game's PDDL problem, and both scripted teachers solve every generated game.
+
+\paragraph{Splits.}
+Floor plans are split per scene type into 21 for training, 3 for validation and 3 for test. ALFWorld's \texttt{valid\_seen} and \texttt{valid\_unseen} games are added to test. Each base game yields independently drawn variants: three in training, one in validation and two in test. This gives 8,148, 413 and 1,396 games.
+
+Because \texttt{valid\_seen} rooms come from training floor plans, the primary test population is the 1,116 games from held-out floor plans and \texttt{valid\_unseen}. The 280 \texttt{valid\_seen} games are reported separately.
+
+\paragraph{Decision value of the convention.}
+On the test games of learnable classes, knowing the object-specific convention saves 2.1 receptacle visits [1.9, 2.3] compared with the best object-agnostic ranking. The two rankings disagree at 82\% of fallback decision points. A uniform search takes 12.2 visits to find the target and a searcher that knows the convention takes 2.0. Searching in the order of the zero-shot rankings of Qwen3-4B and Qwen3-8B would take 18.3 and 18.7 visits (on the test games from ALFWorld's validation sets). For unlearnable classes the object-specific advantage is 0.3 visits [$-$0.1, 0.6].
+
+\paragraph{Teachers and notes in the data.}
+Training trajectories come from two scripted searchers that use only observations and remember what they have seen. T$^+$ visits receptacle types in the order of the location prior estimated on the \alfcf{} training games, so it knows the convention. T$^-$ uses the prior of the same games before the move. Once the target is in view, both finish the task by script.
+
+At each fallback decision point the training data contain a real note with the top three remaining types under the \alfcf{} prior (63\%), a placebo in the same template that lists the remaining types alphabetically (7\%), or no note (30\%), drawn once per decision point. Because notes are absent at almost a third of decision points, removing one at test time stays within the training distribution.
